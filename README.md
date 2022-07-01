@@ -1,2 +1,3 @@
 # pukpr.github.io
-Main web site
+
+Good idea to start at the [GeoEnergyMath wiki](https://github.com/pukpr/GeoEnergyMath/wiki)
