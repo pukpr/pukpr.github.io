@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Gallery - pukpr.github.io</title>
+  <style>
+    body { font-family: sans-serif; }
+    .gallery { display: flex; flex-wrap: wrap; gap: 10px; }
+    .gallery img { max-width: 200px; border: 1px solid #ccc; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h1>Image Gallery</h1>
+  <div id="gallery" class="gallery"></div>
+  <script>
+    // Configuration: update these to match your repo and directory
+    const owner = "pukpr";
+    const repo = "pukpr.github.io";
+    const imageDir = "pt6_quad"; // subdirectory with images
+
+    async function fetchImages() {
+      // GitHub API to list contents of a directory
+      const apiURL = `https://api.github.com/repos/${owner}/${repo}/contents/${imageDir}`;
+      const res = await fetch(apiURL);
+      if (!res.ok) {
+        document.getElementById("gallery").textContent = "Failed to load images.";
+        return;
+      }
+      const files = await res.json();
+      // Filter image files (jpg, png, gif, webp, svg)
+      const imageFiles = files.filter(f => f.type === "file" && /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(f.name));
+      const gallery = document.getElementById("gallery");
+      gallery.innerHTML = "";
+      imageFiles.forEach(f => {
+        const img = document.createElement("img");
+        img.src = `https://${owner}.github.io/${imageDir}/${encodeURIComponent(f.name)}`;
+        img.alt = f.name;
+        gallery.appendChild(img);
+      });
+      if (imageFiles.length === 0) {
+        gallery.textContent = "No images found in /" + imageDir + ".";
+      }
+    }
+    fetchImages();
+  </script>
+</body>
+</html>
