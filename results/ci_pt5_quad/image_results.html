@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ci_pt5_quad</title>
+  <style>
+    .gallery { display: flex; flex-wrap: wrap; gap: 10px; }
+    .gallery img { max-width: 200px; border: 1px solid #ccc; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <a href="metrics.html">metrics</a>
+  |
+  <h1>Gallery from ci_pt5_quad</h1>
+  <div id="ci_pt5_quad-gallery" class="gallery"></div>
+  <script src="../gallery.js"></script>
+  <script>
+    loadGithubGallery({
+      owner: "pukpr",
+      repo: "pukpr.github.io",
+      imageDir: "results/ci_pt5_quad",
+      containerId: "ci_pt5_quad-gallery"
+    });
+  </script>
+</body>
+</html>
