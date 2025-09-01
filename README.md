@@ -1,6 +1,8 @@
 # pukpr.github.io
 
-Good idea to start at the [GeoEnergyMath wiki](https://github.com/pukpr/GeoEnergyMath/wiki)
+https://pukpr.github.io
+
+Good idea to also look at the [GeoEnergyMath wiki](https://github.com/pukpr/GeoEnergyMath/wiki)
 
 <i><s>"Wind speeds have a great deal of uncertainty Great deal of uncertainty. A number of atmospheric scientists claim to understand claim to understand what is happening in the stratosphere with regards to wind speeds. Among the scientists are Murray Selby Judith Curry Paul Roundy Timothy Dunkerton Bill Gray. For the oceans considering that the lunar tides is agreed. Anytime there is a perturbation oceans idle gauge height it always comes back with the tides. There is little doubt cyclic disturbances synchronized with the annual period caused by annual mechanisms. The semi-annual oscillation in Upper stratospheric winds is matches due to noodle Crossing. Initially Richard lindsen considered that lunar Tides may have something to do with the cyclic wind oscillation. However cleansing could not quite put two and two together and find the right interaction. What many scientists think is that resonance conditions in the atmosphere lead to cyclic phenomenon as the resonance creates the cycle. But it becomes very obvious that this is not a resonance because if with higher altitude in the stratosphere the Cycles are simply due to the semi-annual interaction. Why isn't it semi why isn't it just annual is it semi-annual or that is due to the symmetry of the situation at the equator Cycles north of the equator in South the equator look the same due to the Coriolis effect therefore any cycle will be semi-annual. Anybody that's not it because there's also what's called the laplace's title equation modulation which can change the shape of the cyclic waveform."</s></i>
 
