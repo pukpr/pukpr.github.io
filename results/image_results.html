@@ -110,19 +110,42 @@ This model is adapted from Mathematical GeoEnergy (Wiley/AGU, 2018).
     <span id="status" style="margin-left:1em;color:#666;"></span>
   </div>
 
+<div id="cycleGroup" role="radiogroup" aria-label="Cycle period">
+  <label>
+    <input type="radio" name="cycle" value="quad" checked>
+    quad
+  </label>
+  <label>
+    <input type="radio" name="cycle" value="two">
+    biennial
+  </label>
+</div>
+
+<!-- JS: read selected value later -->
+<script>
+</script>
+
+
   <div id="gallery"></div>
 
   <script>
+    function getCycleValue() {
+      return document.querySelector('input[name="cycle"]:checked').value; // "quad" or "two"
+    }
+    // Example usage:
+    // const cycle = getCycleValue();
+
     const intervals = [
-      "0.0-0.1", "0.1-0.2", "0.2-0.3", "0.3-0.4", "0.4-0.5",
+      "0.01-0.1", "0.1-0.2", "0.2-0.3", "0.3-0.4", "0.4-0.5",
       "0.5-0.6", "0.6-0.7", "0.7-0.8", "0.8-0.9", "0.9-1.0"
     ];
 
 
     function getIntervalDir(interval, siteIndex) {
       const base = siteIndex < 0 ? "ci_pt" : "pt";
+      const cycl = getCycleValue();
       const intervalMap = {
-        "0.0-0.1": "0",
+        "0.01-0.1": "0",
         "0.1-0.2": "1",
         "0.2-0.3": "2",
         "0.3-0.4": "3",
@@ -133,11 +156,11 @@ This model is adapted from Mathematical GeoEnergy (Wiley/AGU, 2018).
         "0.8-0.9": "8",
         "0.9-1.0": "9"
       };
-      return `${base}${intervalMap[interval]}_quad`;
+      return `${base}${intervalMap[interval]}_${cycl}`;
     }
 
     const intervalDirs = {
-      "0.0-0.1": "pt1_quad",
+      "0.01-0.1": "pt1_quad",
       "0.1-0.2": "pt1_quad",
       "0.2-0.3": "pt2_quad",
       "0.3-0.4": "pt3_quad",
@@ -170,12 +193,14 @@ This model is adapted from Mathematical GeoEnergy (Wiley/AGU, 2018).
       }
     }
 
-    async function loadPlots() {
+     async function loadPlots() {
       const site = siteSelect.value;
       gallery.innerHTML = "";
       status.textContent = "Loading…";
 
       let loaded = 0;
+
+
       for (const interval of intervals) {
         const dir0 = intervalDirs[interval];
         const dir = getIntervalDir(interval, parseInt(siteSelect.value, 10));
