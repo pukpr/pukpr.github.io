@@ -102,9 +102,9 @@ This model is adapted from Mathematical GeoEnergy (Wiley/AGU, 2018).
   <h1>Cross-Validated Interval Plot Viewer</h1>
 
   <div>
-    <label for="siteSelect">Select Site:</label>
+    <label for="siteSelect">Select Site Index:</label>
     <select id="siteSelect">
-      <option>Loading sites…</option>
+      <option>Loading site indices…</option>
     </select>
     <button id="loadBtn">Load CV Plots</button>
     <span id="status" style="margin-left:1em;color:#666;"></span>
@@ -120,15 +120,15 @@ This model is adapted from Mathematical GeoEnergy (Wiley/AGU, 2018).
 
     const intervalDirs = {
       "0.0-0.1": "images",
-      "0.1-0.2": "ci_pt1_quad",
-      "0.2-0.3": "ci_pt2_quad",
-      "0.3-0.4": "ci_pt3_quad",
-      "0.4-0.5": "ci_pt4_quad",
-      "0.5-0.6": "ci_pt5_quad",
-      "0.6-0.7": "ci_pt6_quad",
-      "0.7-0.8": "ci_pt7_quad",
-      "0.8-0.9": "ci_pt8_quad",
-      "0.9-1.0": "ci_pt9_quad"
+      "0.1-0.2": "pt1_quad",
+      "0.2-0.3": "pt2_quad",
+      "0.3-0.4": "pt3_quad",
+      "0.4-0.5": "pt4_quad",
+      "0.5-0.6": "pt5_quad",
+      "0.6-0.7": "pt6_quad",
+      "0.7-0.8": "pt7_quad",
+      "0.8-0.9": "pt8_quad",
+      "0.9-1.0": "pt9_quad"
     };
 
     const siteSelect = document.getElementById("siteSelect");
@@ -137,42 +137,30 @@ This model is adapted from Mathematical GeoEnergy (Wiley/AGU, 2018).
     const status = document.getElementById("status");
 
     async function fetchSiteList() {
-      const res = await fetch("/results/csv_table.html");
-      const html = await res.text();
-      const doc = new DOMParser().parseFromString(html, "text/html");
-      const rows = Array.from(doc.querySelectorAll("table tr"));
-      const sites = [];
+      const res = await fetch("/results/sorted_sites_pmsl.csv");
+      const text = await res.text();
+      const lines = text.trim().split(/\r?\n/);
+      const siteNames = lines.map(line => line.split(",")[0].trim()).filter(Boolean);
+      siteNames.sort((a, b) => a.localeCompare(b));
 
-      for (const row of rows) {
-        const cells = row.querySelectorAll("td");
-        if (cells.length >= 2) {
-          const id = parseInt(cells[0].textContent.trim(), 10);
-          const name = cells[1].textContent.trim();
-          if (Number.isFinite(id) && name) {
-            sites.push({ id, name });
-          }
-        }
-      }
-
-      sites.sort((a, b) => a.name.localeCompare(b.name));
       siteSelect.innerHTML = "";
-      for (const site of sites) {
+      for (const name of siteNames) {
         const opt = document.createElement("option");
-        opt.value = site.id;
-        opt.textContent = `${site.name} — ${site.id}`;
+        opt.value = name;
+        opt.textContent = name;
         siteSelect.appendChild(opt);
       }
     }
 
     async function loadPlots() {
-      const siteId = siteSelect.value;
+      const site = siteSelect.value;
       gallery.innerHTML = "";
       status.textContent = "Loading…";
 
       let loaded = 0;
       for (const interval of intervals) {
         const dir = intervalDirs[interval];
-        const filename = `site${siteId}_${interval}.png`;
+        const filename = `${site}site-${interval}.png`;
         const url = `/results/${dir}/${filename}`;
 
         const img = document.createElement("img");
@@ -198,6 +186,7 @@ This model is adapted from Mathematical GeoEnergy (Wiley/AGU, 2018).
     loadBtn.addEventListener("click", loadPlots);
     fetchSiteList();
   </script>
+
 
 </body>
 </html>
