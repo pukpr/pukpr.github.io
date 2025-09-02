@@ -2,12 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>PMSL results</title>
+  <title>Cross-Validated CV Plot Viewer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2em;
+      background: #f9f9f9;
+    }
+    label, select, button {
+      font-size: 1em;
+      margin-right: 1em;
+    }
+    #gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+      margin-top: 2em;
+    }
+    figure {
+      margin: 0;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    figcaption {
+      padding: 6px 10px;
+      font-size: 0.9em;
+      background: #eee;
+      border-top: 1px solid #ddd;
+    }
+    img {
+      width: 100%;
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
+
  <a href="csv_table.html">Reference Table</a>
  
+<p>The results repository consists of multiple linear regression models of monthly oceanic climate indices (CI) and atmospheric QBO, applying annual modulated tidal forcing. 
+Selected SLH models are included in the CI set, such as Brest, Honolulu, Ft. Denison, with many other SLH sites featured -- all the data from a PSMSL repository.
+The model itself is adapted from the book <b>Mathematical GeoEnergy</b> (Wiley/AGU, 2018), where a biennial modulation as introduced -- the adapted model features a quadrennial modulation as well. 
+
+<p>This specific page is dedicate to providing cross-validated (CV) results across the collection of time-series (20 climate indices and 130 SLH sets). The cross-validation essentially trains on a given interval of a time-series,
+ and then an excluded area is used as test interval. So an identifier such as 0.4-0.5 indicates that the fractional span 0.4-0.5 of the entire time-series is used as a test/validation interval
+ and the outer enclosing region is used for training. When this was initially created on 9/1/2025, there were 3000 CV results on time-series that averaged around 100 years (~1200 monthly readings/set) so over 3 million data points. 
  
  <h2>Montly climate indices</h2>
 <p>
@@ -53,7 +95,142 @@
  0.8-0.9 test <a href="pt8_quad/image_results.html">quad</a>  |  <a href="pt8_two/image_results.html">biennial</a>
 <p>
  0.9-1.0 test <a href="pt9_quad/image_results.html">quad</a>  |  <a href="pt9_two/image_results.html">biennial</a>
- 
 
- </body>
+<hr/>
+
+
+  <h2>Cross-Validated Interval Plot Viewer</h2>
+
+  <div>
+    <label for="siteSelect">Select Site Index:</label>
+    <select id="siteSelect">
+      <option>Loading site indices…</option>
+    </select>
+    <button id="loadBtn">Load CV Plots</button>
+    <span id="status" style="margin-left:1em;color:#666;"></span>
+  </div>
+
+<div id="cycleGroup" role="radiogroup" aria-label="Cycle period">
+  <label>
+    <input type="radio" name="cycle" value="quad" checked>
+    quad
+  </label>
+  <label>
+    <input type="radio" name="cycle" value="two">
+    biennial
+  </label>
+</div>
+
+<!-- JS: read selected value later -->
+<script>
+</script>
+
+
+  <div id="gallery"></div>
+
+  <script>
+    function getCycleValue() {
+      return document.querySelector('input[name="cycle"]:checked').value; // "quad" or "two"
+    }
+    // Example usage:
+    // const cycle = getCycleValue();
+
+    const intervals = [
+      "0.01-0.1", "0.1-0.2", "0.2-0.3", "0.3-0.4", "0.4-0.5",
+      "0.5-0.6", "0.6-0.7", "0.7-0.8", "0.8-0.9", "0.9-1.0"
+    ];
+
+
+    function getIntervalDir(interval, siteIndex) {
+      const base = siteIndex < 0 ? "ci_pt" : "pt";
+      const cycl = getCycleValue();
+      const intervalMap = {
+        "0.01-0.1": "0",
+        "0.1-0.2": "1",
+        "0.2-0.3": "2",
+        "0.3-0.4": "3",
+        "0.4-0.5": "4",
+        "0.5-0.6": "5",
+        "0.6-0.7": "6",
+        "0.7-0.8": "7",
+        "0.8-0.9": "8",
+        "0.9-1.0": "9"
+      };
+      return `${base}${intervalMap[interval]}_${cycl}`;
+    }
+
+    const intervalDirs = {
+      "0.01-0.1": "pt1_quad",
+      "0.1-0.2": "pt1_quad",
+      "0.2-0.3": "pt2_quad",
+      "0.3-0.4": "pt3_quad",
+      "0.4-0.5": "pt4_quad",
+      "0.5-0.6": "pt5_quad",
+      "0.6-0.7": "pt6_quad",
+      "0.7-0.8": "pt7_quad",
+      "0.8-0.9": "pt8_quad",
+      "0.9-1.0": "pt9_quad"
+    };
+
+    const siteSelect = document.getElementById("siteSelect");
+    const loadBtn = document.getElementById("loadBtn");
+    const gallery = document.getElementById("gallery");
+    const status = document.getElementById("status");
+
+    async function fetchSiteList() {
+      const res = await fetch("/results/sorted_sites_pmsl.csv");
+      const text = await res.text();
+      const lines = text.trim().split(/\r?\n/);
+      const siteNames = lines.map(line => line.split(",")[0].trim()).filter(Boolean);
+      siteNames.sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
+
+      siteSelect.innerHTML = "";
+      for (const name of siteNames) {
+        const opt = document.createElement("option");
+        opt.value = name;
+        opt.textContent = name;
+        siteSelect.appendChild(opt);
+      }
+    }
+
+     async function loadPlots() {
+      const site = siteSelect.value;
+      gallery.innerHTML = "";
+      status.textContent = "Loading…";
+
+      let loaded = 0;
+
+
+      for (const interval of intervals) {
+        const dir0 = intervalDirs[interval];
+        const dir = getIntervalDir(interval, parseInt(siteSelect.value, 10));
+        const filename = `${site}site-${interval}.png`;
+        const url = `/results/${dir}/${filename}`;
+
+        const img = document.createElement("img");
+        img.src = url;
+        img.alt = `${interval}`;
+        img.onerror = () => img.remove();
+        img.onload = () => loaded++;
+
+        const fig = document.createElement("figure");
+        const caption = document.createElement("figcaption");
+        caption.textContent = interval;
+
+        fig.appendChild(img);
+        fig.appendChild(caption);
+        gallery.appendChild(fig);
+      }
+
+      setTimeout(() => {
+        status.textContent = `${loaded} plot(s) loaded`;
+      }, 1000);
+    }
+
+    loadBtn.addEventListener("click", loadPlots);
+    fetchSiteList();
+  </script>
+
+
+</body>
 </html>
