@@ -57,15 +57,8 @@
       // Build table
       const table = document.createElement('table');
       // Header row
- //     const thead = document.createElement('thead');
-      const headerRow = document.createElement('tr');
-      dataRows[0].forEach(h => {
-        const th = document.createElement('th');
-        th.textContent = h;
-        if (descMap[h]) th.title = descMap[h]; // tooltip
-        headerRow.appendChild(th);
-      });
-      thead.appendChild(headerRow);
+      const thead = document.createElement('thead');
+
 
  //     // Description row (optional, can be commented out if you only want tooltips)
  //     const descTr = document.createElement('tr');
@@ -77,10 +70,20 @@
  //     });
  //     thead.appendChild(descTr);
 
- //     table.appendChild(thead);
+      table.appendChild(thead);
 
       // Body
- //     const tbody = document.createElement('tbody');
+      const tbody = document.createElement('tbody');
+ 
+      const headerRow = document.createElement('tr');
+      dataRows[0].forEach(h => {
+        const th = document.createElement('th');
+        th.textContent = h;
+        if (descMap[h]) th.title = descMap[h]; // tooltip
+        headerRow.appendChild(th);
+      });
+      tbody.appendChild(headerRow);
+
       dataRows.slice(1).forEach(r => {
         const tr = document.createElement('tr');
         r.forEach(cell => {
@@ -90,7 +93,7 @@
         });
         tbody.appendChild(tr);
       });
-  //    table.appendChild(tbody);
+      table.appendChild(tbody);
 
       // Append
       document.getElementById('csv-table').appendChild(table);
