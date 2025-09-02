@@ -49,8 +49,9 @@ async function loadGithubGallery({ owner, repo, imageDir, containerId }) {
       if (match) {
         const idx = match[1].trim();
         const desc = match[2].trim();
-        out[idx] = desc;
-      }
+        //out[idx] = desc;
+        out[idx] = desc.split(',')[0].trim());
+       }
     });
     return out;
   }
