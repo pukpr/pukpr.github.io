@@ -34,7 +34,7 @@ async function loadGithubGallery({ owner, repo, imageDir, containerId }) {
     }
     return './'; // fallback
   })();
-  const csvURL = jsDir + "/../sorted_sites_pmsl.csv";
+  const csvURL = "/results/sorted_sites_pmsl.csv";
   const container = document.getElementById(containerId);
   if (!container) return;
 
