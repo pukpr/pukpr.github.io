@@ -80,9 +80,9 @@ async function loadGithubGallery({ owner, repo, imageDir, containerId }) {
 
     imageFiles.forEach(f => {
       // Try to extract leading integer from filename (e.g. -12_blah.png or 0032-blah.png)
-      const match = f.name.match(/^(-?\d+)[_.-]/);
-      const idx = match ? match[1] : null;
-      const desc = (idx && descriptions[idx]) ? descriptions[idx] : "";
+      const match = f.name.match(/^(-?\d+)[_.-s]/);
+      const idx = match ? match[1] : " noINDEX ";
+      const desc = (idx && descriptions[idx]) ? descriptions[idx] : " noDESCRIPTION ";
 
       // Create figure/caption
       const figure = document.createElement("figure");
