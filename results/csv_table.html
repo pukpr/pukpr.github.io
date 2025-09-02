@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSV Table with Header Descriptions</title>
+  <style>
+    table { border-collapse: collapse; width: 100%; font-family: monospace; }
+    th, td { border: 1px solid #ccc; padding: 6px 10px; }
+    th { background: #f6f8fa; }
+    .desc-row td { font-size: 12px; color: #555; background: #fcfcfc; }
+  </style>
+</head>
+<body>
+  <h2>CSV Table Preview</h2>
+  <div id="csv-table"></div>
+  <script>
+    // --- Utility functions ---
+    function parseCSV(text) {
+      // Handles simple CSV, quoted fields, and commas inside quotes
+      const rows = [];
+      let row = [], field = '', inQuotes = false, i = 0, c;
+      while (i < text.length) {
+        c = text[i];
+        if (inQuotes) {
+          if (c === '"') {
+            if (text[i + 1] === '"') { field += '"'; i++; }
+            else { inQuotes = false; }
+          } else { field += c; }
+        } else {
+          if (c === '"') { inQuotes = true; }
+          else if (c === ',') { row.push(field.trim()); field = ''; }
+          else if (c === '\r') { /* ignore */ }
+          else if (c === '\n') { row.push(field.trim()); rows.push(row); row = []; field = ''; }
+          else { field += c; }
+        }
+        i++;
+      }
+      if (field.length > 0 || row.length > 0) { row.push(field.trim()); rows.push(row); }
+      return rows;
+    }
+
+    async function fetchCSV(url) {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('Failed to fetch CSV: ' + url);
+      return parseCSV(await res.text());
+    }
+
+    // --- Main rendering logic ---
+    async function renderTable() {
+      const dataRows = await fetchCSV('sorted_sites_pmsl.csv');
+      const descRows = await fetchCSV('header_descriptions.csv');
+
+      // Build header->description map
+      const descMap = {};
+      descRows.forEach(([header, desc]) => { descMap[header] = desc; });
+
+      // Build table
+      const table = document.createElement('table');
+      // Header row
+      const thead = document.createElement('thead');
+      const headerRow = document.createElement('tr');
+      dataRows[0].forEach(h => {
+        const th = document.createElement('th');
+        th.textContent = h;
+        if (descMap[h]) th.title = descMap[h]; // tooltip
+        headerRow.appendChild(th);
+      });
+      thead.appendChild(headerRow);
+
+      // Description row (optional, can be commented out if you only want tooltips)
+      const descTr = document.createElement('tr');
+      descTr.className = "desc-row";
+      dataRows[0].forEach(h => {
+        const td = document.createElement('td');
+        td.textContent = descMap[h] || '';
+        descTr.appendChild(td);
+      });
+      thead.appendChild(descTr);
+
+      table.appendChild(thead);
+
+      // Body
+      const tbody = document.createElement('tbody');
+      dataRows.slice(1).forEach(r => {
+        const tr = document.createElement('tr');
+        r.forEach(cell => {
+          const td = document.createElement('td');
+          td.textContent = cell;
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+
+      // Append
+      document.getElementById('csv-table').appendChild(table);
+    }
+
+    renderTable().catch(e => {
+      document.getElementById('csv-table').textContent = "Failed to load table: " + e;
+    });
+  </script>
+</body>
+</html>
