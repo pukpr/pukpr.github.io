@@ -118,8 +118,26 @@ This model is adapted from Mathematical GeoEnergy (Wiley/AGU, 2018).
       "0.5-0.6", "0.6-0.7", "0.7-0.8", "0.8-0.9", "0.9-1.0"
     ];
 
+
+    function getIntervalDir(interval, siteIndex) {
+      const base = siteIndex < 0 ? "ci_pt" : "pt";
+      const intervalMap = {
+        "0.0-0.1": "1",
+        "0.1-0.2": "2",
+        "0.2-0.3": "3",
+        "0.3-0.4": "4",
+        "0.4-0.5": "5",
+        "0.5-0.6": "6",
+        "0.6-0.7": "7",
+        "0.7-0.8": "8",
+        "0.8-0.9": "9",
+        "0.9-1.0": "10"
+      };
+      return `${base}${intervalMap[interval]}_quad`;
+    }
+
     const intervalDirs = {
-      "0.0-0.1": "images",
+      "0.0-0.1": "pt1_quad",
       "0.1-0.2": "pt1_quad",
       "0.2-0.3": "pt2_quad",
       "0.3-0.4": "pt3_quad",
@@ -159,7 +177,8 @@ This model is adapted from Mathematical GeoEnergy (Wiley/AGU, 2018).
 
       let loaded = 0;
       for (const interval of intervals) {
-        const dir = intervalDirs[interval];
+        const dir0 = intervalDirs[interval];
+        const dir = getIntervalDir(interval, parseInt(siteSelect.value, 10));
         const filename = `${site}site-${interval}.png`;
         const url = `/results/${dir}/${filename}`;
 
