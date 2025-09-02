@@ -2,9 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>PMSL results</title>
+  <title>Cross-Validated CV Plot Viewer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2em;
+      background: #f9f9f9;
+    }
+    label, select, button {
+      font-size: 1em;
+      margin-right: 1em;
+    }
+    #gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+      margin-top: 2em;
+    }
+    figure {
+      margin: 0;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    figcaption {
+      padding: 6px 10px;
+      font-size: 0.9em;
+      background: #eee;
+      border-top: 1px solid #ddd;
+    }
+    img {
+      width: 100%;
+      display: block;
+    }
+  </style>
 </head>
 <body>
+
 
  <a href="csv_table.html">Reference Table</a>
  
@@ -60,7 +95,109 @@ This model is adapted from Mathematical GeoEnergy (Wiley/AGU, 2018).
  0.8-0.9 test <a href="pt8_quad/image_results.html">quad</a>  |  <a href="pt8_two/image_results.html">biennial</a>
 <p>
  0.9-1.0 test <a href="pt9_quad/image_results.html">quad</a>  |  <a href="pt9_two/image_results.html">biennial</a>
- 
 
- </body>
+<hr/>
+
+
+  <h1>Cross-Validated Interval Plot Viewer</h1>
+
+  <div>
+    <label for="siteSelect">Select Site:</label>
+    <select id="siteSelect">
+      <option>Loading sites…</option>
+    </select>
+    <button id="loadBtn">Load CV Plots</button>
+    <span id="status" style="margin-left:1em;color:#666;"></span>
+  </div>
+
+  <div id="gallery"></div>
+
+  <script>
+    const intervals = [
+      "0.0-0.1", "0.1-0.2", "0.2-0.3", "0.3-0.4", "0.4-0.5",
+      "0.5-0.6", "0.6-0.7", "0.7-0.8", "0.8-0.9", "0.9-1.0"
+    ];
+
+    const intervalDirs = {
+      "0.0-0.1": "images",
+      "0.1-0.2": "ci_pt1_quad",
+      "0.2-0.3": "ci_pt2_quad",
+      "0.3-0.4": "ci_pt3_quad",
+      "0.4-0.5": "ci_pt4_quad",
+      "0.5-0.6": "ci_pt5_quad",
+      "0.6-0.7": "ci_pt6_quad",
+      "0.7-0.8": "ci_pt7_quad",
+      "0.8-0.9": "ci_pt8_quad",
+      "0.9-1.0": "ci_pt9_quad"
+    };
+
+    const siteSelect = document.getElementById("siteSelect");
+    const loadBtn = document.getElementById("loadBtn");
+    const gallery = document.getElementById("gallery");
+    const status = document.getElementById("status");
+
+    async function fetchSiteList() {
+      const res = await fetch("/results/csv_table.html");
+      const html = await res.text();
+      const doc = new DOMParser().parseFromString(html, "text/html");
+      const rows = Array.from(doc.querySelectorAll("table tr"));
+      const sites = [];
+
+      for (const row of rows) {
+        const cells = row.querySelectorAll("td");
+        if (cells.length >= 2) {
+          const id = parseInt(cells[0].textContent.trim(), 10);
+          const name = cells[1].textContent.trim();
+          if (Number.isFinite(id) && name) {
+            sites.push({ id, name });
+          }
+        }
+      }
+
+      sites.sort((a, b) => a.name.localeCompare(b.name));
+      siteSelect.innerHTML = "";
+      for (const site of sites) {
+        const opt = document.createElement("option");
+        opt.value = site.id;
+        opt.textContent = `${site.name} — ${site.id}`;
+        siteSelect.appendChild(opt);
+      }
+    }
+
+    async function loadPlots() {
+      const siteId = siteSelect.value;
+      gallery.innerHTML = "";
+      status.textContent = "Loading…";
+
+      let loaded = 0;
+      for (const interval of intervals) {
+        const dir = intervalDirs[interval];
+        const filename = `site${siteId}_${interval}.png`;
+        const url = `/results/${dir}/${filename}`;
+
+        const img = document.createElement("img");
+        img.src = url;
+        img.alt = `${interval}`;
+        img.onerror = () => img.remove();
+        img.onload = () => loaded++;
+
+        const fig = document.createElement("figure");
+        const caption = document.createElement("figcaption");
+        caption.textContent = interval;
+
+        fig.appendChild(img);
+        fig.appendChild(caption);
+        gallery.appendChild(fig);
+      }
+
+      setTimeout(() => {
+        status.textContent = `${loaded} plot(s) loaded`;
+      }, 1000);
+    }
+
+    loadBtn.addEventListener("click", loadPlots);
+    fetchSiteList();
+  </script>
+
+</body>
 </html>
