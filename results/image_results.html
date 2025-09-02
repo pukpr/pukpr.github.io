@@ -99,7 +99,7 @@ This model is adapted from Mathematical GeoEnergy (Wiley/AGU, 2018).
 <hr/>
 
 
-  <h1>Cross-Validated Interval Plot Viewer</h1>
+  <h2>Cross-Validated Interval Plot Viewer</h2>
 
   <div>
     <label for="siteSelect">Select Site Index:</label>
@@ -122,16 +122,16 @@ This model is adapted from Mathematical GeoEnergy (Wiley/AGU, 2018).
     function getIntervalDir(interval, siteIndex) {
       const base = siteIndex < 0 ? "ci_pt" : "pt";
       const intervalMap = {
-        "0.0-0.1": "1",
-        "0.1-0.2": "2",
-        "0.2-0.3": "3",
-        "0.3-0.4": "4",
-        "0.4-0.5": "5",
-        "0.5-0.6": "6",
-        "0.6-0.7": "7",
-        "0.7-0.8": "8",
-        "0.8-0.9": "9",
-        "0.9-1.0": "10"
+        "0.0-0.1": "0",
+        "0.1-0.2": "1",
+        "0.2-0.3": "2",
+        "0.3-0.4": "3",
+        "0.4-0.5": "4",
+        "0.5-0.6": "5",
+        "0.6-0.7": "6",
+        "0.7-0.8": "7",
+        "0.8-0.9": "8",
+        "0.9-1.0": "9"
       };
       return `${base}${intervalMap[interval]}_quad`;
     }
@@ -159,7 +159,7 @@ This model is adapted from Mathematical GeoEnergy (Wiley/AGU, 2018).
       const text = await res.text();
       const lines = text.trim().split(/\r?\n/);
       const siteNames = lines.map(line => line.split(",")[0].trim()).filter(Boolean);
-      siteNames.sort((a, b) => a.localeCompare(b));
+      siteNames.sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
 
       siteSelect.innerHTML = "";
       for (const name of siteNames) {
