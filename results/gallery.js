@@ -21,7 +21,7 @@ async function loadGithubGallery({ owner, repo, imageDir, containerId }) {
   }
 
   const apiURL = `https://api.github.com/repos/${owner}/${repo}/contents/${imageDir}`;
-  const csvURL = `https://raw.githubusercontent.com/${owner}/${repo}/main/results/sorted_sites_pmsl.csv`;
+  const csvURL = `https://pukpr.github.io/results/sorted_sites_pmsl.csv`;
   const container = document.getElementById(containerId);
   if (!container) return;
 
