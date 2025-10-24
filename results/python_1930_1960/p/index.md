@@ -1,3 +1,9 @@
+---
+layout: page
+title: "Data params"
+description: "encoded in JSON" 
+---
+
 [10d.dat.p](10d.dat.p)
 [111d.dat.p](111d.dat.p)
 [113d.dat.p](113d.dat.p)
