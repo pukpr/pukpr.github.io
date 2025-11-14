@@ -131,3 +131,113 @@ latent_layer_example.py
 ## License
 
 This example is part of the pukpr.github.io repository and follows the same license.
+
+---
+
+# PySINDy with model_step_algorithm Integration
+
+## New Examples (Integration with GIST Template)
+
+Two additional examples have been added that integrate the `model_step_algorithm` from the GIST template with PySINDy:
+
+### 1. `pysindy_with_model_step.py`
+
+**Purpose**: Demonstrates integration of the `model_step_algorithm` for generating latent hidden layers.
+
+**Key Features**:
+- Loads parameters from `.p` JSON files (Aliased, AliasedAmp, AliasedPhase)
+- Uses `model_step_algorithm` to generate latent layer via harmonic sum
+- Applies PySINDy with Fourier (sinusoidal) feature library
+- Discovers dynamics: dx/dt = f(x, s) where s is the latent layer
+
+**Algorithm: model_step_algorithm**
+
+The core algorithm computes model values by summing harmonic components:
+
+```
+model_val = Σ(A_i * sin(ω_i * t + φ_i))
+
+where:
+  ω_i = 2π / Period_i  (angular frequency)
+  A_i = Amplitude_i
+  φ_i = Phase_i
+```
+
+**Usage**:
+```bash
+python pysindy_with_model_step.py
+```
+
+### 2. `run_pysindy_on_data.py`
+
+**Purpose**: Command-line tool for running PySINDy analysis on real or synthetic data.
+
+**Usage**:
+
+Demo mode (synthetic data):
+```bash
+python run_pysindy_on_data.py --demo
+```
+
+With CSV data:
+```bash
+python run_pysindy_on_data.py path/to/data.csv
+```
+
+With custom parameter file:
+```bash
+python run_pysindy_on_data.py data.csv --p-file path/to/params.p
+```
+
+**Arguments**:
+- `csv`: Input CSV file (two-column format: time, value)
+- `--p-file`: Parameter `.p` JSON file
+- `--output`: Output plot filename (default: `pysindy_result.png`)
+- `--demo`: Force demo mode with synthetic data
+
+**CSV Format**:
+```
+time1,value1
+time2,value2
+...
+```
+
+**Parameter File Format (.p JSON)**:
+```json
+{
+  "Aliased": [18.6, 9.3, 6.2, ...],
+  "AliasedAmp": [0.5, 0.3, 0.2, ...],
+  "AliasedPhase": [0.0, 1.5, 3.0, ...]
+}
+```
+
+**Output**:
+- Console: Discovered equations, model score, summary
+- Image: 4-panel visualization showing:
+  - Panel 1: Observed time series
+  - Panel 2: Latent hidden layer (harmonic components)
+  - Panel 3: Model fit comparison
+  - Panel 4: Phase space (x vs s)
+
+## Method
+
+The new examples implement a novel approach combining:
+
+1. **Parameter Loading**: Read harmonic component parameters from `.p` JSON files
+2. **Latent Layer Generation**: Use `model_step_algorithm` to compute hidden features
+3. **Sinusoidal Regression**: Apply PySINDy with Fourier library
+4. **Dynamics Discovery**: Find sparse representation of time evolution
+
+## Data Files
+
+Parameter files (`.p` JSON) are located in:
+```
+../../results/python_1930_1960/p/
+```
+
+These contain fitted harmonic parameters from tidal gauge data and climate records.
+
+## GIST Reference
+
+- **GIST Template**: model_step_algorithm implementation
+  - URL: https://gist.github.com/pukpr/0b7ac85fad1ea36f65a9b50d6c30958b
