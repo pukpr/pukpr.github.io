@@ -179,7 +179,7 @@ Demo mode (synthetic data):
 python run_pysindy_on_data.py --demo
 ```
 
-With CSV data:
+With CSV data (automatically looks for data.csv.p):
 ```bash
 python run_pysindy_on_data.py path/to/data.csv
 ```
@@ -189,9 +189,11 @@ With custom parameter file:
 python run_pysindy_on_data.py data.csv --p-file path/to/params.p
 ```
 
+**Note**: If no `--p-file` is specified, the script automatically looks for a parameter file named `<csv_file>.p` in the same directory as the CSV file. For example, if you provide `data.csv`, it will look for `data.csv.p`.
+
 **Arguments**:
 - `csv`: Input CSV file (two-column format: time, value)
-- `--p-file`: Parameter `.p` JSON file
+- `--p-file`: Parameter `.p` JSON file (default: `<csv_file>.p` if it exists)
 - `--output`: Output plot filename (default: `pysindy_result.png`)
 - `--demo`: Force demo mode with synthetic data
 

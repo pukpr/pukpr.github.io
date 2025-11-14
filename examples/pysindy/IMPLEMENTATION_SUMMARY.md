@@ -83,6 +83,12 @@ Shows complete workflow with synthetic data and detailed output.
 
 ### Run with Your Data
 ```bash
+python examples/pysindy/run_pysindy_on_data.py your_data.csv
+```
+This automatically looks for `your_data.csv.p` as the parameter file.
+
+To specify a different parameter file:
+```bash
 python examples/pysindy/run_pysindy_on_data.py your_data.csv --p-file params.p
 ```
 
