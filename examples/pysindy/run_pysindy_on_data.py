@@ -281,7 +281,7 @@ def main():
     parser.add_argument('csv', nargs='?', default=None,
                        help='Input CSV file (two columns: time, value)')
     parser.add_argument('--p-file', '--p', dest='p_file', default=None,
-                       help='Parameter .p JSON file')
+                       help='Parameter .p JSON file (default: <csv_file>.p if exists)')
     parser.add_argument('--output', '-o', default='pysindy_result.png',
                        help='Output plot filename')
     parser.add_argument('--demo', action='store_true',
@@ -299,22 +299,23 @@ def main():
         print(f"Loading parameters from: {args.p_file}")
         params = read_json_p(args.p_file)
     else:
-        # Use first available .p file or create synthetic
-        p_dir = Path('results/python_1930_1960/p')
-        if p_dir.exists():
-            p_files = list(p_dir.glob('*.p'))
-            if p_files:
-                args.p_file = str(p_files[0])
-                print(f"Using parameter file: {args.p_file}")
+        # Default: if CSV file is provided, look for CSV_file.p
+        if args.csv and not args.demo:
+            default_p_file = args.csv + '.p'
+            if Path(default_p_file).exists():
+                args.p_file = default_p_file
+                print(f"Using default parameter file: {args.p_file}")
                 params = read_json_p(args.p_file)
             else:
-                print("No .p files found, using synthetic parameters")
+                print(f"Default parameter file '{default_p_file}' not found")
+                print("Using synthetic parameters")
                 params = {
                     'Aliased': [18.6, 9.3, 6.2],
                     'AliasedAmp': [0.5, 0.3, 0.2],
                     'AliasedPhase': [0.0, 1.5, 3.0]
                 }
         else:
+            # No CSV file provided or demo mode - use synthetic parameters
             print("Using synthetic parameters")
             params = {
                 'Aliased': [18.6, 9.3, 6.2],
