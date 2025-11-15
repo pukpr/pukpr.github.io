@@ -46,7 +46,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.stats import pearsonr
 import random
-from sinusoidal_regression import fit_sinusoidal_regression  # use the provided module
+# from sinusoidal_regression import fit_sinusoidal_regression  # use the provided module
 
 from pysindy import SINDy
 from pysindy.feature_library import FourierLibrary, PolynomialLibrary
