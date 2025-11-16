@@ -270,7 +270,7 @@ def fit_pysindy_with_sinusoidal_library(observed: np.ndarray, latent_layer: np.n
                          f"observed has {n_samples}, latent has {s.shape[0]}")
 
     # Build model (Fourier library on latent only)
-    feature_library = FourierLibrary(n_frequencies=6, include_sin=True, include_cos=True)
+    feature_library = FourierLibrary(n_frequencies=16, include_sin=True, include_cos=True)
     optimizer = STLSQ(threshold=0.05, alpha=0.001, max_iter=1000)
     model = SINDy(feature_library=feature_library, optimizer=optimizer)
 
