@@ -155,25 +155,25 @@
                         <h4 class="text-xl font-semibold mb-4">Cross-Validation Plot (1940-1970 Holdout)</h4>
                         <p class="text-slate-600 mb-4">This chart demonstrates the model's predictive power. The model (blue) was trained on data *excluding* the 1940-1970 period. It is then used to predict the values for that held-out period. The close alignment with the actual observed data (red) shows high predictive accuracy and a lack of overfitting.</p>
                         <div class="w-full max-w-3xl mx-auto p-4 bg-gray-100 rounded">
-                            <img src="https://private-user-images.githubusercontent.com/2855758/514830828-7571356f-19b7-4a79-ada2-2dfac7f6a3a5.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjM0MDgyMjAsIm5iZiI6MTc2MzQwNzkyMCwicGF0aCI6Ii8yODU1NzU4LzUxNDgzMDgyOC03NTcxMzU2Zi0xOWI3LTRhNzktYWRhMi0yZGZhYzdmNmEzYTUucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI1MTExNyUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTExMTdUMTkzMjAwWiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9OTRlYzE1ODMyOTc5YTRiNjRlNzJmM2Q3MjgyYmE5NGNkNjE2MDc3ZmJhOTFhYmNiZjI5MTJkZGVhMWNmYzM3YyZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QifQ.2E090VPq39_uUKc4wzEXjUiM9jjiQQYR4N18PQp4bPU" alt="Warnemunde MSL Cross-Validation Plot" class="w-full h-auto rounded-md border">
+                            <img src="pysindy/warne_1940_1970_cv_16harm_aliased_hybrid2.png" alt="Warnemunde MSL Cross-Validation Plot" class="w-full h-auto rounded-md border">
                         </div>
                     </div>
 
                     <!-- Tab 2: Bar Components -->
                     <div id="tab-content-2" class="tab-content">
                         <h4 class="text-xl font-semibold mb-4">Model Component Plot (Bar)</h4>
-                        <p class="text-slate-600 mb-4">This bar chart likely visualizes the amplitude or contribution of the different deterministic cycles (e.g., specific lunar harmonics and their modulations) that the model identified as significant components of the MSL signal.</p>
+                        <p class="text-slate-600 mb-4">This bar chart visualizes the amplitude or contribution of the different deterministic cycles (e.g., specific lunar harmonics and their modulations) that the model identified as significant components of the MSL signal.</p>
                         <div class="w-full max-w-3xl mx-auto p-4 bg-gray-100 rounded">
-                            <img src="https://private-user-images.githubusercontent.com/2855758/514830869-c6797dc3-c517-4c3d-8d01-4cbff9c9bbe2.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjM0MDgyMjAsIm5iZiI6MTc2MzQwNzkyMCwicGF0aCI6Ii8yODU1NzU4LzUxNDgzMDg2OS1jNjc5N2RjMy1jNTE3LTRjM2QtOGQwMS00Y2JmZjljOWJiZTIucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI1MTExNyUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTExMTdUMTkzMjAwWiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9OTQwM2Q3YTE3MmI0ZTMwYzFkZDI4MzliYjBiZWEzNmZiZDIxOWRjM2Q2NjI2MmU5NjNmMTE1MTZlOWQ1NWZiMyZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QifQ.m_8iitt0WaUWhBgOv-94Yr_xm52oo2V7DuGU70ffecE" alt="Warnemunde Model Bar Component Plot" class="w-full h-auto rounded-md border">
+                            <img src="pysindy/warne-bar.png" alt="Warnemunde Model Bar Component Plot" class="w-full h-auto rounded-md border">
                         </div>
                     </div>
 
                     <!-- Tab 3: Sin Components -->
                     <div id="tab-content-3" class="tab-content">
                         <h4 class="text-xl font-semibold mb-4">Model Component Plot (Sin)</h4>
-                        <p class="text-slate-600 mb-4">This plot likely illustrates the phase or sinusoidal nature of the identified components, showing how they combine over time to produce the complex, observed MSL signal.</p>
+                        <p class="text-slate-600 mb-4">This plot illustrates the phase or sinusoidal nature of the identified components, showing how they combine over time to produce the complex, observed MSL signal.</p>
                         <div class="w-full max-w-3xl mx-auto p-4 bg-gray-100 rounded">
-                            <img src="https://private-user-images.githubusercontent.com/2855758/514830872-a77a0d70-ce9f-433d-a32c-16ec050eaa1e.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjM0MDgyMjAsIm5iZiI6MTc2MzQwNzkyMCwicGF0aCI6Ii8yODU1NzU4LzUxNDgzMDg3Mi1hNzdhMGQ3MC1jZTlmLTQzM2QtYTMyYy0xNmVjMDUwZWFhMWUucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI1MTExNyUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTExMTdUMTkzMjAwWiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9YWExOThjMGE0ZTI1YWI3YTgwZDYzNjEwZTM4NzVhYzRhNDhkMGYyYTNjYTMxYWIwNmM2Y2ZhMTM2NmVhNjY0YyZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QifQ.K3paA14se6Y7AUkA-Eh877UvwK1b-GrCaFrLAC_KRoY" alt="Warnemunde Model Sin Component Plot" class="w-full h-auto rounded-md border">
+                            <img src="pysindy/warne-sin.png" alt="Warnemunde Model Sin Component Plot" class="w-full h-auto rounded-md border">
                         </div>
                     </div>
                 </div>
