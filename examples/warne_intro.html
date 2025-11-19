@@ -143,9 +143,9 @@
             <div class="w-full">
                 <!-- Tab Buttons -->
                 <div class="flex border-b border-slate-300">
-                    <button id="tab-btn-1" class="tab-btn" onclick="showTab(1)">Cross-Validation</button> | 
-                    <button id="tab-btn-2" class="tab-btn" onclick="showTab(2)">Bar Chart copmpare</button> | 
-                    <button id="tab-btn-3" class="tab-btn" onclick="showTab(3)">Sinusoid compare</button>
+                    <button id="tab-btn-1" class="tab-btn" onclick="showTab(1)"> Cross-Validation </button> | 
+                    <button id="tab-btn-2" class="tab-btn" onclick="showTab(2)"> Bar Chart copmpare </button> | 
+                    <button id="tab-btn-3" class="tab-btn" onclick="showTab(3)"> Sinusoid compare </button>
                 </div>
 
                 <!-- Tab Content -->
@@ -178,6 +178,53 @@
                     </div>
                 </div>
             </div>
+
+
+
+           Then take the MSL data from the opposit point on the earth, in Honolulu.
+
+
+            <!-- Tabbed Interface -->
+            <div class="w-full">
+                <!-- Tab Buttons -->
+                <div class="flex border-b border-slate-300">
+                    <button id="tab-btn-1" class="tab-btn" onclick="showTab(1)"> Cross-Validation </button> | 
+                    <button id="tab-btn-2" class="tab-btn" onclick="showTab(2)"> Bar Chart copmpare </button> | 
+                    <button id="tab-btn-3" class="tab-btn" onclick="showTab(3)"> Sinusoid compare </button>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="mt-[-1px]">
+                    <!-- Tab 1: Cross-Validation -->
+                    <div id="tab-content-1" class="tab-content">
+                        <h4 class="text-xl font-semibold mb-4">Cross-Validation Plot (1940-1970 Holdout)</h4>
+                        <p class="text-slate-600 mb-4">This chart validates the model's predictive power. The model (blue) was trained on data *excluding* the 1940-1970 period. It is then used to predict the values for that held-out period. The close alignment with the actual observed data (red) shows high predictive accuracy and a lack of overfitting.</p>
+                        <div class="w-full max-w-3xl mx-auto p-4 bg-gray-100 rounded">
+                            <img src="pysindy/155d_1930_1970_cv_16.png" alt="Honolulu MSL Cross-Validation Plot" class="w-full h-auto rounded-md border">
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Bar Components -->
+                    <div id="tab-content-2" class="tab-content">
+                        <h4 class="text-xl font-semibold mb-4">Model Component Plot (Bar)</h4>
+                        <p class="text-slate-600 mb-4">This bar chart visualizes the amplitude or contribution of the different deterministic cycles (e.g., specific lunar harmonics and their modulations) that the model identified as significant components of the MSL signal.</p>
+                        <div class="w-full max-w-3xl mx-auto p-4 bg-gray-100 rounded">
+                            <img src="pysindy/155d-bar.png" alt="Honolulu Model Bar Component Plot" class="w-full h-auto rounded-md border">
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: Sin Components -->
+                    <div id="tab-content-3" class="tab-content">
+                        <h4 class="text-xl font-semibold mb-4">Model Component Plot (Sin)</h4>
+                        <p class="text-slate-600 mb-4">This plot illustrates the phase or sinusoidal nature of the identified components, showing how they combine over time to produce the complex, observed MSL signal.</p>
+                        <div class="w-full max-w-3xl mx-auto p-4 bg-gray-100 rounded">
+                            <img src="pysindy/155d-sin.png" alt="Honolulu Model Sin Component Plot" class="w-full h-auto rounded-md border">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </section>
 
     </main>
