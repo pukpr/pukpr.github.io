@@ -225,7 +225,7 @@ def model_step_algorithm(i: int, t_i: float, clone_i: float, state: Dict[str, An
     return float(E_t), state, ssum
 
 
-def fit_pysindy_with_sinusoidal_library(a: float, b:float, observed: np.ndarray, latent_layer: np.ndarray) -> np.ndarray:
+def fit_pysindy_with_sinusoidal_library(a: float, b:float, observed: np.ndarray, latent_layer: np.ndarray, harms: int) -> np.ndarray:
     """
     Fit a PySINDy model using a Fourier (sinusoidal) library on the latent variable
     and return predictions with the same shape as `observed`.
@@ -273,15 +273,15 @@ def fit_pysindy_with_sinusoidal_library(a: float, b:float, observed: np.ndarray,
     t_dummy = np.arange(n_samples)
 
     # Build model (Fourier library on latent only)
-    forcing_lib = FourierLibrary(n_frequencies=16, include_sin=True, include_cos=True)
+    forcing_lib = FourierLibrary(n_frequencies=harms, include_sin=True, include_cos=True)
     autonomous_lib = PolynomialLibrary(
         degree=1,
         include_interaction=False,
-        include_bias=False
+        include_bias=True
     )
 
     # Interactions: y * sin()/cos() and y^2 * sin()/cos()
-    interaction_lib = TensoredLibrary([autonomous_lib, forcing_lib])
+    #interaction_lib = TensoredLibrary([autonomous_lib, forcing_lib])
 
     # Combined library = autonomous + forced + interaction
     feature_library = GeneralizedLibrary([
@@ -347,7 +347,8 @@ def fit_pysindy_with_sinusoidal_library(a: float, b:float, observed: np.ndarray,
 def run_loop_time_series(time: np.ndarray,
                          observed: np.ndarray,
                          model_step_fn: Callable,
-                         params: Dict[str, Any]) -> Tuple[np.ndarray, Dict[str, Any]]:
+                         params: Dict[str, Any],
+                         harms: int) -> Tuple[np.ndarray, Dict[str, Any]]:
     """
     Loop over timestamps and compute model values using model_step_fn.
 
@@ -411,7 +412,7 @@ def run_loop_time_series(time: np.ndarray,
     # lte = fit_sinusoidal_regression(model, clone, N_list=Harmonics, k=LTE_Freq, intercept=True, add_linear_x=True, ridge=None)
     # model1 = lte["predict"](model) + model_sup
 
-    lte, lib_model = fit_pysindy_with_sinusoidal_library(a, b, clone, LTE_Freq*model)
+    lte, lib_model = fit_pysindy_with_sinusoidal_library(a, b, clone, LTE_Freq*model, harms)
     model1 = lte + model_sup
 
     return model1, state, model, lib_model
@@ -564,7 +565,9 @@ Monitored_Slide = [
     "AliasedPhase",
     "Damp",
     "DC",
-    "Scale"
+    "Scale",
+    "a",
+    "b"
 ]
 
 Monitored_Initial = [
@@ -596,7 +599,8 @@ def simple_descent(
     tol: float = 1e-12,
     verbose: bool = False,
     Time_Low: Float = 1920.0,
-    Time_High: Float = 1950
+    Time_High: Float = 1950,
+    Harmonics: int = 16
 ) -> Dict[str, Any]:
     """
     Simple descent optimizer.
@@ -638,7 +642,7 @@ def simple_descent(
             best_params[name] = [float(x) for x in best_params[name]]
 
     # evaluate initial
-    model_vals, final_state, _, lib_model = run_loop_time_series(time, observed, model_step_fn, best_params)
+    model_vals, final_state, _, lib_model = run_loop_time_series(time, observed, model_step_fn, best_params, Harmonics)
     best_metric = float(metric_fn(time, observed, model_vals, Time_Low, Time_High))
 
     history: List[Dict[str, Any]] = []
@@ -668,7 +672,7 @@ def simple_descent(
                         continue
                     candidate_params = copy.deepcopy(best_params)
                     candidate_params[name] = int(cand)
-                    mvals_cand, _, _, _ = run_loop_time_series(time, observed, model_step_fn, candidate_params)
+                    mvals_cand, _, _, _ = run_loop_time_series(time, observed, model_step_fn, candidate_params, Harmonics)
                     metric_cand = float(metric_fn(time, observed, mvals_cand, Time_Low, Time_High))
                     accepted = metric_cand + tol < best_metric
                     history.append({
@@ -712,7 +716,7 @@ def simple_descent(
                             continue
                         candidate_params = copy.deepcopy(best_params)
                         candidate_params[name][idx] = int(cand)
-                        mvals_cand, _, _, _ = run_loop_time_series(time, observed, model_step_fn, candidate_params)
+                        mvals_cand, _, _, _ = run_loop_time_series(time, observed, model_step_fn, candidate_params, Harmonics)
                         metric_cand = float(metric_fn(time, observed, mvals_cand, Time_Low, Time_High))
                         accepted = metric_cand + tol < best_metric
                         history.append({
@@ -759,7 +763,7 @@ def simple_descent(
                             else:
                                 candidate = cur + sign * delta
                         candidate_params[name][idx] = candidate
-                        model_vals_cand, _, _, _ = run_loop_time_series(time, observed, model_step_fn, candidate_params)
+                        model_vals_cand, _, _, _ = run_loop_time_series(time, observed, model_step_fn, candidate_params, Harmonics)
                         metric_cand = float(metric_fn(time, observed, model_vals_cand, Time_Low, Time_High))
                         accepted = metric_cand + tol < best_metric
                         history.append({
@@ -808,7 +812,7 @@ def simple_descent(
                         else:
                             candidate = cur + sign * delta
                     candidate_params[name] = candidate
-                    model_vals_cand, _, _, _ = run_loop_time_series(time, observed, model_step_fn, candidate_params)
+                    model_vals_cand, _, _, _ = run_loop_time_series(time, observed, model_step_fn, candidate_params, Harmonics)
                     metric_cand = float(metric_fn(time, observed, model_vals_cand, Time_Low, Time_High))
                     history.append({
                         "param": name,
@@ -885,6 +889,7 @@ def main():
     ap.add_argument('--cc', action='store_true')
     ap.add_argument('--random', action='store_true')
     ap.add_argument('--scale', default=1.0)
+    ap.add_argument('--harms', default=16)
 
     args = ap.parse_args()
 
@@ -928,12 +933,13 @@ def main():
         metric_fn=compute_metrics_region,
         step=float(os.environ.get('STEP', '0.05')), 
         max_iters=int(os.environ.get('MAX_ITERS', '400')), 
-        tol=1e-12, verbose=True, Time_Low=Low, Time_High=High
+        tol=1e-12, verbose=True, Time_Low=Low, Time_High=High,
+        Harmonics=int(args.harms)
     )
     params = result["best_params"]
 
     # Run the time-stepping loop (explicit loop per timestamp)
-    model_vals, final_state, forcing, lib_model = run_loop_time_series(time, cloned, model_fn, params)
+    model_vals, final_state, forcing, lib_model = run_loop_time_series(time, cloned, model_fn, params, int(args.harms))
 
     lib_model.print()
     print(lib_model.get_feature_names())
