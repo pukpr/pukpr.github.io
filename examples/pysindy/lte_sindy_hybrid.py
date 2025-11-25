@@ -247,21 +247,9 @@ def fit_pysindy_with_sinusoidal_library(a: float, b:float, observed: np.ndarray,
     s_orig = np.asarray(latent_layer)
     orig_shape = y_orig.shape
 
-    # Make column arrays for fitting: shapes (n, 1) and (n, m)
-    if y_orig.ndim == 1:
-        y = y_orig.reshape(-1, 1)
-    elif y_orig.ndim == 2:
-        y = y_orig.copy()
-    else:
-        raise ValueError("observed must be 1-D or 2-D array")
-
-    if s_orig.ndim == 1:
-        s = s_orig.reshape(-1, 1)
-    elif s_orig.ndim == 2 and s_orig.shape[1] == 1:
-        s = s_orig.copy()
-    else:
-        # If latent has multiple columns, use it as-is; typically expected to be 1-column
-        s = s_orig.copy()
+    # Make column arrays for fitting
+    y = y_orig.reshape(-1, 1)
+    s = s_orig.reshape(-1, 1)
 
     # Basic sanity check
     n_samples = y.shape[0]
@@ -295,60 +283,23 @@ def fit_pysindy_with_sinusoidal_library(a: float, b:float, observed: np.ndarray,
 
     # Fit: using SINDy as a regression: Theta(s) @ Xi = observed
     model.fit(s, t=t_dummy, x_dot=y)  # 
-    #model.fit(np.hstack([y_dot, s]), t=t_dummy, x_dot=y)  # 
 
     # Predict on the same inputs
     x_model = model.predict(s)
-    #x_model = model.predict(np.hstack([y_dot, s]))
-
-    # a = 0.0
-    # b = 0.0
-    y_pred = x_model
-    y_pred[0] = x_model[0]  # initial condition
-    y_pred[1] = x_model[1]  # initial condition
-    for i in range(2, n_samples):
-        y_pred[i] = (1.0-a-b)*x_model[i] + a * y_pred[i-1] + b * y_pred[i-2]
-    x_model = y_pred
 
     # Normalize prediction into a numeric 2-D array with shape (n_pred, n_states)
     x_model = np.asarray(x_model)
-    if x_model.ndim == 1:
-        x_model = x_model.reshape(-1, 1)
-    elif x_model.ndim == 2:
-        pass
-    else:
-        # If predict returned a ragged / object array, try to stack/pad rows
-        try:
-            x_model = np.vstack([np.asarray(row, dtype=float).reshape(1, -1) for row in x_model])
-        except Exception:
-            raise ValueError("model.predict returned an irregular/ragged result that can't be converted to a numeric array")
-
-    # If the row count differs, resample/interpolate in index-space (fallback only)
-    n_pred = x_model.shape[0]
-    if n_pred != n_samples:
-        # interpolate each column from index space [0..n_pred-1] to [0..n_samples-1]
-        orig_idx = np.linspace(0.0, 1.0, n_pred)
-        target_idx = np.linspace(0.0, 1.0, n_samples)
-        x_resampled = np.zeros((n_samples, x_model.shape[1]), dtype=float)
-        for col in range(x_model.shape[1]):
-            sort_idx = np.argsort(orig_idx)
-            ox = orig_idx[sort_idx]
-            oy = x_model[sort_idx, col]
-            x_resampled[:, col] = np.interp(target_idx, ox, oy)
-        x_model = x_resampled
 
     # Return prediction with same shape as input observed
-    if y_orig.ndim == 1:
-        return x_model.ravel(), model
-    else:
-        return x_model, model
+    return x_model.ravel(), model
 
 # Runner that loops through timestamps and produces modeled series ----------------
 def run_loop_time_series(time: np.ndarray,
                          observed: np.ndarray,
                          model_step_fn: Callable,
                          params: Dict[str, Any],
-                         harms: int) -> Tuple[np.ndarray, Dict[str, Any]]:
+                         harms: int,
+                         mask: np.ndarray) -> Tuple[np.ndarray, Dict[str, Any]]:
     """
     Loop over timestamps and compute model values using model_step_fn.
 
@@ -409,10 +360,23 @@ def run_loop_time_series(time: np.ndarray,
 
     clone = clone - model_sup
 
-    # lte = fit_sinusoidal_regression(model, clone, N_list=Harmonics, k=LTE_Freq, intercept=True, add_linear_x=True, ridge=None)
-    # model1 = lte["predict"](model) + model_sup
+    mask_latent = LTE_Freq*model[mask]
+    mask_clone = clone[mask]
 
-    lte, lib_model = fit_pysindy_with_sinusoidal_library(a, b, clone, LTE_Freq*model, harms)
+    # lte0, lib_model = fit_pysindy_with_sinusoidal_library(a, b, clone, LTE_Freq*model, harms)
+    lte0, lib_model = fit_pysindy_with_sinusoidal_library(a, b, mask_clone, mask_latent, harms)
+
+    lte = lib_model.predict(np.asarray(LTE_Freq*model).reshape(-1,1))
+    lte = np.asarray(lte).ravel()
+
+    # 2nd order shaper, a and b
+    y_pred = lte
+    y_pred[0] = lte[0]  # initial condition
+    y_pred[1] = lte[1]  # initial condition
+    for i in range(2, N):
+        y_pred[i] = (1.0-a-b)*lte[i] + a * lte[i-1] + b * lte[i-2]
+    lte = y_pred
+
     model1 = lte + model_sup
 
     return model1, state, model, lib_model
@@ -457,6 +421,32 @@ def compute_metrics_scalar(observed: np.ndarray, model: np.ndarray) -> Float:
         mse = float(np.mean(residuals ** 2))
         return mse
 
+def build_mask(time, Time_Low: Float, Time_High: Float, Exclude:bool):
+    # Build mask for points to INCLUDE in the metric (True => include)
+    if Time_Low is None and Time_High is None:
+        mask = np.ones_like(time, dtype=bool)
+    else:
+        # If one bound is missing, treat it as open-ended
+        if Time_Low is None:
+            # exclude times <= Time_High
+            mask = time > float(Time_High)
+        elif Time_High is None:
+            # exclude times >= Time_Low
+            mask = time < float(Time_Low)
+        else:
+            # ensure bounds are ordered
+            tl = float(Time_Low)
+            th = float(Time_High)
+            if tl > th:
+                tl, th = th, tl
+            # include times strictly outside [tl, th]
+            if Exclude:
+                mask = (time < tl) | (time > th)
+            else:
+                mask = (time > tl) & (time < th)
+    return mask
+
+
 def compute_metrics_region(time: np.ndarray,
                            observed: np.ndarray,
                            model: np.ndarray,
@@ -486,6 +476,10 @@ def compute_metrics_region(time: np.ndarray,
     - scalar metric (MSE by default)
     """
     # Build mask for points to INCLUDE in the metric (True => include)
+
+    mask = build_mask(time, Time_Low, Time_High, Exclude)
+
+    """
     if Time_Low is None and Time_High is None:
         mask = np.ones_like(time, dtype=bool)
     else:
@@ -507,6 +501,7 @@ def compute_metrics_region(time: np.ndarray,
                 mask = (time < tl) | (time > th)
             else:
                 mask = (time > tl) & (time < th)
+    """
 
     # Select data
     t_sel = time[mask]
@@ -588,6 +583,8 @@ def _is_list_param(name: str) -> bool:
     }
 
 
+ 
+
 def simple_descent(
     time,
     observed,
@@ -641,8 +638,10 @@ def simple_descent(
         if _is_list_param(name) and name in best_params:
             best_params[name] = [float(x) for x in best_params[name]]
 
+    mask = build_mask(time, Time_Low, Time_High, True)
+
     # evaluate initial
-    model_vals, final_state, _, lib_model = run_loop_time_series(time, observed, model_step_fn, best_params, Harmonics)
+    model_vals, final_state, latent_forcing, lib_model = run_loop_time_series(time, observed, model_step_fn, best_params, Harmonics, mask)
     best_metric = float(metric_fn(time, observed, model_vals, Time_Low, Time_High))
 
     history: List[Dict[str, Any]] = []
@@ -650,6 +649,8 @@ def simple_descent(
         print(f"[{time_series_name}] start metric={best_metric:.6g}")
 
     switched_to_rel = os.getenv('RELATIVE', '') == '1'
+
+
 
     for iteration in range(1, max_iters + 1):
         any_accepted = False
@@ -672,7 +673,7 @@ def simple_descent(
                         continue
                     candidate_params = copy.deepcopy(best_params)
                     candidate_params[name] = int(cand)
-                    mvals_cand, _, _, _ = run_loop_time_series(time, observed, model_step_fn, candidate_params, Harmonics)
+                    mvals_cand, _, latent_forcing, _ = run_loop_time_series(time, observed, model_step_fn, candidate_params, Harmonics, mask)
                     metric_cand = float(metric_fn(time, observed, mvals_cand, Time_Low, Time_High))
                     accepted = metric_cand + tol < best_metric
                     history.append({
@@ -716,7 +717,7 @@ def simple_descent(
                             continue
                         candidate_params = copy.deepcopy(best_params)
                         candidate_params[name][idx] = int(cand)
-                        mvals_cand, _, _, _ = run_loop_time_series(time, observed, model_step_fn, candidate_params, Harmonics)
+                        mvals_cand, _, latent_forcing, _ = run_loop_time_series(time, observed, model_step_fn, candidate_params, Harmonics, mask)
                         metric_cand = float(metric_fn(time, observed, mvals_cand, Time_Low, Time_High))
                         accepted = metric_cand + tol < best_metric
                         history.append({
@@ -763,7 +764,7 @@ def simple_descent(
                             else:
                                 candidate = cur + sign * delta
                         candidate_params[name][idx] = candidate
-                        model_vals_cand, _, _, _ = run_loop_time_series(time, observed, model_step_fn, candidate_params, Harmonics)
+                        model_vals_cand, _, latent_forcing, _ = run_loop_time_series(time, observed, model_step_fn, candidate_params, Harmonics, mask)
                         metric_cand = float(metric_fn(time, observed, model_vals_cand, Time_Low, Time_High))
                         accepted = metric_cand + tol < best_metric
                         history.append({
@@ -812,7 +813,7 @@ def simple_descent(
                         else:
                             candidate = cur + sign * delta
                     candidate_params[name] = candidate
-                    model_vals_cand, _, _, _ = run_loop_time_series(time, observed, model_step_fn, candidate_params, Harmonics)
+                    model_vals_cand, _, latent_forcing, _ = run_loop_time_series(time, observed, model_step_fn, candidate_params, Harmonics, mask)
                     metric_cand = float(metric_fn(time, observed, model_vals_cand, Time_Low, Time_High))
                     history.append({
                         "param": name,
@@ -853,6 +854,7 @@ def simple_descent(
                     "best_state": final_state,
                     "history": history,
                     "iterations": iteration,
+                    "latent_forcing": latent_forcing
                 }
 
     # max iters reached
@@ -865,6 +867,7 @@ def simple_descent(
         "best_state": final_state,
         "history": history,
         "iterations": max_iters,
+        "latent_forcing": latent_forcing
     }
 
 
@@ -939,10 +942,12 @@ def main():
     params = result["best_params"]
 
     # Run the time-stepping loop (explicit loop per timestamp)
-    model_vals, final_state, forcing, lib_model = run_loop_time_series(time, cloned, model_fn, params, int(args.harms))
+    # mask = build_mask(time, Low, High, True)
+    # model_vals, final_state, forcing, lib_model = run_loop_time_series(time, cloned, model_fn, params, int(args.harms), mask)
+    model_vals = result["best_model"]
+    forcing = result["latent_forcing"]
 
-    lib_model.print()
-    print(lib_model.get_feature_names())
+    # lib_model.print()
 
     # Compute metrics
     metrics = compute_metrics(time, y, model_vals, Low, High)

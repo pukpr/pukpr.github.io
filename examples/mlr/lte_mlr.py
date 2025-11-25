@@ -296,7 +296,7 @@ def compute_metrics(time: np.ndarray, observed: np.ndarray, model: np.ndarray, l
     # Pearson r (use scipy if available else numpy)
 
     CV = 1.0 - compute_metrics_region(time, observed, model, low, high, False)
-
+    training = 1.0 - compute_metrics_region(time, observed, model, low, high, True)
     try:
         r_val, p_val = pearsonr(observed, model)  # type: ignore
         pearson_r = float(r_val)
@@ -310,20 +310,9 @@ def compute_metrics(time: np.ndarray, observed: np.ndarray, model: np.ndarray, l
         'var_squared_error': var_sq_err,
         'pearson_r': pearson_r,
         'pearson_p': pearson_p,
-        'CV': CV
+        'CV': CV,
+        'training': training
     }
-
-def compute_metrics_scalar(observed: np.ndarray, model: np.ndarray) -> Float:
-    if False:
-        """Compute CC"""
-        r_val, p_val = pearsonr(observed, model)  # type: ignore
-        pearson_r = 1.0-float(r_val)
-        return pearson_r
-    else:
-        """Compute MSE"""
-        residuals = model - observed
-        mse = float(np.mean(residuals ** 2))
-        return mse
 
 def compute_metrics_region(time: np.ndarray,
                            observed: np.ndarray,
@@ -407,6 +396,7 @@ def compute_metrics_region(time: np.ndarray,
 # Opt ---------------------------------------------------------------------------
 
 Monitored = [
+    "LTE_Freq",
     "Imp_Stride",
     "DeltaTime",
     "Initial",
@@ -420,6 +410,7 @@ Monitored = [
     "Hold",
     "Delta_Y",
     "Damp",
+    "DC",
     "Harmonics"
 ]
 
@@ -434,7 +425,8 @@ Monitored_Slide = [
     "AliasedPhase",
     "Damp",
     "DC",
-    "Scale"
+    "Scale",
+    "Harmonics"
 ]
 
 Monitored_Initial = [
@@ -507,10 +499,10 @@ def simple_descent(
         if _is_list_param(name) and name in best_params:
             best_params[name] = [float(x) for x in best_params[name]]
 
-    mask = build_mask(time, Time_Low, Time_High, False)
+    mask = build_mask(time, Time_Low, Time_High, True)
 
     # evaluate initial
-    model_vals, final_state, _ = run_loop_time_series(time, observed, model_step_fn, best_params, mask)
+    model_vals, final_state, latent_forcing = run_loop_time_series(time, observed, model_step_fn, best_params, mask)
     best_metric = float(metric_fn(time, observed, model_vals, Time_Low, Time_High))
 
     history: List[Dict[str, Any]] = []
@@ -540,7 +532,7 @@ def simple_descent(
                         continue
                     candidate_params = copy.deepcopy(best_params)
                     candidate_params[name] = int(cand)
-                    mvals_cand, _, _ = run_loop_time_series(time, observed, model_step_fn, candidate_params, mask)
+                    mvals_cand, _, latent_forcing = run_loop_time_series(time, observed, model_step_fn, candidate_params, mask)
                     metric_cand = float(metric_fn(time, observed, mvals_cand, Time_Low, Time_High))
                     accepted = metric_cand + tol < best_metric
                     history.append({
@@ -562,7 +554,7 @@ def simple_descent(
                 continue
 
             if name == "Harmonics":
-                max_val = 100
+                max_val = 16
                 trials_per_iter = 10
                 # sample without replacement when possible
                 population = list(range(0, max_val + 1))
@@ -584,7 +576,7 @@ def simple_descent(
                             continue
                         candidate_params = copy.deepcopy(best_params)
                         candidate_params[name][idx] = int(cand)
-                        mvals_cand, _, _ = run_loop_time_series(time, observed, model_step_fn, candidate_params, mask)
+                        mvals_cand, _, latent_forcing = run_loop_time_series(time, observed, model_step_fn, candidate_params, mask)
                         metric_cand = float(metric_fn(time, observed, mvals_cand, Time_Low, Time_High))
                         accepted = metric_cand + tol < best_metric
                         history.append({
@@ -631,7 +623,7 @@ def simple_descent(
                             else:
                                 candidate = cur + sign * delta
                         candidate_params[name][idx] = candidate
-                        model_vals_cand, _, _ = run_loop_time_series(time, observed, model_step_fn, candidate_params, mask)
+                        model_vals_cand, _, latent_forcing = run_loop_time_series(time, observed, model_step_fn, candidate_params, mask)
                         metric_cand = float(metric_fn(time, observed, model_vals_cand, Time_Low, Time_High))
                         accepted = metric_cand + tol < best_metric
                         history.append({
@@ -680,7 +672,7 @@ def simple_descent(
                         else:
                             candidate = cur + sign * delta
                     candidate_params[name] = candidate
-                    model_vals_cand, _, _ = run_loop_time_series(time, observed, model_step_fn, candidate_params, mask)
+                    model_vals_cand, _, latent_forcing = run_loop_time_series(time, observed, model_step_fn, candidate_params, mask)
                     metric_cand = float(metric_fn(time, observed, model_vals_cand, Time_Low, Time_High))
                     history.append({
                         "param": name,
@@ -721,6 +713,7 @@ def simple_descent(
                     "best_state": final_state,
                     "history": history,
                     "iterations": iteration,
+                    "latent_forcing": latent_forcing
                 }
 
     # max iters reached
@@ -733,6 +726,7 @@ def simple_descent(
         "best_state": final_state,
         "history": history,
         "iterations": max_iters,
+        "latent_forcing": latent_forcing
     }
 
 
@@ -804,10 +798,13 @@ def main():
     )
     params = result["best_params"]
 
-    mask = build_mask(time, Low, High, True)
+    # mask = build_mask(time, Low, High, True)
 
     # Run the time-stepping loop (explicit loop per timestamp)
-    model_vals, final_state, forcing = run_loop_time_series(time, cloned, model_fn, params, mask)
+    # model_vals, final_state, forcing = run_loop_time_series(time, cloned, model_fn, params, mask)
+    model_vals = result["best_model"]
+    forcing = result["latent_forcing"]
+
 
     # Compute metrics
     metrics = compute_metrics(time, y, model_vals, Low, High)
@@ -832,8 +829,9 @@ def main():
     print(f"Output CSV: {args.out}")
     print(f"Updated JSON data file: {json_path}")
     print("Metrics:")
-    print(f"  CV = {metrics['CV']:.6e}")
-    print(f"  MSE = {metrics['mse']:.6e}")
+    print(f"  CV = {metrics['CV']:.6f}")
+    print(f"  training = {metrics['training']:.6f}")
+    print(f"  MSE = {metrics['mse']:.6f}")
     print(f"  Pearson r = {metrics['pearson_r']}, p-value = {metrics.get('pearson_p', None)}")
 
     # Optional plotting
@@ -846,7 +844,7 @@ def main():
     plt.legend()
     plt.xlabel('time')
     plt.ylabel('value')
-    plt.title(f"Model: {args.csv}  Pearson r={metrics['pearson_r']:.4g}  CV={metrics['CV']:.4g}")
+    plt.title(f"Model: {args.csv}  r={metrics['pearson_r']:.4g}  training={metrics['training']:.4g}  CV={metrics['CV']:.4g}")
     # plt.grid(True)
     if args.plot:
         plt.show()
