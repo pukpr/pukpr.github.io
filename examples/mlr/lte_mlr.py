@@ -91,8 +91,9 @@ def normalize_rms_y(ts: np.ndarray) -> np.ndarray:
     No error checking (assumes ts is a 2D numpy array with at least 2 columns).
     """
     y = ts.copy()
+    mean = np.mean(y)
     rms = np.sqrt(np.mean(y * y))
-    return y / rms
+    return (y - mean) / rms
 
 # ---- Model-step interface ---------------------------------------------------
 # A model-step function implements:
@@ -169,6 +170,7 @@ def model_step_algorithm(i: int, t_i: float, clone_i: float, state: Dict[str, An
         state['D_prev'] = Initial
 
     D_prev = float(state['D_prev'])
+    Hold = 0.000001 if Hold < 0.0 else Hold
     D_t = (1.0 - Hold) * D_prev + Hold * C_t
     state['D_prev'] = D_t
 
@@ -240,20 +242,25 @@ def run_loop_time_series(time: np.ndarray,
     Harmonics = list(params.get('Harmonics', [1]))
     DC = float(params.get('DC', 0.0))
     Scale = float(params.get('Scale', 1.0))
+    StartTime = float(params.get('StartTime', 1800.0))
+    a = float(params.get('a', 0.0))
+    b = float(params.get('b', 0.0))
 
     N = time.size
+    v = 0.0
+    sup = 0.0
     clone = clone_series(observed)
     state: Dict[str, Any] = {}
     model = np.zeros_like(observed, dtype=float)
     model_sup = np.zeros_like(observed, dtype=float)
     First_Time = True
-    Last_Time = 0.0
+    Last_Time = StartTime + DeltaTime
     for i in range(N):
         t_i = float(time[i]+DeltaTime)
-        clone_i = float(clone[i])
+        clone_i = float(clone[i]) # not rreally needed
         # should be 1/12 but may be missing values
         N_Steps = int(round((t_i - Last_Time) * 12))
-        N_Steps = 1 if First_Time else N_Steps
+        # N_Steps = 1 if First_Time else N_Steps
         First_Time = False
         j = 1
         while j <= N_Steps:  
@@ -283,6 +290,13 @@ def run_loop_time_series(time: np.ndarray,
     lte = fit_sinusoidal_regression(mask_model, mask_clone, N_list=Harmonics, k=LTE_Freq, intercept=True, add_linear_x=True, ridge=None)
     model1 = lte["predict"](model) + model_sup
 
+    # 2nd order shaper, a and b
+    y_pred = model1
+    y_pred[0] = model1[0]  # initial condition
+    for i in range(2+12, N):
+        y_pred[i] = (1.0+a)*model1[i] + a * model1[i-1-12]
+    model1 = y_pred
+
     return model1, state, model
 
 
@@ -294,6 +308,8 @@ def compute_metrics(time: np.ndarray, observed: np.ndarray, model: np.ndarray, l
     # variance of squared errors (i.e., variance of residuals**2)
     var_sq_err = float(np.var(residuals ** 2))
     # Pearson r (use scipy if available else numpy)
+    global use_pearson 
+    use_pearson = True
 
     CV = 1.0 - compute_metrics_region(time, observed, model, low, high, False)
     training = 1.0 - compute_metrics_region(time, observed, model, low, high, True)
@@ -411,7 +427,10 @@ Monitored = [
     "Delta_Y",
     "Damp",
     "DC",
-    "Harmonics"
+    "Harmonics",
+    "StartTime",
+    "a",
+    "b"
 ]
 
 Monitored_Slide = [
@@ -421,17 +440,22 @@ Monitored_Slide = [
     "Imp_Stride",
     "DeltaTime",
     "Initial",
+    "AliasedAmp", ##
     "PeriodsPhase",
     "AliasedPhase",
     "Damp",
     "DC",
     "Scale",
-    "Harmonics"
+    "Harmonics",
+    "StartTime",
+    "a",
+    "b"
 ]
 
 Monitored_Initial = [
-    "Imp_Stride",
+    # "Imp_Stride",
     "DeltaTime",
+    "StartTime",
     "Initial"
 ]
 
@@ -554,7 +578,7 @@ def simple_descent(
                 continue
 
             if name == "Harmonics":
-                max_val = 16
+                max_val = 64
                 trials_per_iter = 10
                 # sample without replacement when possible
                 population = list(range(0, max_val + 1))

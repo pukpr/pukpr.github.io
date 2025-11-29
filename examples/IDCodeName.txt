@@ -20,14 +20,10 @@ ID  Code Name                                       Latitude   N/S Longitude E/W
   32 150 IJMUIDEN                                   52.462222  N     4.554722  E 1871 2019   99.78 50  NETHERLANDS               
   33 040 OSCARSBORG                                 59.678073  N    10.604861  E 1872 2020   47.32 40  NORWAY                    
   34 040 TRONDHEIM                                  63.433333  N    10.433333  E 1872 1989   39.83 40  NORWAY                    
-  35 150 ZIERIKZEE                                  51.633333  N     3.916667  E 1872 1986   99.78 50  NETHERLANDS               
   41 305 POTI                                       42.166667  N    41.683333  E 1874 2018   94.14 05  GEORGIA                   
-  42 298 SEVASTOPOL                                 44.616667  N    33.533333  E 1875 1994   94.44 98  UKRAINE                   
   43 500 MUMBAI / BOMBAY (APOLLO BANDAR)            18.916667  N    72.833333  E 1878 2015   89.19 00  INDIA                     
-  44 485 ADEN                                       12.788333  N    44.974167  E 1879 2013   50.31 85  YEMEN                     
   45 040 KABELVAG                                   68.212639  N    14.482149  E 1880 2020   54.26 40  NORWAY                    
   47 040 STAVANGER                                  58.974339  N     5.730121  E 1881 2020   69.23 40  NORWAY                    
-  50 680 PORT ADELAIDE (INNER HARBOR)               34.829611  S   138.510750  E 1882 2012   49.55 80  AUSTRALIA                 
   51 305 BATUMI                                     41.633333  N    41.700000  E 1882 2018   87.10 05  GEORGIA                   
   52 210 CASCAIS                                    38.683333  N     9.416667  W 1882 1993   92.56 10  PORTUGAL                  
   57 060 VAASA / VASA                               63.081533  N    21.571183  E 1883 2019   94.89 60  FINLAND                   
@@ -65,13 +61,8 @@ ID  Code Name                                       Latitude   N/S Longitude E/W
  126 970 TROIS-RIVIERES                             46.333333  N    72.550000  W 1899 2019   86.09 70  CANADA                    
  127 823 SEATTLE                                    47.601667  N   122.338333  W 1899 2020   99.93 23  UNITED STATES             
  130 642 ABURATSUBO                                 35.160278  N   139.615278  E 1900 2020   98.14 42  JAPAN                     
- 131 642 AYUKAWA                                    38.296667  N   141.505278  E 1900 2020   68.94 42  JAPAN                     
- 132 647 WAJIMA                                     37.405833  N   136.900278  E 1900 2020   98.76 47  JAPAN                     
  133 645 HOSOJIMA                                   32.428611  N   131.669444  E 1900 2020   98.48 45  JAPAN                     
- 134 642 KUSHIMOTO                                  33.475833  N   135.773333  E 1900 2020   72.45 42  JAPAN                     
  135 960 PHILADELPHIA (PIER 9N)                     39.933333  N    75.141667  W 1900 2020   97.11 60  UNITED STATES             
- 136 690 DUNEDIN II                                 45.878680  S   170.513360  E 1900 2019   73.19 90  NEW ZEALAND               
- 137 970 PORT-SAINT-FRANCOIS                        46.266667  N    72.616667  W 1900 2019   37.99 70  CANADA                    
  144 970 BATISCAN                                   46.500000  N    72.250000  W 1901 2019   68.14 70  CANADA                    
  145 660 MANILA, S. HARBOR                          14.583333  N   120.966667  E 1901 2019   84.59 60  PHILIPPINES               
  148 960 BALTIMORE                                  39.266667  N    76.578333  W 1902 2020   99.37 60  UNITED STATES             
@@ -93,10 +84,7 @@ ID  Code Name                                       Latitude   N/S Longitude E/W
  179 050 SMOGEN                                     58.353611  N    11.217778  E 1911 2020  100.00 50  SWEDEN                    
  180 960 ATLANTIC CITY                              39.355000  N    74.418333  W 1911 2020   92.80 60  UNITED STATES             
  183 960 PORTLAND  (MAINE)                          43.656667  N    70.246667  W 1912 2020   99.77 60  UNITED STATES             
- 184 680 MACQUARIE ISLAND                           54.500000  S   158.933333  E 1912 2008   18.64 80  AUSTRALIA                 
- 185 860 PUERTO DESEADO                             47.750000  S    65.916667  W 1912 2019   39.58 60  ARGENTINA                 
  188 940 KEY WEST                                   24.555000  N    81.806667  W 1913 2020   99.23 40  UNITED STATES             
- 189 680 PORT HEDLAND                               20.317583  S   118.574417  E 1913 2019   54.05 80  AUSTRALIA                 
  192 970 NEUVILLE                                   46.700000  N    71.566667  W 1914 2019   72.48 70  CANADA                    
  193 822 POINT ATKINSON                             49.333333  N   123.250000  W 1914 2019   78.77 22  CANADA                    
  194 060 PIETARSAARI  /  JAKOBSTAD                  63.708567  N    22.689583  E 1914 2019   97.96 60  FINLAND                   
@@ -105,19 +93,13 @@ ID  Code Name                                       Latitude   N/S Longitude E/W
  201 970 DESCHAILLONS                               46.566667  N    72.100000  W 1915 2019   76.83 70  CANADA                    
  202 170 NEWLYN                                     50.103000  N     5.542833  W 1915 2019   98.10 70  UNITED KINGDOM            
  203 050 FURUOGRUND                                 64.915833  N    21.230556  E 1916 2020   99.76 50  SWEDEN                    
- 204 490 KARACHI                                    24.811667  N    66.975000  E 1916 2016   57.10 90  PAKISTAN                  
  205 500 CHENNAI                                    13.100000  N    80.300000  E 1916 2015   61.67 00  INDIA                     
- 206 540 PORT BLAIR                                 11.683333  N    92.766667  E 1916 2010   21.32 40  INDIA                     
- 207 660 PUERTO PRINCESA, PALAWAN                    9.750000  N   118.733333  E 1916 2019   22.76 60  PHILIPPINES               
- 213 690 BLUFF (SOUTHLAND HARBOUR)                  46.597650  S   168.345400  E 1917 2018   30.80 90  NEW ZEALAND               
  214 170 FELIXSTOWE                                 51.957694  N     1.346556  E 1917 2011   60.88 70  UNITED KINGDOM            
  215 300 TUAPSE                                     44.100000  N    39.066667  E 1917 2019   99.03 00  RUSSIAN FEDERATION        
  216 680 PORT PIRIE                                 33.177644  S   138.011650  E 1917 2019   84.87 80  AUSTRALIA                 
  221 690 WELLINGTON HARBOUR                         41.284340  S   174.779800  E 1918 2019   80.39 90  NEW ZEALAND               
- 224 960 LEWES (BREAKWATER HARBOR)                  38.781667  N    75.120000  W 1919 2020   76.55 60  UNITED STATES             
  225 821 KETCHIKAN                                  55.331667  N   131.625000  W 1919 2020   99.02 21  UNITED STATES             
  229 060 KEMI                                       65.673367  N    24.515250  E 1920 2019   96.67 60  FINLAND                   
- 230 680 PORT LINCOLN                               34.715903  S   135.870011  E 1920 2019   59.17 80  AUSTRALIA                 
  234 960 CHARLESTON I                               32.781667  N    79.925000  W 1921 2020   99.25 60  UNITED STATES             
  235 960 BOSTON                                     42.353333  N    71.053333  W 1921 2020   99.08 60  UNITED STATES             
  236 150 WEST-TERSCHELLING                          53.363056  N     5.220000  E 1921 2019  100.00 50  NETHERLANDS               
@@ -125,80 +107,44 @@ ID  Code Name                                       Latitude   N/S Longitude E/W
  240 060 RAAHE / BRAHESTAD                          64.666333  N    24.407050  E 1922 2019   93.11 60  FINLAND                   
  245 823 LOS ANGELES                                33.720000  N   118.271667  W 1923 2020   98.13 23  UNITED STATES             
  246 940 PENSACOLA                                  30.403333  N    87.210000  W 1923 2020   98.30 40  UNITED STATES             
- 247 690 PORT LYTTELTON                             43.605630  S   172.721940  E 1923 2019   33.59 90  NEW ZEALAND               
- 248 550 JOHOR BAHRU                                 1.461667  N   103.791667  E 1923 2014   32.88 50  MALAYSIA                  
  249 060 FOGLO / DEGERBY                            60.031883  N    20.384817  E 1923 2019   94.85 60  Ã…LAND ISLANDS            
- 255 170 DOVER                                      51.114389  N     1.322667  E 1924 2018   81.49 70  UNITED KINGDOM            
  256 823 LA JOLLA (SCRIPPS PIER)                    32.866667  N   117.256667  W 1924 2020   96.13 23  UNITED STATES             
- 257 170 AVONMOUTH                                  51.507667  N     2.712750  W 1924 2012   89.98 70  UNITED KINGDOM            
- 258 360 PONTA DELGADA                              37.735583  N    25.671408  W 1924 2018   62.98 60  PORTUGAL                  
  259 690 LYTTELTON II                               43.605630  S   172.721940  E 1924 2000   88.96 90  NEW ZEALAND               
  265 823 ASTORIA (TONGUE POINT)                     46.206667  N   123.768333  W 1925 2020   98.70 23  UNITED STATES             
- 266 821 SEWARD                                     60.120000  N   149.426667  W 1925 2020   87.24 21  UNITED STATES             
- 284 430 DURBAN                                     29.874203  S    31.050761  E 1926 2018   37.81 30  SOUTH AFRICA              
  285 060 KASKINEN / KASKO                           62.343950  N    21.214833  E 1926 2019   97.25 60  FINLAND                   
  286 170 IMMINGHAM                                  53.630222  N     0.187417  W 1926 2019   57.18 70  UNITED KINGDOM            
- 287 600 BANGKOK BAR                                13.450000  N   100.600000  E 1926 2019   82.98 00  THAILAND                  
  299 960 SEWELLS POINT, HAMPTON ROADS               36.946667  N    76.330000  W 1927 2020   99.20 60  UNITED STATES             
- 300 760 HILO,  HAWAII ISLAND                       19.730000  N   155.055000  W 1927 2020   84.13 60  UNITED STATES             
- 301 680 POINT LONSDALE, PORT PHILLIP HEADS         38.293306  S   144.614786  E 1927 2019   63.80 80  AUSTRALIA                 
  302 040 TREGDE                                     58.006377  N     7.554759  E 1927 2020   96.90 40  NORWAY                    
- 310 680 YAMBA                                      29.429712  S   153.361875  E 1928 2019   41.39 80  AUSTRALIA                 
  311 960 ANNAPOLIS (NAVAL ACADEMY)                  38.983333  N    76.480000  W 1928 2020   95.70 60  UNITED STATES             
  312 040 NARVIK                                     68.428286  N    17.425759  E 1928 2020   88.89 40  NORWAY                    
  313 040 HEIMSJO                                    63.425224  N     9.101504  E 1928 2020   96.42 40  NORWAY                    
- 314 170 STORNOWAY                                  58.207806  N     6.388972  W 1928 2019   57.79 70  UNITED KINGDOM            
  315 060 HAMINA                                     60.562767  N    27.179200  E 1928 2019   98.19 60  FINLAND                   
- 316 960 MAYPORT                                    30.393333  N    81.431667  W 1928 2000   99.20 60  UNITED STATES             
  330 050 KLAGSHAMN                                  55.522222  N    12.893611  E 1929 2020   98.91 50  SWEDEN                    
- 331 410 TAKORADI                                    4.884556  N     1.745028  W 1929 2012   78.67 10  GHANA                     
  332 960 EASTPORT                                   44.903333  N    66.981667  W 1929 2020   93.12 60  UNITED STATES             
- 334 170 SOUTHEND                                   51.514450  N     0.723780  E 1929 2015   78.83 70  UNITED KINGDOM            
- 335 170 TILBURY                                    51.466667  N     0.366667  E 1929 2013   67.35 70  UNITED KINGDOM            
- 336 170 TOWER PIER                                 51.500000  N     0.083333  E 1929 2013   65.39 70  UNITED KINGDOM            
  350 170 PORTSMOUTH                                 50.802250  N     1.111250  W 1930 2019   62.59 70  UNITED KINGDOM            
  351 960 NEWPORT                                    41.505000  N    71.326667  W 1930 2020   98.17 60  UNITED STATES             
- 352 280 SPLIT - GRADSKA LUKA                       43.506700  N    16.441700  E 1930 2018   87.45 80  CROATIA                   
- 353 280 BAKAR                                      45.300000  N    14.533333  E 1930 2013   86.90 80  CROATIA                   
  359 642 MERA                                       34.918889  N   139.825000  E 1931 2020   96.20 42  JAPAN                     
  360 960 WASHINGTON DC                              38.873333  N    77.021667  W 1931 2020   98.33 60  UNITED STATES             
  361 170 ABERDEEN I                                 57.144056  N     2.077361  W 1931 2019   87.92 70  UNITED KINGDOM            
- 362 960 WILLETS POINT                              40.793333  N    73.781667  W 1931 2000   96.67 60  UNITED STATES             
  366 960 SANDY HOOK                                 40.466667  N    74.008333  W 1932 2020   97.85 60  UNITED STATES             
  367 960 WOODS HOLE (OCEAN. INST.)                  41.523333  N    70.671667  W 1932 2020   94.19 60  UNITED STATES             
- 368 950 ST. GEORGES / ESSO PIER (BERMUDA)          32.373333  N    64.703333  W 1932 2019   83.05 50  BERMUDA                   
- 369 500 GARDEN REACH                               22.550000  N    88.300000  E 1932 2014   89.86 00  INDIA                     
- 373 290 THESSALONIKI                               40.632542  N    22.934933  E 1933 2019   61.88 90  GREECE                    
- 374 290 PIRAIEVS                                   37.937328  N    23.626714  E 1933 2019   64.66 90  GREECE                    
- 375 290 KAVALLA                                    40.934639  N    24.412133  E 1933 2010   55.34 90  GREECE                    
  376 060 RAUMA / RAUMO                              61.133533  N    21.425817  E 1933 2019   99.43 60  FINLAND                   
  377 823 SANTA MONICA (MUNICIPAL PIER)              34.008333  N   118.500000  W 1933 2020   89.87 23  UNITED STATES             
  378 823 CRESCENT CITY                              41.745000  N   124.181667  W 1933 2020   96.50 23  UNITED STATES             
  384 823 FRIDAY HARBOR (OCEAN. LABS.)               48.546667  N   123.010000  W 1934 2020   98.37 23  UNITED STATES             
  385 823 NEAH BAY                                   48.366667  N   124.611667  W 1934 2020   97.22 23  UNITED STATES             
- 386 680 THEVENARD                                  32.148944  S   133.641333  E 1934 2020   69.73 80  AUSTRALIA                 
- 392 970 PORT AUX BASQUES                           47.566667  N    59.133333  W 1935 2019   67.35 70  CANADA                    
  393 970 ST. JOHN'S, NFLD.                          47.566667  N    52.716667  W 1935 2019   74.61 70  CANADA                    
- 394 660 CEBU                                       10.300000  N   123.916667  E 1935 2019   79.71 60  PHILIPPINES               
  395 960 FORT PULASKI                               32.033333  N    80.901667  W 1935 2020   98.84 60  UNITED STATES             
  396 960 WILMINGTON                                 34.226667  N    77.953333  W 1935 2020   98.16 60  UNITED STATES             
- 397 120 SASSNITZ                                   54.510833  N    13.643056  E 1935 2019   87.16 20  GERMANY                   
  405 821 JUNEAU                                     58.298333  N   134.411667  W 1936 2020   96.47 21  UNITED STATES             
  407 642 UCHIURA                                    35.017222  N   138.890278  E 1937 2020   98.71 42  JAPAN                     
- 408 290 KHIOS                                      38.371514  N    26.141189  E 1937 2015   55.38 90  GREECE                    
- 409 290 POSIDHONIA                                 37.951156  N    22.960100  E 1937 2019   49.30 90  GREECE                    
- 410 290 PREVEZA                                    38.959078  N    20.756628  E 1937 2019   51.51 90  GREECE                    
- 411 290 KALAMAI                                    37.023678  N    22.115839  E 1937 2019   49.10 90  GREECE                    
  412 960 SOLOMON'S ISLAND (BIOL. LAB.)              38.316667  N    76.451667  W 1937 2020   95.24 60  UNITED STATES             
  413 160 OOSTENDE                                   51.233333  N     2.916667  E 1937 2019   93.57 60  BELGIUM                   
- 414 500 VISAKHAPATNAM                              17.683333  N    83.283333  E 1937 2013   85.93 00  INDIA                     
- 425 040 ANDENES                                    69.326067  N    16.134848  E 1938 2020   65.26 40  NORWAY                    
  426 821 SITKA                                      57.051667  N   135.341667  W 1938 2020   99.50 21  UNITED STATES             
  427 970 CHARLOTTETOWN                              46.233333  N    63.116667  W 1911 2019   81.65 70  CANADA                    
  428 940 CEDAR KEY II                               29.135000  N    83.031667  W 1938 2020   94.38 40  UNITED STATES             
  429 960 NEW LONDON                                 41.360000  N    72.090000  W 1938 2020   95.98 60  UNITED STATES             
- 430 960 PROVIDENCE (STATE PIER)                    41.806667  N    71.400000  W 1938 2020   85.04 60  UNITED STATES             
- 431 870 MONTEVIDEO (PUNTA LOBOS)                   34.900000  S    56.250000  W 1938 2018   80.25 70  URUGUAY                   
  432 175 DUBLIN                                     53.350000  N     6.216667  W 1938 2009   99.07 75  IRELAND                   
  437 823 ALAMEDA (NAVAL AIR STATION)                37.771667  N   122.298333  W 1939 2020   99.09 23  UNITED STATES             
  438 500 COCHIN (WILLINGDON IS.)                     9.966667  N    76.266667  E 1939 2013   88.56 00  INDIA       
+ 

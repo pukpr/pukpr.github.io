@@ -1,0 +1,50 @@
+ID  Code Name                                       Latitude   N/S Longitude E/W Start Stop Quality I  Country
+  -1   0 NINO34                                      0.0       N       142.0   W 1880 2025  100.0   0  WORLD
+  -2   0 NINO4                                       0.0       N       175.0   W 1880 2025  100.0   0  WORLD
+  -3   0 AMO                                        35.0       N        41.0   W 1880 2025  100.0   0  WORLD
+  -4   0 AO                                         72.0       N        15.0   W 1880 2025  100.0   0  WORLD
+  -5   0 Ft Denison                                 33.0       S       151.0   E 1880 2025  100.0   0  WORLD
+  -6   0 IOD                                         5.0       S        75.0   E 1880 2025  100.0   0  WORLD
+  -7   0 IOD West                                    5.0       S        60.0   E 1880 2025  100.0   0  WORLD
+  -8   0 IOD East                                    5.0       S       100.0   E 1880 2025  100.0   0  WORLD
+  -9   0 NAO                                        55.0       N        25.0   W 1880 2025  100.0   0  WORLD
+ -10   0 TNA                                        40.0       N        35.0   W 1880 2025  100.0   0  WORLD
+ -11   0 TSA                                        10.0       S        25.0   W 1880 2025  100.0   0  WORLD
+ -12   0 QBO30                                      0.5        N        20.0   E 1880 2025  100.0   0  WORLD
+ -13   0 Darwin                                     10.8       S       132.0   E 1880 2025  100.0   0  WORLD
+ -14   0 EMI                                        0.5        N       145.0   W 1880 2025  100.0   0  WORLD
+ -15   0 ic3tsfc                                    10.5       N       145.0   W 1880 2025  100.0   0  WORLD
+ -16   0 M6                                          0.0       N        35.0   W 1880 2025  100.0   0  WORLD
+ -17   0 M4                                         30.0       N       150.0   W 1880 2025  100.0   0  WORLD
+ -18   0 PDO                                        45.0       N       160.0   W 1880 2025  100.0   0  WORLD
+ -19   0 NINO3                                      0.0        N       120.0   W 1880 2025  100.0   0  WORLD
+ -20   0 NINO12                                     5.0        S       100.0   W 1880 2025  100.0   0  WORLD
+   1 190 BREST                                      48.382850  N     4.494838  W 1807 2019   89.75 90  FRANCE                    
+   7 140 CUXHAVEN 2                                 53.866667  N     8.716667  E 1843 2018  100.00 40  GERMANY                   
+   8 120 WISMAR 2                                   53.898889  N    11.458056  E 1848 2018   99.61 20  GERMANY                   
+  10 823 SAN FRANCISCO                              37.806667  N   122.465000  W 1854 2020   99.60 23  UNITED STATES             
+  11 120 WARNEMUNDE 2                               54.169722  N    12.103333  E 1855 2019   99.75 20  GERMANY                   
+  14 060 HELSINKI                                   60.153633  N    24.956217  E 1857 2019   89.93 60  FINLAND                   
+  41 305 POTI                                       42.166667  N    41.683333  E 1874 2018   94.14 05  GEORGIA                   
+  65 680 SYDNEY, FORT DENISON                       33.850000  S   151.233333  E 1886 1993  100.00 80  AUSTRALIA                 
+  76 130 AARHUS                                     56.147222  N    10.223889  E 1888 2017   97.82 30  DENMARK                   
+  78 050 STOCKHOLM                                  59.324167  N    18.081667  E 1889 2020  100.00 50  SWEDEN                    
+ 111 680 FREMANTLE                                  32.055833  S   115.739444  E 1897 2020   92.61 80  AUSTRALIA                 
+ 127 823 SEATTLE                                    47.601667  N   122.338333  W 1899 2020   99.93 23  UNITED STATES             
+ 155 760 HONOLULU                                   21.306667  N   157.866667  W 1905 2020  100.00 60  UNITED STATES             
+ 158 823 SAN DIEGO (QUARANTINE STATION)             32.713333  N   117.173333  W 1906 2020   98.48 23  UNITED STATES             
+ 161 940 GALVESTON II, PIER 21, TX                  29.310000  N    94.793333  W 1908 2020   99.19 40  UNITED STATES             
+ 163 840 BALBOA                                      8.966667  N    79.566667  W 1908 2018   99.40 40  PANAMA                    
+ 183 960 PORTLAND  (MAINE)                          43.656667  N    70.246667  W 1912 2020   99.77 60  UNITED STATES             
+ 188 940 KEY WEST                                   24.555000  N    81.806667  W 1913 2020   99.23 40  UNITED STATES             
+ 196 680 SYDNEY, FORT DENISON 2                     33.854667  S   151.225778  E 1914 2020   98.21 80  AUSTRALIA                 
+ 202 170 NEWLYN                                     50.103000  N     5.542833  W 1915 2019   98.10 70  UNITED KINGDOM            
+ 225 821 KETCHIKAN                                  55.331667  N   131.625000  W 1919 2020   99.02 21  UNITED STATES             
+ 229 060 KEMI                                       65.673367  N    24.515250  E 1920 2019   96.67 60  FINLAND                   
+ 234 960 CHARLESTON I                               32.781667  N    79.925000  W 1921 2020   99.25 60  UNITED STATES             
+ 235 960 BOSTON                                     42.353333  N    71.053333  W 1921 2020   99.08 60  UNITED STATES             
+ 245 823 LOS ANGELES                                33.720000  N   118.271667  W 1923 2020   98.13 23  UNITED STATES             
+ 246 940 PENSACOLA                                  30.403333  N    87.210000  W 1923 2020   98.30 40  UNITED STATES             
+ 256 823 LA JOLLA (SCRIPPS PIER)                    32.866667  N   117.256667  W 1924 2020   96.13 23  UNITED STATES             
+ 405 821 JUNEAU                                     58.298333  N   134.411667  W 1936 2020   96.47 21  UNITED STATES             
+ 426 821 SITKA                                      57.051667  N   135.341667  W 1938 2020   99.50 21  UNITED STATES             
