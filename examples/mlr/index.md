@@ -51,7 +51,7 @@ python3 ..\lte_mlr.py ts.dat --cc --random --low 1940 --high 1970
 [config](nino4)
 
 
-{% assign keywords = "nino3,nino12,pdo,emi,1,127,183,245,76,darwin,iod,m6,tna,10,14,202,246,78,denison,iode,nao,tsa,11,155,229,256,1mo,emi,idw,nio12,pdo,111,161,234,41,1o,ic3tsfc,m4,nino3,qbo30" | split: "," %}
+{% assign keywords = "1,127,183,245,76,darwin,iod,m6,tna,10,14,202,246,78,denison,iode,nao,tsa,11,155,229,256,amo,emi,iodw,nino12,pdo,111,161,234,41,ao,ic3tsfc,m4,nino3,qbo30" | split: "," %}
 
 {% for kw in keywords %}
 ### {{ kw | upcase }}
@@ -70,7 +70,7 @@ python3 ..\lte_mlr.py ts.dat --cc --random --low 1940 --high 1970
 ---
 
 ```
-$name="2"
+$name="183"
 $name1=$name + "d"
 cp data\$name1.dat .\$name\ts.dat
 cp data\$name1.dat.p .\$name\ts.dat.p
