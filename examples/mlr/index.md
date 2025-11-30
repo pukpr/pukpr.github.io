@@ -34,7 +34,6 @@ python3 ..\lte_mlr.py ts.dat --cc --random --low 1940 --high 1970
 ```
 
 
-
 ---
 
 ### NINO34
@@ -44,17 +43,10 @@ python3 ..\lte_mlr.py ts.dat --cc --random --low 1940 --high 1970
 [config](nino34)
 
 
-### NINO4
-
-![NINO4](nino4/ts.dat-1940-1970.png)
-
-[config](nino4)
-
-
-{% assign keywords = "1,127,183,245,76,darwin,iod,m6,tna,10,14,202,246,78,denison,iode,nao,tsa,11,155,229,256,amo,emi,iodw,nino12,pdo,111,161,234,41,ao,ic3tsfc,m4,nino3,qbo30" | split: "," %}
+{% assign keywords = "nino4,1,127,183,245,76,darwin,iod,m6,tna,10,14,202,246,78,denison,iode,nao,tsa,11,155,229,256,amo,emi,iodw,nino12,pdo,111,161,234,41,ao,ic3tsfc,m4,nino3,qbo30" | split: "," %}
 
 {% for kw in keywords %}
-### {{ kw | upcase }}
+#### {{ kw | upcase }}
 
 ![{{ kw | upcase }}]({{ kw }}/ts.dat-1940-1970.png)
 
