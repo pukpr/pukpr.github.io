@@ -1,5 +1,5 @@
-awk -F";" '
 BEGIN {
+    FS=";"
     tol = 0.01       # time match tolerance for t - 1
     window = 6       # 13-point window: ±6
 }
@@ -47,4 +47,3 @@ END {
         printf "%.4f %.6f\n", diff_time[i], avg
     }
 }
-' $1

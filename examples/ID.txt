@@ -1,24 +1,24 @@
 ID  Code Name                                       Latitude   N/S Longitude E/W Start Stop Quality I  Country
-  -1   0 NINO34                                      0.0       N       142.0   W 1880 2025  100.0   0  WORLD
-  -2   0 NINO4                                       0.0       N       175.0   W 1880 2025  100.0   0  WORLD
-  -3   0 AMO                                        35.0       N        41.0   W 1880 2025  100.0   0  WORLD
-  -4   0 AO                                         72.0       N        15.0   W 1880 2025  100.0   0  WORLD
-  -5   0 Ft Denison                                 33.0       S       151.0   E 1880 2025  100.0   0  WORLD
-  -6   0 IOD                                         5.0       S        75.0   E 1880 2025  100.0   0  WORLD
-  -7   0 IOD West                                    5.0       S        60.0   E 1880 2025  100.0   0  WORLD
-  -8   0 IOD East                                    5.0       S       100.0   E 1880 2025  100.0   0  WORLD
-  -9   0 NAO                                        55.0       N        25.0   W 1880 2025  100.0   0  WORLD
- -10   0 TNA                                        40.0       N        35.0   W 1880 2025  100.0   0  WORLD
- -11   0 TSA                                        10.0       S        25.0   W 1880 2025  100.0   0  WORLD
- -12   0 QBO30                                      0.5        N        20.0   E 1880 2025  100.0   0  WORLD
- -13   0 Darwin                                     10.8       S       132.0   E 1880 2025  100.0   0  WORLD
- -14   0 EMI                                        0.5        N       145.0   W 1880 2025  100.0   0  WORLD
- -15   0 ic3tsfc                                    10.5       N       145.0   W 1880 2025  100.0   0  WORLD
- -16   0 M6                                          0.0       N        35.0   W 1880 2025  100.0   0  WORLD
- -17   0 M4                                         30.0       N       150.0   W 1880 2025  100.0   0  WORLD
- -18   0 PDO                                        45.0       N       160.0   W 1880 2025  100.0   0  WORLD
- -19   0 NINO3                                      0.0        N       120.0   W 1880 2025  100.0   0  WORLD
- -20   0 NINO12                                     5.0        S       100.0   W 1880 2025  100.0   0  WORLD
+  -1   0 NINO34                                      0.0       N       142.0   W 1880 2025  100.0   0  PACIFIC
+  -2   0 NINO4                                       0.0       N       175.0   W 1880 2025  100.0   0  PACIFIC
+  -3   0 AMO                                        35.0       N        41.0   W 1880 2025  100.0   0  ATLANTIC
+  -4   0 AO                                         72.0       N        15.0   W 1880 2025  100.0   0  ARCTIC
+  -5   0 Ft Denison                                 33.0       S       151.0   E 1880 2025  100.0   0  PACIFIC
+  -6   0 IOD                                         5.0       S        75.0   E 1880 2025  100.0   0  INDIAN
+  -7   0 IOD West                                    5.0       S        60.0   E 1880 2025  100.0   0  INDIAN
+  -8   0 IOD East                                    5.0       S       100.0   E 1880 2025  100.0   0  INDIAN
+  -9   0 NAO                                        55.0       N        25.0   W 1880 2025  100.0   0  ATLANTIC
+ -10   0 TNA Tropical N. Atlantic                   40.0       N        35.0   W 1880 2025  100.0   0  ATLANTIC
+ -11   0 TSA Tropical S. At antic                   10.0       S        25.0   W 1880 2025  100.0   0  ATLANTIC
+ -12   0 QBO 30 Equatorial                          0.5        N        20.0   E 1880 2025  100.0   0  WORLD 
+ -13   0 Darwin SOI                                 10.8       S       132.0   E 1880 2025  100.0   0  PACIFIC
+ -14   0 EMI ENSO Modoki Index                      0.5        N       145.0   W 1880 2025  100.0   0  PACIFIC
+ -15   0 ic3tsfc (Reconstruction)                   10.5       N       215.0   E 1880 2025  100.0   0  PACIFIC
+ -16   0 M6, Atlantic Nino                           0.0       N        35.0   W 1880 2025  100.0   0  ATLANTIC
+ -17   0 M4, N. Pacific Gyre Oscillation            30.0       N       150.0   W 1880 2025  100.0   0  PACIFIC
+ -18   0 PDO                                        45.0       N       160.0   W 1880 2025  100.0   0  PACIFIC
+ -19   0 NINO3                                      0.0        N       120.0   W 1880 2025  100.0   0  PACIFIC
+ -20   0 NINO12                                     5.0        S       100.0   W 1880 2025  100.0   0  PACIFIC
    1 190 BREST                                      48.382850  N     4.494838  W 1807 2019   89.75 90  FRANCE                    
    7 140 CUXHAVEN 2                                 53.866667  N     8.716667  E 1843 2018  100.00 40  GERMANY                   
    8 120 WISMAR 2                                   53.898889  N    11.458056  E 1848 2018   99.61 20  GERMANY                   
@@ -31,6 +31,7 @@ ID  Code Name                                       Latitude   N/S Longitude E/W
   78 050 STOCKHOLM                                  59.324167  N    18.081667  E 1889 2020  100.00 50  SWEDEN                    
  111 680 FREMANTLE                                  32.055833  S   115.739444  E 1897 2020   92.61 80  AUSTRALIA                 
  127 823 SEATTLE                                    47.601667  N   122.338333  W 1899 2020   99.93 23  UNITED STATES             
+ 154 270 TRIESTE                                    45.647361  N    13.758472  E 1875 2020   86.87 70  ITALY                     
  155 760 HONOLULU                                   21.306667  N   157.866667  W 1905 2020  100.00 60  UNITED STATES             
  158 823 SAN DIEGO (QUARANTINE STATION)             32.713333  N   117.173333  W 1906 2020   98.48 23  UNITED STATES             
  161 940 GALVESTON II, PIER 21, TX                  29.310000  N    94.793333  W 1908 2020   99.19 40  UNITED STATES             
@@ -46,5 +47,3 @@ ID  Code Name                                       Latitude   N/S Longitude E/W
  245 823 LOS ANGELES                                33.720000  N   118.271667  W 1923 2020   98.13 23  UNITED STATES             
  246 940 PENSACOLA                                  30.403333  N    87.210000  W 1923 2020   98.30 40  UNITED STATES             
  256 823 LA JOLLA (SCRIPPS PIER)                    32.866667  N   117.256667  W 1924 2020   96.13 23  UNITED STATES             
- 405 821 JUNEAU                                     58.298333  N   134.411667  W 1936 2020   96.47 21  UNITED STATES             
- 426 821 SITKA                                      57.051667  N   135.341667  W 1938 2020   99.50 21  UNITED STATES             
