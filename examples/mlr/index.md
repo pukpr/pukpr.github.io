@@ -51,9 +51,7 @@ python3 ..\lte_mlr.py ts.dat --cc --random --low 1940 --high 1970
 
 {% for kw in keywords %}
 #### {{ kw | upcase }}
-<p><i>
-=> {% include_relative {{ kw }}/label.txt %}
-</i></p>
+* => {% include_relative {{ kw }}/label.txt %} *
 
 ![{{ kw | upcase }}]({{ kw }}/ts.dat-1940-1970.png)
 
