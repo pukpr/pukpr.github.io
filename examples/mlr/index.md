@@ -38,9 +38,7 @@ python3 ..\lte_mlr.py ts.dat --cc --random --low 1940 --high 1970
 
 ### NINO34
 
-<p><i>
-=> {% include_relative nino34/label.txt %}
-</i></p>
+*description:* {% include_relative nino34/label.txt %}
 
 ![NINO34](nino34/ts.dat-1940-1970.png)
 
@@ -51,7 +49,7 @@ python3 ..\lte_mlr.py ts.dat --cc --random --low 1940 --high 1970
 
 {% for kw in keywords %}
 #### {{ kw | upcase }}
-* => {% include_relative {{ kw }}/label.txt %} *
+*description:* {% include_relative {{ kw }}/label.txt %}
 
 ![{{ kw | upcase }}]({{ kw }}/ts.dat-1940-1970.png)
 
