@@ -1,8 +1,8 @@
-# NINO34
+# *description:* {% include label.txt %}
 
 ---
 
-## 📖 About
+## model parameters and artifacts
 
 ---
 
@@ -10,15 +10,17 @@
 
 [model parameters](ts.dat.p)
 
-[chart](ts.dat-1940-1970.png)
+[fitted plot](ts.dat-1940-1970.png)
 
 [output CSV](fitted_out.csv)
 
-other stuff such as :
+[rolling window CC](rolling_correlation_with_cmd_args.png)
 
-1. windowd CC
-2. comparison of tidal forcing
-3. LTE modulation
+[comparison of tidal forcing to standard - monthly](ts.dat.p-sin.png)
+[comparison of tidal forcing to standard - bar chart](ts.dat.p-bar.png)
+
+[LTE modulation](lte.png)
+
 
 
 
