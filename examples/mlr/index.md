@@ -51,6 +51,8 @@ python3 ..\lte_mlr.py ts.dat --cc --random --low 1940 --high 1970
 #### {{ kw | upcase }}
 *description:* {% include_relative {{ kw }}/label.txt %}
 
+=> {{ site.data.ID[{{ kw }}].Name }} in {{ site.data.ID[{{ kw }}].Country }}
+
 ![{{ kw | upcase }}]({{ kw }}/ts.dat-1940-1970.png)
 
 [config]({{ kw }})
