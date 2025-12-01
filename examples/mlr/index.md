@@ -55,7 +55,8 @@ python3 ..\lte_mlr.py ts.dat --cc --random --low 1940 --high 1970
 
 ![{{ kw | upcase }}]({{ kw }}/ts.dat-1940-1970.png)
 
-[config]({{ kw }})
+
+[config]({{ kw }})  | [location](..\..\maps\{{ kw }}_loc.png)
 
 {% endfor %}
 
@@ -92,6 +93,13 @@ cp nino34\index.md $name
 {% endif %}
 
 
+
+```
+python3 ..\..\pysindy\plot_lte_scatter.py --header --out lte.png --lo 1940 --high 1970
+python3 ..\..\..\..\python\plot_sinusoids_from_json_with_bars.py --out-ts ts-sin.png --out-bars ts-bar.png  --start 1920-01  --end 2030-01 ..\warne.dat.p ts.dat.p
+python3 ..\..\pysindy\cc.py --low 1940 --high 1970
+
+```
 
 
 
