@@ -38,6 +38,10 @@ python3 ..\lte_mlr.py ts.dat --cc --random --low 1940 --high 1970
 
 ### NINO34
 
+<p><i>
+=> {% include_relative nino34/label.txt %}
+</i></p>
+
 ![NINO34](nino34/ts.dat-1940-1970.png)
 
 [config](nino34)
