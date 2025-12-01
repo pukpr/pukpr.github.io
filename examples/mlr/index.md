@@ -77,6 +77,19 @@ cd ..
 cp nino34\index.md $name
 ```
 
+---
+
+{% if site.data.ID %}
+  <ul>
+  {% for pair in site.data.ID %}
+    {% assign key = pair[0] %}
+    {% assign rec = pair[1] %}
+    <li>{{ key }} — {{ rec.Name }} ({{ rec.Country }})</li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>site.data.ID not found</p>
+{% endif %}
 
 
 
