@@ -1,4 +1,4 @@
-# *description:* {% include label.txt %}
+# *description:* {% include_relative label.txt %}
 
 ---
 
