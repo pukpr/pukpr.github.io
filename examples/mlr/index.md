@@ -56,7 +56,7 @@ python3 ..\lte_mlr.py ts.dat --cc --random --low 1940 --high 1970
 ![{{ kw | upcase }}]({{ kw }}/ts.dat-1940-1970.png)
 
 
-[config]({{ kw }})  | [location](../../maps/{{ kw }}_loc.png)
+[config]({{ kw }})  | [location](../maps/{{ kw }}_loc.png)
 
 {% endfor %}
 
