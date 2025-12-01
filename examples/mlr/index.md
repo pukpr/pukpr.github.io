@@ -49,9 +49,9 @@ python3 ..\lte_mlr.py ts.dat --cc --random --low 1940 --high 1970
 
 {% for kw in keywords %}
 #### {{ kw | upcase }}
-*description:* {% include_relative {{ kw }}/label.txt %}
+{% assign key = kw | strip | append: "" %}
 
-=> {{ site.data.ID[{{ kw }}].Name }} in {{ site.data.ID[{{ kw }}].Country }}
+*description:* {% include_relative {{ kw }}/label.txt %} => {{ site.data.ID[key].Name }} in {{ site.data.ID[key].Country }}
 
 ![{{ kw | upcase }}]({{ kw }}/ts.dat-1940-1970.png)
 
