@@ -36,7 +36,7 @@ python3 ..\lte_mlr.py ts.dat --cc --random --low 1940 --high 1970
 
 ---
 
-{% assign keywords = "nino34,nino4,1,127,183,245,76,darwin,iod,m6,tna,10,14,202,246,78,denison,iode,nao,tsa,11,155,225,154,229,256,amo,emi,iodw,nino12,pdo,111,161,234,41,ao,ic3tsfc,m4,nino3,qbo30,7,8,42" | split: "," %}
+{% assign keywords = "nino34,nino4,1,127,183,245,76,darwin,iod,m6,tna,10,14,202,246,78,denison,iode,nao,tsa,11,155,225,154,229,256,amo,emi,iodw,nino12,pdo,111,161,234,41,ao,ic3tsfc,m4,nino3,qbo30,7,8,42,113,119,172,179,194,2,20,203,22,23,236,239,24,240,249,25,285,302,32,33,330,34,413,47,5,57,58,62,68,69,70,71,72,73,79,80,81,82,88,89,9,91,95,98" | split: "," %}
 
 {% for kw in keywords %}
 #### {{ kw | upcase }}
