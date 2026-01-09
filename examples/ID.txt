@@ -47,3 +47,53 @@ ID  Code Name                                       Latitude   N/S Longitude E/W
  245 823 LOS ANGELES                                33.720000  N   118.271667  W 1923 2020   98.13 23  UNITED STATES             
  246 940 PENSACOLA                                  30.403333  N    87.210000  W 1923 2020   98.30 40  UNITED STATES             
  256 823 LA JOLLA (SCRIPPS PIER)                    32.866667  N   117.256667  W 1924 2020   96.13 23  UNITED STATES             
+   2 110 SWINOUJSCIE                                53.916667  N    14.233333  E 1811 1999   96.47 10  POLAND                    
+   3 170 SHEERNESS                                  51.445639  N     0.743444  E 1832 2018   55.61 70  UNITED KINGDOM            
+   5 170 HOLYHEAD                                   53.313944  N     4.620444  W 1838 2019   38.97 70  UNITED KINGDOM            
+   9 150 MAASSLUIS                                  51.917500  N     4.249722  E 1848 2019  100.00 50  NETHERLANDS               
+  12 960 NEW YORK (THE BATTERY)                     40.700000  N    74.013333  W 1856 2020   90.40 60  UNITED STATES             
+  13 125 TRAVEMUNDE                                 53.958056  N    10.872222  E 1856 2018   95.09 25  GERMANY                   
+  20 150 VLISSINGEN                                 51.442222  N     3.596111  E 1862 2019  100.00 50  NETHERLANDS               
+  22 150 HOEK VAN HOLLAND                           51.977500  N     4.120000  E 1864 2019  100.00 50  NETHERLANDS               
+  23 150 DEN HELDER                                 52.964444  N     4.745000  E 1865 2019  100.00 50  NETHERLANDS               
+  24 150 DELFZIJL                                   53.326389  N     6.933056  E 1865 2019  100.00 50  NETHERLANDS               
+  25 150 HARLINGEN                                  53.175556  N     5.409444  E 1865 2019  100.00 50  NETHERLANDS               
+  32 150 IJMUIDEN                                   52.462222  N     4.554722  E 1871 2019   99.78 50  NETHERLANDS               
+  33 040 OSCARSBORG                                 59.678073  N    10.604861  E 1872 2020   47.32 40  NORWAY                    
+  34 040 TRONDHEIM                                  63.433333  N    10.433333  E 1872 1989   39.83 40  NORWAY                    
+  47 040 STAVANGER                                  58.974339  N     5.730121  E 1881 2020   69.23 40  NORWAY                    
+  57 060 VAASA / VASA                               63.081533  N    21.571183  E 1883 2019   94.89 60  FINLAND                   
+  58 040 BERGEN                                     60.398046  N     5.320487  E 1883 2020   76.03 40  NORWAY                    
+  59 250 GENOVA                                     44.400000  N     8.900000  E 1884 1997   78.29 50  ITALY                     
+  62 040 OSLO                                       59.908559  N    10.734510  E 1885 2020   78.92 40  NORWAY                    
+  68 050 LANDSORT                                   58.742222  N    17.865278  E 1887 2006   99.72 50  SWEDEN                    
+  69 050 OLANDS NORRA UDDE                          57.366111  N    17.097222  E 1887 2020  100.00 50  SWEDEN                    
+  70 050 KUNGSHOLMSFORT                             56.105278  N    15.589444  E 1887 2020   99.94 50  SWEDEN                    
+  71 060 HANKO / HANGO                              59.822867  N    22.976583  E 1887 2019   88.72 60  FINLAND                   
+  72 050 YSTAD                                      55.416667  N    13.816667  E 1887 1986  100.00 50  SWEDEN                    
+  73 050 VARBERG                                    57.100000  N    12.216667  E 1887 1981   99.82 50  SWEDEN                    
+  79 060 OULU / ULEABORG                            65.040317  N    25.418233  E 1889 2019   95.67 60  FINLAND                   
+  80 130 ESBJERG                                    55.460833  N     8.441111  E 1889 2017   98.77 30  DENMARK                   
+  81 130 FREDERICIA                                 55.560833  N     9.754444  E 1889 2017   98.71 30  DENMARK                   
+  82 130 KOBENHAVN                                  55.705000  N    12.600000  E 1889 2017   97.61 30  DENMARK                   
+  88 050 RATAN                                      63.986111  N    20.895000  E 1892 2020   99.81 50  SWEDEN                    
+  89 130 HIRTSHALS                                  57.595556  N     9.963889  E 1892 2017   95.97 30  DENMARK                   
+  91 130 FREDERIKSHAVN                              57.436389  N    10.548889  E 1893 2017   97.07 30  DENMARK                   
+  95 170 NORTH SHIELDS                              55.007444  N     1.439778  W 1895 2019   92.67 70  UNITED KINGDOM            
+  98 130 SLIPSHAVN                                  55.288333  N    10.827778  E 1896 2017   97.95 30  DENMARK                   
+ 113 130 KORSOR                                     55.332222  N    11.142222  E 1897 2017   98.28 30  DENMARK                   
+ 119 130 HORNBAEK                                   56.091111  N    12.458333  E 1891 2017   98.43 30  DENMARK                   
+ 120 130 GEDSER                                     54.572778  N    11.925556  E 1892 2017   99.21 30  DENMARK                   
+ 172 060 MANTYLUOTO                                 61.594383  N    21.463433  E 1910 2019   98.03 60  FINLAND                   
+ 179 050 SMOGEN                                     58.353611  N    11.217778  E 1911 2020  100.00 50  SWEDEN                    
+ 194 060 PIETARSAARI  /  JAKOBSTAD                  63.708567  N    22.689583  E 1914 2019   97.96 60  FINLAND                   
+ 203 050 FURUOGRUND                                 64.915833  N    21.230556  E 1916 2020   99.76 50  SWEDEN                    
+ 234 960 CHARLESTON I                               32.781667  N    79.925000  W 1921 2020   99.25 60  UNITED STATES             
+ 236 150 WEST-TERSCHELLING                          53.363056  N     5.220000  E 1921 2019  100.00 50  NETHERLANDS               
+ 239 060 TURKU / ABO                                60.428283  N    22.100533  E 1922 2019   98.21 60  FINLAND                   
+ 240 060 RAAHE / BRAHESTAD                          64.666333  N    24.407050  E 1922 2019   93.11 60  FINLAND                   
+ 249 060 FOGLO / DEGERBY                            60.031883  N    20.384817  E 1923 2019   94.85 60  Ã…LAND ISLANDS            
+ 285 060 KASKINEN / KASKO                           62.343950  N    21.214833  E 1926 2019   97.25 60  FINLAND                   
+ 302 040 TREGDE                                     58.006377  N     7.554759  E 1927 2020   96.90 40  NORWAY                    
+ 330 050 KLAGSHAMN                                  55.522222  N    12.893611  E 1929 2020   98.91 50  SWEDEN                    
+ 413 160 OOSTENDE                                   51.233333  N     2.916667  E 1937 2019   93.57 60  BELGIUM                   
