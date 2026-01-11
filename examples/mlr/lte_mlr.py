@@ -70,7 +70,7 @@ def read_json_p(path: str) -> Dict[str, Any]:
     """Read JSON file at path (if exists), else return empty dict."""
     if not os.path.exists(path):
         return {}
-    with open(path, 'r', encoding='utf-8') as fh:
+    with open(path, 'r', encoding='utf-8-sig') as fh:
         return json.load(fh)
 
 
@@ -439,7 +439,7 @@ Monitored_Slide = [
     "Imp_Amp2",
     "Imp_Stride",
     "DeltaTime",
-    "Initial",
+    # "Initial",
     "AliasedAmp", ##
     "PeriodsPhase",
     "AliasedPhase",
