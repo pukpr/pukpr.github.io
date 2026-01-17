@@ -83,6 +83,18 @@ def fit_sinusoidal_regression(
       Y ≈ intercept + sum_i [a_i * sin(k_i N_i X) + b_i * cos(k_i N_i X)] + c * X (optional)
 
     Parameters:
+        X: 1-D array of sample positions (e.g., time or angle).
+        Y: Array of target values with shape (n_samples,) or (n_samples, n_targets).
+        N_list: Sequence of integers specifying which harmonics to include.
+        k: Scalar or sequence of floats (one per harmonic) for frequency scaling.
+        intercept: If True, include an intercept term in the model.
+        ridge: Scalar ridge regularization parameter applied uniformly to all coefficients
+               (except intercept if intercept=True). Mutually exclusive with ridge_weights.
+        ridge_weights: Sequence of per-coefficient ridge weights. Length must match the total
+                       number of columns in the design matrix, INCLUDING the intercept column
+                       when intercept=True. The intercept weight (first element) will be set
+                       to 0.0 automatically. Mutually exclusive with ridge.
+        rcond: Cutoff for small singular values in least squares (used when ridge is None).
         add_linear_x: when True, include one column equal to X (coefficient returned as 'coef_x').
 
     Returns:
@@ -108,11 +120,22 @@ def fit_sinusoidal_regression(
         coefs, residuals, rank, s = np.linalg.lstsq(A, Y, rcond=rcond)
     else:
         ATA = A.T @ A
-        n_cols = ATA.shape[0]
         if ridge_weights is not None:
             ridge_arr = np.asarray(ridge_weights, dtype=float)
             if ridge_arr.shape != (n_cols,):
-                raise ValueError("ridge_weights must have length equal to the number of columns in the design matrix.")
+                # Build error message with breakdown of column count
+                linear_x_part = f" + 1 (linear X term)" if add_linear_x else ""
+                if intercept:
+                    config_detail = f"1 (intercept) + {2 * len(N_list)} (sin/cos terms){linear_x_part}"
+                    intercept_note = "When intercept=True, ridge_weights must include the intercept column as the first element. "
+                else:
+                    config_detail = f"{2 * len(N_list)} (sin/cos terms){linear_x_part}"
+                    intercept_note = ""
+                raise ValueError(
+                    f"ridge_weights must have length equal to the number of columns in the design matrix "
+                    f"(expected {n_cols}, got {ridge_arr.shape[0]}). {intercept_note}"
+                    f"For this configuration: {config_detail} = {n_cols} columns."
+                )
             if intercept and n_cols > 0:
                 ridge_arr = ridge_arr.copy()
                 ridge_arr[0] = 0.0
