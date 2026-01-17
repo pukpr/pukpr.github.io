@@ -84,6 +84,10 @@ def fit_sinusoidal_regression(
 
     Parameters:
         add_linear_x: when True, include one column equal to X (coefficient returned as 'coef_x').
+        ridge_weights: optional sequence of per-column regularization weights. Must have length
+            equal to the number of design matrix columns (including the intercept column if
+            intercept=True). When intercept=True, the intercept column weight is automatically
+            set to 0.0 to avoid regularizing the intercept term.
 
     Returns:
         result dict with keys including:
