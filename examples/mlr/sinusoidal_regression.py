@@ -124,21 +124,20 @@ def fit_sinusoidal_regression(
         if ridge_weights is not None:
             ridge_arr = np.asarray(ridge_weights, dtype=float)
             if ridge_arr.shape != (n_cols,):
+                # Build error message with breakdown of column count
+                linear_x_part = f" + 1 (linear X term)" if add_linear_x else ""
                 if intercept:
-                    raise ValueError(
-                        f"ridge_weights must have length equal to the number of columns in the design matrix "
-                        f"(expected {n_cols}, got {ridge_arr.shape[0]}). "
-                        f"When intercept=True, ridge_weights must include the intercept column as the first element. "
-                        f"For this configuration: 1 (intercept) + {2 * len(N_list)} (sin/cos terms)"
-                        + (f" + 1 (linear X term)" if add_linear_x else "") + f" = {n_cols} columns."
-                    )
+                    config_detail = f"1 (intercept) + {2 * len(N_list)} (sin/cos terms){linear_x_part}"
+                    intercept_note = "When intercept=True, ridge_weights must include the intercept column as the first element. "
                 else:
-                    raise ValueError(
-                        f"ridge_weights must have length equal to the number of columns in the design matrix "
-                        f"(expected {n_cols}, got {ridge_arr.shape[0]}). "
-                        f"For this configuration: {2 * len(N_list)} (sin/cos terms)"
-                        + (f" + 1 (linear X term)" if add_linear_x else "") + f" = {n_cols} columns."
-                    )
+                    config_detail = f"{2 * len(N_list)} (sin/cos terms){linear_x_part}"
+                    intercept_note = ""
+                raise ValueError(
+                    f"ridge_weights must have length equal to the number of columns in the design matrix "
+                    f"(expected {n_cols}, got {ridge_arr.shape[0]}). "
+                    f"{intercept_note}"
+                    f"For this configuration: {config_detail} = {n_cols} columns."
+                )
             if intercept and n_cols > 0:
                 ridge_arr = ridge_arr.copy()
                 ridge_arr[0] = 0.0
