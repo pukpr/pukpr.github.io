@@ -38,6 +38,19 @@ python3 ..\lte_mlr.py ts.dat --cc --random --low 1940 --high 1970
 
 ```
 
+To configure Ridge regression parameters (Ridge_Base, Ridge_Growth, Ridge_Free, Ridge_Exponent, Ridge_Linear), add them to the corresponding `.p` JSON file. For example, in `ts.dat.p`:
+
+```json
+{
+  "Ridge_Base": 0.05,
+  "Ridge_Growth": 0.2,
+  "Ridge_Free": 2,
+  "Ridge_Exponent": 1.5,
+  "Ridge_Linear": 0.0,
+  ...other parameters...
+}
+```
+
 
 ---
 
