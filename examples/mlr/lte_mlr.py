@@ -245,6 +245,11 @@ def run_loop_time_series(time: np.ndarray,
     StartTime = float(params.get('StartTime', 1800.0))
     a = float(params.get('a', 0.0))
     b = float(params.get('b', 0.0))
+    Ridge_Base = params.get('Ridge_Base')
+    Ridge_Growth = float(params.get('Ridge_Growth', 0.0))
+    Ridge_Linear = float(params.get('Ridge_Linear', 0.0))
+    Ridge_Free = int(params.get('Ridge_Free', 1))
+    Ridge_Exponent = float(params.get('Ridge_Exponent', 1.0))
 
     N = time.size
     v = 0.0
@@ -287,7 +292,31 @@ def run_loop_time_series(time: np.ndarray,
     #    print(f"{m_model.size:d} {model.size:d}")
     #    exit()
 
-    lte = fit_sinusoidal_regression(mask_model, mask_clone, N_list=Harmonics, k=LTE_Freq, intercept=True, add_linear_x=True, ridge=None)
+    ridge_weights = None
+    if Ridge_Base is not None:
+        base = float(Ridge_Base)
+        weights = [0.0]
+        for idx, harmonic in enumerate(Harmonics):
+            harmonic = int(harmonic)
+            is_free = idx < max(Ridge_Free, 1) or harmonic <= 1
+            if is_free:
+                penalty = 0.0
+            else:
+                penalty = base * (1.0 + Ridge_Growth * float(harmonic - 1)) ** Ridge_Exponent
+            weights.extend([penalty, penalty])
+        weights.append(Ridge_Linear)
+        ridge_weights = weights
+
+    lte = fit_sinusoidal_regression(
+        mask_model,
+        mask_clone,
+        N_list=Harmonics,
+        k=LTE_Freq,
+        intercept=True,
+        add_linear_x=True,
+        ridge=None,
+        ridge_weights=ridge_weights,
+    )
     model1 = lte["predict"](model) + model_sup
 
     # 2nd order shaper, a and b
