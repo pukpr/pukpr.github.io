@@ -123,10 +123,13 @@ def fit_sinusoidal_regression(
             reg[0, 0] = 0.0
         ATA_reg = ATA + reg
         ATy = A.T @ Y
-        coefs = np.linalg.solve(ATA_reg, ATy)
-        residuals = None
-        rank = None
-        s = None
+        try:
+            coefs = np.linalg.solve(ATA_reg, ATy)
+            residuals = None
+            rank = None
+            s = None
+        except np.linalg.LinAlgError:
+            coefs, residuals, rank, s = np.linalg.lstsq(ATA_reg, ATy, rcond=rcond)
 
     # Extract intercept and coefficient body
     if intercept:

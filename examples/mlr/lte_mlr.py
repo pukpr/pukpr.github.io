@@ -292,6 +292,16 @@ def run_loop_time_series(time: np.ndarray,
     #    print(f"{m_model.size:d} {model.size:d}")
     #    exit()
 
+    deduped_harmonics = []
+    seen_harmonics = set()
+    for harmonic in Harmonics:
+        harmonic = int(harmonic)
+        if harmonic in seen_harmonics:
+            continue
+        seen_harmonics.add(harmonic)
+        deduped_harmonics.append(harmonic)
+    Harmonics = deduped_harmonics if deduped_harmonics else [1]
+
     ridge_weights = None
     if Ridge_Base is not None:
         base = float(Ridge_Base)
