@@ -245,11 +245,11 @@ def run_loop_time_series(time: np.ndarray,
     StartTime = float(params.get('StartTime', 1800.0))
     a = float(params.get('a', 0.0))
     b = float(params.get('b', 0.0))
-    Ridge_Base = params.get('Ridge_Base')
-    Ridge_Growth = float(params.get('Ridge_Growth', 0.0))
-    Ridge_Linear = float(params.get('Ridge_Linear', 0.0))
-    Ridge_Free = int(params.get('Ridge_Free', 1))
-    Ridge_Exponent = float(params.get('Ridge_Exponent', 1.0))
+    Ridge_Base = os.environ.get('RIDGE_BASE')
+    Ridge_Growth = float(os.environ.get('RIDGE_GROWTH', '0.0'))
+    Ridge_Linear = float(os.environ.get('RIDGE_LINEAR', '0.0'))
+    Ridge_Free = int(os.environ.get('RIDGE_FREE', '1'))
+    Ridge_Exponent = float(os.environ.get('RIDGE_EXPONENT', '1.0'))
 
     N = time.size
     v = 0.0
