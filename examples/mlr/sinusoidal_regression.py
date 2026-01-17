@@ -73,7 +73,6 @@ def fit_sinusoidal_regression(
     N_list: Sequence[int],
     k: Union[float, Sequence[float]] = 1.0,
     intercept: bool = True,
-    ridge: Optional[float] = None,
     rcond: Optional[float] = None,
     add_linear_x: bool = False,
 ) -> Dict[str, Any]:
@@ -103,20 +102,7 @@ def fit_sinusoidal_regression(
     if y_was_1d:
         Y = Y.reshape(-1, 1)
 
-    if ridge is None:
-        coefs, residuals, rank, s = np.linalg.lstsq(A, Y, rcond=rcond)
-    else:
-        ATA = A.T @ A
-        n_cols = ATA.shape[0]
-        reg = np.eye(n_cols) * float(ridge)
-        if intercept and n_cols > 0:
-            reg[0, 0] = 0.0
-        ATA_reg = ATA + reg
-        ATy = A.T @ Y
-        coefs = np.linalg.solve(ATA_reg, ATy)
-        residuals = None
-        rank = None
-        s = None
+    coefs, residuals, rank, s = np.linalg.lstsq(A, Y, rcond=rcond)
 
     # Extract intercept and coefficient body
     if intercept:

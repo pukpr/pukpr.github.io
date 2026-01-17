@@ -287,7 +287,7 @@ def run_loop_time_series(time: np.ndarray,
     #    print(f"{m_model.size:d} {model.size:d}")
     #    exit()
 
-    lte = fit_sinusoidal_regression(mask_model, mask_clone, N_list=Harmonics, k=LTE_Freq, intercept=True, add_linear_x=True, ridge=None)
+    lte = fit_sinusoidal_regression(mask_model, mask_clone, N_list=Harmonics, k=LTE_Freq, intercept=True, add_linear_x=True)
     model1 = lte["predict"](model) + model_sup
 
     # 2nd order shaper, a and b
