@@ -28,6 +28,7 @@ git clone https://github.com/pukpr/pukpr.github.io
 $env:max_iters=3
 $env:align=1
 $env:PYPATH=".."
+
 python3 ..\lte_mlr.py ts.dat --cc --random --low 1940 --high 1970
 
 ```
@@ -88,6 +89,7 @@ python3 ..\..\..\..\python\plot_sinusoids_from_json_with_bars.py --out-ts ts-sin
 python3 ..\..\pysindy\cc.py --low 1940 --high 1970
 
 ```
+
 
 
 
