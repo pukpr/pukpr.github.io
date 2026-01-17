@@ -74,6 +74,7 @@ def fit_sinusoidal_regression(
     k: Union[float, Sequence[float]] = 1.0,
     intercept: bool = True,
     ridge: Optional[float] = None,
+    ridge_weights: Optional[Sequence[float]] = None,
     rcond: Optional[float] = None,
     add_linear_x: bool = False,
 ) -> Dict[str, Any]:
@@ -103,20 +104,32 @@ def fit_sinusoidal_regression(
     if y_was_1d:
         Y = Y.reshape(-1, 1)
 
-    if ridge is None:
+    if ridge is None and ridge_weights is None:
         coefs, residuals, rank, s = np.linalg.lstsq(A, Y, rcond=rcond)
     else:
         ATA = A.T @ A
         n_cols = ATA.shape[0]
-        reg = np.eye(n_cols) * float(ridge)
-        if intercept and n_cols > 0:
+        if ridge_weights is not None:
+            ridge_arr = np.asarray(ridge_weights, dtype=float)
+            if ridge_arr.shape != (n_cols,):
+                raise ValueError("ridge_weights must have length equal to the number of columns in the design matrix.")
+            if intercept and n_cols > 0:
+                ridge_arr = ridge_arr.copy()
+                ridge_arr[0] = 0.0
+            reg = np.diag(ridge_arr)
+        else:
+            reg = np.eye(n_cols) * float(ridge)
+        if intercept and n_cols > 0 and ridge_weights is None:
             reg[0, 0] = 0.0
         ATA_reg = ATA + reg
         ATy = A.T @ Y
-        coefs = np.linalg.solve(ATA_reg, ATy)
-        residuals = None
-        rank = None
-        s = None
+        try:
+            coefs = np.linalg.solve(ATA_reg, ATy)
+            residuals = None
+            rank = None
+            s = None
+        except np.linalg.LinAlgError:
+            coefs, residuals, rank, s = np.linalg.lstsq(ATA_reg, ATy, rcond=rcond)
 
     # Extract intercept and coefficient body
     if intercept:
