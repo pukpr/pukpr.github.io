@@ -103,7 +103,7 @@ def fit_sinusoidal_regression(
         Y = Y.reshape(-1, 1)
 
     coefs, residuals, rank, s = np.linalg.lstsq(A, Y, rcond=rcond)
-
+    
     # Extract intercept and coefficient body
     if intercept:
         intercept_val = coefs[0, :]

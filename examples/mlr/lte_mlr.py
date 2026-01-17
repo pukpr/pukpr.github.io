@@ -245,7 +245,7 @@ def run_loop_time_series(time: np.ndarray,
     StartTime = float(params.get('StartTime', 1800.0))
     a = float(params.get('a', 0.0))
     b = float(params.get('b', 0.0))
-
+    
     N = time.size
     v = 0.0
     sup = 0.0
@@ -288,6 +288,24 @@ def run_loop_time_series(time: np.ndarray,
     #    exit()
 
     lte = fit_sinusoidal_regression(mask_model, mask_clone, N_list=Harmonics, k=LTE_Freq, intercept=True, add_linear_x=True)
+    deduped_harmonics = []
+    seen_harmonics = set()
+    for harmonic in Harmonics:
+        harmonic = int(harmonic)
+        if harmonic in seen_harmonics:
+            continue
+        seen_harmonics.add(harmonic)
+        deduped_harmonics.append(harmonic)
+    Harmonics = deduped_harmonics if deduped_harmonics else [1]
+
+    lte = fit_sinusoidal_regression(
+        mask_model,
+        mask_clone,
+        N_list=Harmonics,
+        k=LTE_Freq,
+        intercept=True,
+        add_linear_x=True
+    )
     model1 = lte["predict"](model) + model_sup
 
     # 2nd order shaper, a and b
