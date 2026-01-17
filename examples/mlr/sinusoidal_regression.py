@@ -91,7 +91,8 @@ def fit_sinusoidal_regression(
         ridge: Optional ridge regularization strength (scalar). Applied uniformly to all 
             coefficients except the intercept. Cannot be used with ridge_weights.
         ridge_weights: Optional per-coefficient ridge regularization weights (sequence). 
-            Must have length equal to the number of columns in the design matrix. The 
+            Must have length equal to the number of columns in the design matrix (intercept 
+            if present + 2*len(N_list) for sin/cos terms + 1 if add_linear_x is True). The 
             intercept column (if present) is automatically set to 0. Cannot be used with ridge.
         rcond: Cutoff for small singular values in least squares. Only used when neither 
             ridge nor ridge_weights is provided.
