@@ -28,11 +28,6 @@ git clone https://github.com/pukpr/pukpr.github.io
 $env:max_iters=3
 $env:align=1
 $env:PYPATH=".."
-$env:Ridge_Base=0.05
-$env:Ridge_Growth=0.2
-$env:Ridge_Free=2
-$env:Ridge_Exponent=1.5
-$env:Ridge_Linear=0.0
 
 python3 ..\lte_mlr.py ts.dat --cc --random --low 1940 --high 1970
 
