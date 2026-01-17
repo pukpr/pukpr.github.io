@@ -287,7 +287,7 @@ def run_loop_time_series(time: np.ndarray,
     #    print(f"{m_model.size:d} {model.size:d}")
     #    exit()
 
-    lte = fit_sinusoidal_regression(mask_model, mask_clone, N_list=Harmonics, k=LTE_Freq, intercept=True, add_linear_x=True, ridge=None)
+    lte = fit_sinusoidal_regression(mask_model, mask_clone, N_list=Harmonics, k=LTE_Freq, intercept=True, add_linear_x=True)
     model1 = lte["predict"](model) + model_sup
 
     # 2nd order shaper, a and b
@@ -329,6 +329,25 @@ def compute_metrics(time: np.ndarray, observed: np.ndarray, model: np.ndarray, l
         'CV': CV,
         'training': training
     }
+
+def compute_pearson_region(time: np.ndarray,
+                           observed: np.ndarray,
+                           model: np.ndarray,
+                           Time_Low: Optional[float] = None,
+                           Time_High: Optional[float] = None,
+                           Exclude: Optional[bool] = True) -> float:
+    mask = build_mask(time, Time_Low, Time_High, Exclude)
+    obs_sel = observed[mask]
+    mod_sel = model[mask]
+    if obs_sel.size == 0:
+        return float('nan')
+    try:
+        r_val, _ = pearsonr(obs_sel, mod_sel)  # type: ignore
+        return float(r_val)
+    except Exception:
+        if obs_sel.size < 2:
+            return float('nan')
+        return float(np.corrcoef(obs_sel, mod_sel)[0, 1])
 
 def compute_metrics_region(time: np.ndarray,
                            observed: np.ndarray,
@@ -832,6 +851,25 @@ def main():
 
     # Compute metrics
     metrics = compute_metrics(time, y, model_vals, Low, High)
+    mask = build_mask(time, Low, High, True)
+    harmonics = list(params.get('Harmonics', [1]))
+    max_harmonic = max([h for h in harmonics if int(h) > 1], default=0)
+    fundamental_weight = 1.0
+    harmonic_weight = 1.0 / (1.0 + float(max_harmonic)) if max_harmonic > 0 else 0.0
+    params_fundamental = dict(params)
+    params_fundamental['Harmonics'] = [1]
+    model_fundamental, _, _ = run_loop_time_series(time, y, model_fn, params_fundamental, mask)
+    training_fundamental = compute_pearson_region(time, y, model_fundamental, Low, High, True)
+    cv_fundamental = compute_pearson_region(time, y, model_fundamental, Low, High, False)
+    training_full = compute_pearson_region(time, y, model_vals, Low, High, True)
+    cv_full = compute_pearson_region(time, y, model_vals, Low, High, False)
+    staged_den = fundamental_weight + harmonic_weight
+    staged_training_cc = (
+        (fundamental_weight * training_fundamental) + (harmonic_weight * training_full)
+    ) / staged_den if staged_den > 0.0 else float('nan')
+    staged_cv_cc = (
+        (fundamental_weight * cv_fundamental) + (harmonic_weight * cv_full)
+    ) / staged_den if staged_den > 0.0 else float('nan')
 
     # Prepare output DataFrame
     out_df = pd.DataFrame({
@@ -857,6 +895,8 @@ def main():
     print(f"  training = {metrics['training']:.6f}")
     print(f"  MSE = {metrics['mse']:.6f}")
     print(f"  Pearson r = {metrics['pearson_r']}, p-value = {metrics.get('pearson_p', None)}")
+    print(f"  staged training CC = {staged_training_cc:.6f}")
+    print(f"  staged CV CC = {staged_cv_cc:.6f}")
 
     # Optional plotting
     mask = (time > Low) & (time < High)
