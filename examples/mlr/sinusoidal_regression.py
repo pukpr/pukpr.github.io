@@ -120,7 +120,6 @@ def fit_sinusoidal_regression(
         coefs, residuals, rank, s = np.linalg.lstsq(A, Y, rcond=rcond)
     else:
         ATA = A.T @ A
-        n_cols = ATA.shape[0]
         if ridge_weights is not None:
             ridge_arr = np.asarray(ridge_weights, dtype=float)
             if ridge_arr.shape != (n_cols,):
@@ -134,8 +133,7 @@ def fit_sinusoidal_regression(
                     intercept_note = ""
                 raise ValueError(
                     f"ridge_weights must have length equal to the number of columns in the design matrix "
-                    f"(expected {n_cols}, got {ridge_arr.shape[0]}). "
-                    f"{intercept_note}"
+                    f"(expected {n_cols}, got {ridge_arr.shape[0]}). {intercept_note}"
                     f"For this configuration: {config_detail} = {n_cols} columns."
                 )
             if intercept and n_cols > 0:
