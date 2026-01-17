@@ -83,12 +83,28 @@ def fit_sinusoidal_regression(
       Y ≈ intercept + sum_i [a_i * sin(k_i N_i X) + b_i * cos(k_i N_i X)] + c * X (optional)
 
     Parameters:
-        add_linear_x: when True, include one column equal to X (coefficient returned as 'coef_x').
+        X: 1-D array of sample positions (e.g., time or angle).
+        Y: Target values. Can be 1-D (single target) or 2-D (multiple targets).
+        N_list: Sequence of integers defining the harmonic frequencies.
+        k: Scalar or sequence of floats for frequency scaling. Default is 1.0.
+        intercept: If True, include an intercept term. Default is True.
+        ridge: Optional ridge regularization strength (scalar). Applied uniformly to all 
+            coefficients except the intercept. Cannot be used with ridge_weights.
+        ridge_weights: Optional per-coefficient ridge regularization weights (sequence). 
+            Must have length equal to the number of columns in the design matrix (intercept 
+            if present + 2*len(N_list) for sin/cos terms + 1 if add_linear_x is True). The 
+            intercept column (if present) is automatically set to 0. Cannot be used with ridge.
+        rcond: Cutoff for small singular values in least squares. Only used when neither 
+            ridge nor ridge_weights is provided.
+        add_linear_x: When True, include one column equal to X (coefficient returned as 'coef_x').
 
     Returns:
         result dict with keys including:
           - 'coefs', 'intercept', 'coefs_by_N', 'coef_x' (if add_linear_x True),
             'predict', 'R2', 'mse', 'A', 'k_arr', ...
+    
+    Raises:
+        ValueError: If both ridge and ridge_weights are provided.
     """
     X = np.asarray(X)
     Y = np.asarray(Y)
@@ -96,6 +112,10 @@ def fit_sinusoidal_regression(
         raise ValueError("X must be 1-D array of positions.")
     if Y.shape[0] != X.shape[0]:
         raise ValueError("X and Y must have the same number of samples in axis 0.")
+    
+    # Validate that only one of ridge or ridge_weights is provided
+    if ridge is not None and ridge_weights is not None:
+        raise ValueError("Cannot specify both 'ridge' and 'ridge_weights'. Please provide only one.")
 
     A, k_arr = build_design_matrix(X, N_list, k=k, add_intercept=intercept, add_linear_x=add_linear_x)
     n_samples, n_cols = A.shape
