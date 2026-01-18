@@ -52,6 +52,21 @@ TWOPI = 2.0 * math.pi
 use_pearson = False
 use_random = False
 time_series_name = "none"
+staged_enabled = os.getenv('STAGED_CC', '1') == '1'
+staged_model_fn: Optional[Callable] = None
+staged_params: Optional[Dict[str, Any]] = None
+staged_low: Optional[float] = None
+staged_high: Optional[float] = None
+
+def set_staged_context(model_fn: Callable, params: Dict[str, Any], low: Optional[float], high: Optional[float]) -> None:
+    global staged_model_fn
+    global staged_params
+    global staged_low
+    global staged_high
+    staged_model_fn = model_fn
+    staged_params = params
+    staged_low = low
+    staged_high = high
 
 def read_two_column_csv(path: str) -> Tuple[np.ndarray, np.ndarray]:
     """Read CSV-like file with two columns: time, value. Tolerant to header rows."""
@@ -287,7 +302,7 @@ def run_loop_time_series(time: np.ndarray,
     #    print(f"{m_model.size:d} {model.size:d}")
     #    exit()
 
-    lte = fit_sinusoidal_regression(mask_model, mask_clone, N_list=Harmonics, k=LTE_Freq, intercept=True, add_linear_x=True, ridge=None)
+    lte = fit_sinusoidal_regression(mask_model, mask_clone, N_list=Harmonics, k=LTE_Freq, intercept=True, add_linear_x=True)
     model1 = lte["predict"](model) + model_sup
 
     # 2nd order shaper, a and b
@@ -329,6 +344,25 @@ def compute_metrics(time: np.ndarray, observed: np.ndarray, model: np.ndarray, l
         'CV': CV,
         'training': training
     }
+
+def compute_pearson_region(time: np.ndarray,
+                           observed: np.ndarray,
+                           model: np.ndarray,
+                           Time_Low: Optional[float] = None,
+                           Time_High: Optional[float] = None,
+                           Exclude: Optional[bool] = True) -> float:
+    mask = build_mask(time, Time_Low, Time_High, Exclude)
+    obs_sel = observed[mask]
+    mod_sel = model[mask]
+    if obs_sel.size == 0:
+        return float('nan')
+    try:
+        r_val, _ = pearsonr(obs_sel, mod_sel)  # type: ignore
+        return float(r_val)
+    except Exception:
+        if obs_sel.size < 2:
+            return float('nan')
+        return float(np.corrcoef(obs_sel, mod_sel)[0, 1])
 
 def compute_metrics_region(time: np.ndarray,
                            observed: np.ndarray,
@@ -398,6 +432,22 @@ def compute_metrics_region(time: np.ndarray,
     # If you want Pearson-based metric, set use_pearson = True.
     global use_pearson
     if use_pearson:
+        if staged_enabled and staged_model_fn is not None and staged_params is not None:
+            train_mask = build_mask(time, Time_Low, Time_High, True)
+            params_fundamental = dict(staged_params)
+            params_fundamental['Harmonics'] = [1]
+            model_fundamental, _, _ = run_loop_time_series(time, observed, staged_model_fn, params_fundamental, train_mask)
+            harmonics = list(staged_params.get('Harmonics', [1]))
+            max_harmonic = max([h for h in harmonics if int(h) > 1], default=0)
+            fundamental_weight = 1.0
+            harmonic_weight = 1.0 / (1.0 + float(max_harmonic)) if max_harmonic > 0 else 0.0
+            staged_den = fundamental_weight + harmonic_weight
+            fundamental_cc = compute_pearson_region(time, observed, model_fundamental, Time_Low, Time_High, Exclude)
+            full_cc = compute_pearson_region(time, observed, model, Time_Low, Time_High, Exclude)
+            weighted_cc = (
+                (fundamental_weight * fundamental_cc) + (harmonic_weight * full_cc)
+            ) / staged_den if staged_den > 0.0 else float('nan')
+            return 1.0 - float(weighted_cc)
         from scipy.stats import pearsonr  # type: ignore
         r_val, _ = pearsonr(obs_sel, mod_sel)
         pearson_r = 1.0 - float(r_val)
@@ -527,6 +577,7 @@ def simple_descent(
 
     # evaluate initial
     model_vals, final_state, latent_forcing = run_loop_time_series(time, observed, model_step_fn, best_params, mask)
+    set_staged_context(model_step_fn, best_params, Time_Low, Time_High)
     best_metric = float(metric_fn(time, observed, model_vals, Time_Low, Time_High))
 
     history: List[Dict[str, Any]] = []
@@ -557,6 +608,7 @@ def simple_descent(
                     candidate_params = copy.deepcopy(best_params)
                     candidate_params[name] = int(cand)
                     mvals_cand, _, latent_forcing = run_loop_time_series(time, observed, model_step_fn, candidate_params, mask)
+                    set_staged_context(model_step_fn, candidate_params, Time_Low, Time_High)
                     metric_cand = float(metric_fn(time, observed, mvals_cand, Time_Low, Time_High))
                     accepted = metric_cand + tol < best_metric
                     history.append({
@@ -601,6 +653,7 @@ def simple_descent(
                         candidate_params = copy.deepcopy(best_params)
                         candidate_params[name][idx] = int(cand)
                         mvals_cand, _, latent_forcing = run_loop_time_series(time, observed, model_step_fn, candidate_params, mask)
+                        set_staged_context(model_step_fn, candidate_params, Time_Low, Time_High)
                         metric_cand = float(metric_fn(time, observed, mvals_cand, Time_Low, Time_High))
                         accepted = metric_cand + tol < best_metric
                         history.append({
@@ -648,6 +701,7 @@ def simple_descent(
                                 candidate = cur + sign * delta
                         candidate_params[name][idx] = candidate
                         model_vals_cand, _, latent_forcing = run_loop_time_series(time, observed, model_step_fn, candidate_params, mask)
+                        set_staged_context(model_step_fn, candidate_params, Time_Low, Time_High)
                         metric_cand = float(metric_fn(time, observed, model_vals_cand, Time_Low, Time_High))
                         accepted = metric_cand + tol < best_metric
                         history.append({
@@ -697,6 +751,7 @@ def simple_descent(
                             candidate = cur + sign * delta
                     candidate_params[name] = candidate
                     model_vals_cand, _, latent_forcing = run_loop_time_series(time, observed, model_step_fn, candidate_params, mask)
+                    set_staged_context(model_step_fn, candidate_params, Time_Low, Time_High)
                     metric_cand = float(metric_fn(time, observed, model_vals_cand, Time_Low, Time_High))
                     history.append({
                         "param": name,
@@ -832,6 +887,25 @@ def main():
 
     # Compute metrics
     metrics = compute_metrics(time, y, model_vals, Low, High)
+    mask = build_mask(time, Low, High, True)
+    harmonics = list(params.get('Harmonics', [1]))
+    max_harmonic = max([h for h in harmonics if int(h) > 1], default=0)
+    fundamental_weight = 1.0
+    harmonic_weight = 1.0 / (1.0 + float(max_harmonic)) if max_harmonic > 0 else 0.0
+    params_fundamental = dict(params)
+    params_fundamental['Harmonics'] = [1]
+    model_fundamental, _, _ = run_loop_time_series(time, y, model_fn, params_fundamental, mask)
+    training_fundamental = compute_pearson_region(time, y, model_fundamental, Low, High, True)
+    cv_fundamental = compute_pearson_region(time, y, model_fundamental, Low, High, False)
+    training_full = compute_pearson_region(time, y, model_vals, Low, High, True)
+    cv_full = compute_pearson_region(time, y, model_vals, Low, High, False)
+    staged_den = fundamental_weight + harmonic_weight
+    staged_training_cc = (
+        (fundamental_weight * training_fundamental) + (harmonic_weight * training_full)
+    ) / staged_den if staged_den > 0.0 else float('nan')
+    staged_cv_cc = (
+        (fundamental_weight * cv_fundamental) + (harmonic_weight * cv_full)
+    ) / staged_den if staged_den > 0.0 else float('nan')
 
     # Prepare output DataFrame
     out_df = pd.DataFrame({
@@ -857,6 +931,8 @@ def main():
     print(f"  training = {metrics['training']:.6f}")
     print(f"  MSE = {metrics['mse']:.6f}")
     print(f"  Pearson r = {metrics['pearson_r']}, p-value = {metrics.get('pearson_p', None)}")
+    print(f"  staged training CC = {staged_training_cc:.6f}")
+    print(f"  staged CV CC = {staged_cv_cc:.6f}")
 
     # Optional plotting
     mask = (time > Low) & (time < High)
