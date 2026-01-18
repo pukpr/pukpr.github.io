@@ -52,6 +52,21 @@ TWOPI = 2.0 * math.pi
 use_pearson = False
 use_random = False
 time_series_name = "none"
+staged_enabled = os.getenv('STAGED_CC', '1') == '1'
+staged_model_fn: Optional[Callable] = None
+staged_params: Optional[Dict[str, Any]] = None
+staged_low: Optional[float] = None
+staged_high: Optional[float] = None
+
+def set_staged_context(model_fn: Callable, params: Dict[str, Any], low: Optional[float], high: Optional[float]) -> None:
+    global staged_model_fn
+    global staged_params
+    global staged_low
+    global staged_high
+    staged_model_fn = model_fn
+    staged_params = params
+    staged_low = low
+    staged_high = high
 
 def read_two_column_csv(path: str) -> Tuple[np.ndarray, np.ndarray]:
     """Read CSV-like file with two columns: time, value. Tolerant to header rows."""
@@ -417,6 +432,22 @@ def compute_metrics_region(time: np.ndarray,
     # If you want Pearson-based metric, set use_pearson = True.
     global use_pearson
     if use_pearson:
+        if staged_enabled and staged_model_fn is not None and staged_params is not None:
+            train_mask = build_mask(time, Time_Low, Time_High, True)
+            params_fundamental = dict(staged_params)
+            params_fundamental['Harmonics'] = [1]
+            model_fundamental, _, _ = run_loop_time_series(time, observed, staged_model_fn, params_fundamental, train_mask)
+            harmonics = list(staged_params.get('Harmonics', [1]))
+            max_harmonic = max([h for h in harmonics if int(h) > 1], default=0)
+            fundamental_weight = 1.0
+            harmonic_weight = 1.0 / (1.0 + float(max_harmonic)) if max_harmonic > 0 else 0.0
+            staged_den = fundamental_weight + harmonic_weight
+            fundamental_cc = compute_pearson_region(time, observed, model_fundamental, Time_Low, Time_High, Exclude)
+            full_cc = compute_pearson_region(time, observed, model, Time_Low, Time_High, Exclude)
+            weighted_cc = (
+                (fundamental_weight * fundamental_cc) + (harmonic_weight * full_cc)
+            ) / staged_den if staged_den > 0.0 else float('nan')
+            return 1.0 - float(weighted_cc)
         from scipy.stats import pearsonr  # type: ignore
         r_val, _ = pearsonr(obs_sel, mod_sel)
         pearson_r = 1.0 - float(r_val)
@@ -546,6 +577,7 @@ def simple_descent(
 
     # evaluate initial
     model_vals, final_state, latent_forcing = run_loop_time_series(time, observed, model_step_fn, best_params, mask)
+    set_staged_context(model_step_fn, best_params, Time_Low, Time_High)
     best_metric = float(metric_fn(time, observed, model_vals, Time_Low, Time_High))
 
     history: List[Dict[str, Any]] = []
@@ -576,6 +608,7 @@ def simple_descent(
                     candidate_params = copy.deepcopy(best_params)
                     candidate_params[name] = int(cand)
                     mvals_cand, _, latent_forcing = run_loop_time_series(time, observed, model_step_fn, candidate_params, mask)
+                    set_staged_context(model_step_fn, candidate_params, Time_Low, Time_High)
                     metric_cand = float(metric_fn(time, observed, mvals_cand, Time_Low, Time_High))
                     accepted = metric_cand + tol < best_metric
                     history.append({
@@ -620,6 +653,7 @@ def simple_descent(
                         candidate_params = copy.deepcopy(best_params)
                         candidate_params[name][idx] = int(cand)
                         mvals_cand, _, latent_forcing = run_loop_time_series(time, observed, model_step_fn, candidate_params, mask)
+                        set_staged_context(model_step_fn, candidate_params, Time_Low, Time_High)
                         metric_cand = float(metric_fn(time, observed, mvals_cand, Time_Low, Time_High))
                         accepted = metric_cand + tol < best_metric
                         history.append({
@@ -667,6 +701,7 @@ def simple_descent(
                                 candidate = cur + sign * delta
                         candidate_params[name][idx] = candidate
                         model_vals_cand, _, latent_forcing = run_loop_time_series(time, observed, model_step_fn, candidate_params, mask)
+                        set_staged_context(model_step_fn, candidate_params, Time_Low, Time_High)
                         metric_cand = float(metric_fn(time, observed, model_vals_cand, Time_Low, Time_High))
                         accepted = metric_cand + tol < best_metric
                         history.append({
@@ -716,6 +751,7 @@ def simple_descent(
                             candidate = cur + sign * delta
                     candidate_params[name] = candidate
                     model_vals_cand, _, latent_forcing = run_loop_time_series(time, observed, model_step_fn, candidate_params, mask)
+                    set_staged_context(model_step_fn, candidate_params, Time_Low, Time_High)
                     metric_cand = float(metric_fn(time, observed, model_vals_cand, Time_Low, Time_High))
                     history.append({
                         "param": name,
