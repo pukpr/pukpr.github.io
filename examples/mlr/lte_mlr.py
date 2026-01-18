@@ -245,7 +245,7 @@ def run_loop_time_series(time: np.ndarray,
     StartTime = float(params.get('StartTime', 1800.0))
     a = float(params.get('a', 0.0))
     b = float(params.get('b', 0.0))
-
+    
     N = time.size
     v = 0.0
     sup = 0.0
