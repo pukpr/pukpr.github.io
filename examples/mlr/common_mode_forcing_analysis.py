@@ -236,6 +236,8 @@ def main() -> int:
 
     group_means = compute_group_means(series_by_station, labels, station_ids)
     overall_mean = pd.concat(series_by_station.values(), axis=1).mean(axis=1, skipna=True)
+    overall_mean = overall_mean.sort_index()
+    group_means = {label: series.sort_index() for label, series in group_means.items()}
 
     out_dir = args.out_dir
     out_dir.mkdir(parents=True, exist_ok=True)
