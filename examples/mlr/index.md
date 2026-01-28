@@ -84,6 +84,28 @@ Outputs:
 
 ---
 
+## 🧭 Common-mode forcing fit workflow
+
+To fit station-specific g() responses against an analytic common forcing (sample-and-hold + alias),
+run the alternative common-mode forcing fit script:
+
+```
+python3 examples/mlr/common_mode_forcing_fit.py \
+  --data-root examples/mlr \
+  --out-dir results/common_mode_forcing_fit \
+  --low 1940 \
+  --high 1970 \
+  --shift-candidates "0.0 0.5 -0.5" \
+  --dtw-weight 0.0
+```
+
+Outputs:
+- `results/common_mode_forcing_fit/*_common_forcing_fit.csv` — per-station time, observed, model, forcing, residual.
+- `results/common_mode_forcing_fit/*_common_forcing_fit.json` — fitted coefficients and metrics.
+- `results/common_mode_forcing_fit/common_mode_forcing_fit_summary.csv` — summary of fitted metrics across stations.
+
+---
+
 {% assign keywords = "nino34,nino4,1,127,183,245,76,darwin,iod,m6,tna,10,14,202,246,78,denison,iode,nao,tsa,11,155,225,154,229,256,amo,emi,iodw,nino12,pdo,111,161,234,41,ao,ic3tsfc,m4,nino3,qbo30,7,8,42,113,119,172,179,194,2,20,203,22,23,236,239,24,240,249,25,285,302,32,33,330,47,5,57,58,62,68,69,70,71,72,73,79,80,81,82,88,89,91,95,98" | split: "," %}
 
 {% for kw in keywords %}
@@ -137,4 +159,3 @@ python3 ..\..\..\..\python\plot_sinusoids_from_json_with_bars.py --out-ts ts-sin
 python3 ..\..\pysindy\cc.py --low 1940 --high 1970
 
 ```
-
