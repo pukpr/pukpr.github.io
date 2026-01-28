@@ -28,6 +28,9 @@ wheels/
 /*.jpg
 /*.jpeg
 
+# Regression outputs
+examples/mlr/experiments/
+
 # IDE
 .vscode/
 .idea/
