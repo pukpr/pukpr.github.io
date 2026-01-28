@@ -77,8 +77,11 @@ def numeric_station_dirs(root: Path) -> List[Path]:
 
 
 def load_params(path: Path) -> Dict[str, object]:
-    with path.open("r", encoding="utf-8") as handle:
-        return json.load(handle)
+    try:
+        with path.open("r", encoding="utf-8") as handle:
+            return json.load(handle)
+    except json.JSONDecodeError as exc:
+        raise SystemExit(f"Failed to parse JSON in {path}: {exc}") from exc
 
 
 def mean(values: Iterable[float]) -> float:
@@ -149,7 +152,7 @@ def build_common_mode(params: List[Dict[str, object]]) -> Dict[str, object]:
 
     common: Dict[str, object] = {}
     for key in scalar_keys:
-        vals = [safe_float(p.get(key)) for p in params]
+        vals = [safe_float(param.get(key)) for param in params]
         vals = [v for v in vals if v is not None]
         if not vals:
             continue
@@ -162,7 +165,7 @@ def build_common_mode(params: List[Dict[str, object]]) -> Dict[str, object]:
         }
 
     for key in vector_keys:
-        arrays = [to_list(p.get(key)) for p in params]
+        arrays = [to_list(param.get(key)) for param in params]
         if not arrays:
             continue
         length = max((len(arr) for arr in arrays), default=0)
@@ -195,7 +198,7 @@ def extract_station_excursions(
         if math.isnan(value) or math.isnan(baseline):
             return
         delta = value - baseline
-        zscore = delta / spread if spread and spread > 0 else float("nan")
+        zscore = delta / spread if spread > 0 else float("nan")
         excursions.append(
             {
                 "station_id": station_id,
@@ -367,7 +370,9 @@ def main() -> int:
     station_metadata = parse_station_metadata(args.station_metadata)
     stations = numeric_station_dirs(params_root)
     if not stations:
-        raise SystemExit(f"No numeric station directories found under {params_root}")
+        raise SystemExit(
+            f"No numeric station directories found under {params_root} (expected folders named like '123')."
+        )
 
     params_list: List[Dict[str, object]] = []
     station_params: Dict[str, Dict[str, object]] = {}
@@ -380,7 +385,7 @@ def main() -> int:
         station_params[station_dir.name] = params
 
     if not params_list:
-        raise SystemExit("No parameter files found.")
+        raise SystemExit("No parameter files found. Expected ts.dat.p under numeric station directories.")
 
     common = build_common_mode(params_list)
     out_dir = args.out_dir
