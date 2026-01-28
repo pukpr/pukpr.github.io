@@ -62,6 +62,28 @@ Outputs:
 
 ---
 
+## 📈 Common-mode forcing time-series analysis
+
+The fitted output CSVs include a latent forcing column that reflects the shared
+forcing contribution (the modeled latent layer used across stations). To
+visualize the shared forcing and group stations by similar MLR parameters, run:
+
+```
+python3 examples/mlr/common_mode_forcing_analysis.py \
+  --data-root examples/mlr \
+  --out-dir results/common_mode_forcing \
+  --groups 4 \
+  --low 1940 \
+  --high 1970
+```
+
+Outputs:
+- `results/common_mode_forcing/common_mode_forcing.png` — grouped forcing time-series plot.
+- `results/common_mode_forcing/common_mode_forcing_timeseries.csv` — mean forcing per group.
+- `results/common_mode_forcing/forcing_group_assignments.csv` — station-to-group mapping.
+
+---
+
 {% assign keywords = "nino34,nino4,1,127,183,245,76,darwin,iod,m6,tna,10,14,202,246,78,denison,iode,nao,tsa,11,155,225,154,229,256,amo,emi,iodw,nino12,pdo,111,161,234,41,ao,ic3tsfc,m4,nino3,qbo30,7,8,42,113,119,172,179,194,2,20,203,22,23,236,239,24,240,249,25,285,302,32,33,330,47,5,57,58,62,68,69,70,71,72,73,79,80,81,82,88,89,91,95,98" | split: "," %}
 
 {% for kw in keywords %}
@@ -115,7 +137,4 @@ python3 ..\..\..\..\python\plot_sinusoids_from_json_with_bars.py --out-ts ts-sin
 python3 ..\..\pysindy\cc.py --low 1940 --high 1970
 
 ```
-
-
-
 
