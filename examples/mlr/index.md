@@ -35,6 +35,33 @@ python3 ..\lte_mlr.py ts.dat --cc --random --low 1940 --high 1970
 
 ---
 
+## 📊 MLR common-mode analysis (model parameters)
+
+The numbered subdirectories under `examples/mlr/` contain optimized MLR model
+parameters for each station. The script below summarizes the common-mode
+parameter set shared across stations and the station-by-station excursions
+relative to that common baseline. It works entirely from the model parameters
+(not the raw data), which makes it easier to compare parametric excursions.
+
+Run it from the repository root:
+
+```
+python3 examples/mlr/common_mode_analysis.py \
+  --params-root examples/mlr \
+  --station-metadata examples/IDCodeName.txt \
+  --out-dir results/common_mode_mlr
+```
+
+Outputs:
+- `results/common_mode_mlr/common_mode_periods.csv` — shared harmonic periods.
+- `results/common_mode_mlr/common_mode_params.csv` — overall parameter means and spread.
+- `results/common_mode_mlr/station_excursions.csv` — each station’s parameter
+  deviations from the common-mode baseline.
+- `results/common_mode_mlr/top_excursions.csv` — largest station excursions per
+  parameter/period to highlight where deviations are strongest.
+
+---
+
 {% assign keywords = "nino34,nino4,1,127,183,245,76,darwin,iod,m6,tna,10,14,202,246,78,denison,iode,nao,tsa,11,155,225,154,229,256,amo,emi,iodw,nino12,pdo,111,161,234,41,ao,ic3tsfc,m4,nino3,qbo30,7,8,42,113,119,172,179,194,2,20,203,22,23,236,239,24,240,249,25,285,302,32,33,330,47,5,57,58,62,68,69,70,71,72,73,79,80,81,82,88,89,91,95,98" | split: "," %}
 
 {% for kw in keywords %}
@@ -88,7 +115,6 @@ python3 ..\..\..\..\python\plot_sinusoids_from_json_with_bars.py --out-ts ts-sin
 python3 ..\..\pysindy\cc.py --low 1940 --high 1970
 
 ```
-
 
 
 
