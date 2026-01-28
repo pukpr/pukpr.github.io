@@ -17,6 +17,19 @@ import matplotlib.pyplot as plt
 
 
 NUMERIC_DIR = re.compile(r"^\d+$")
+FEATURE_NAMES = [
+    "Imp_Stride",
+    "Hold",
+    "DeltaTime",
+    "LTE_Freq",
+    "Damp",
+    "Imp_Amp",
+    "Imp_Amp2",
+    "Periods_mean",
+    "Periods_std",
+    "PeriodsAmp_mean",
+    "PeriodsAmp_std",
+]
 
 
 def numeric_station_dirs(root: Path, include_nonnumeric: bool) -> List[Path]:
@@ -42,7 +55,7 @@ def safe_float(value: object) -> Optional[float]:
         return None
 
 
-def to_float_list(values: object) -> List[float]:
+def to_list(values: object) -> List[float]:
     if not isinstance(values, list):
         return []
     floats: List[float] = []
@@ -81,13 +94,12 @@ def load_forcing_series(path: Path, low: Optional[float], high: Optional[float])
 
 
 def extract_features(params: Dict[str, object]) -> np.ndarray:
-    scalars = ["Imp_Stride", "Hold", "DeltaTime", "LTE_Freq", "Damp", "Imp_Amp", "Imp_Amp2"]
     features: List[float] = []
-    for key in scalars:
+    for key in FEATURE_NAMES[:7]:
         val = safe_float(params.get(key))
         features.append(val if val is not None else float("nan"))
-    periods = to_float_list(params.get("Periods"))
-    amps = to_float_list(params.get("PeriodsAmp"))
+    periods = to_list(params.get("Periods"))
+    amps = to_list(params.get("PeriodsAmp"))
     features.extend(
         [
             float(np.nanmean(periods)) if periods else float("nan"),
@@ -100,12 +112,13 @@ def extract_features(params: Dict[str, object]) -> np.ndarray:
 
 
 def standardize_features(features: np.ndarray) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
-    means = np.nanmean(features, axis=0)
     filled = features.copy()
+    means = np.nanmean(filled, axis=0)
     nan_mask = np.isnan(filled)
     if nan_mask.any():
         filled[nan_mask] = np.take(means, np.where(nan_mask)[1])
-    stds = np.nanstd(filled, axis=0)
+    means = np.mean(filled, axis=0)
+    stds = np.std(filled, axis=0)
     stds[stds == 0.0] = 1.0
     scaled = (filled - means) / stds
     return scaled, means, stds
@@ -117,16 +130,20 @@ def kmeans_grouping(features: np.ndarray, groups: int, seed: int, max_iters: int
     groups = min(groups, features.shape[0])
     rng = np.random.default_rng(seed)
     centers = features[rng.choice(features.shape[0], size=groups, replace=False)]
-    labels = np.zeros(features.shape[0], dtype=int)
+    labels = np.full(features.shape[0], -1, dtype=int)
     for _ in range(max_iters):
         distances = np.linalg.norm(features[:, None, :] - centers[None, :, :], axis=2)
         new_labels = np.argmin(distances, axis=1)
         new_centers = centers.copy()
+        had_empty = False
         for idx in range(groups):
             members = features[new_labels == idx]
             if len(members) > 0:
                 new_centers[idx] = members.mean(axis=0)
-        if np.array_equal(new_labels, labels):
+            else:
+                had_empty = True
+                new_centers[idx] = features[rng.integers(0, features.shape[0])]
+        if np.array_equal(new_labels, labels) and not had_empty:
             break
         labels = new_labels
         centers = new_centers
@@ -209,17 +226,9 @@ def main() -> int:
 
     assignment_rows = []
     for station_id, label, feature_row in zip(station_ids, labels, feature_matrix):
-        assignment_rows.append(
-            {
-                "station_id": station_id,
-                "group": int(label),
-                "feature_imp_stride": feature_row[0],
-                "feature_hold": feature_row[1],
-                "feature_delta_time": feature_row[2],
-                "feature_lte_freq": feature_row[3],
-                "feature_damp": feature_row[4],
-            }
-        )
+        row = {"station_id": station_id, "group": int(label)}
+        row.update({name: value for name, value in zip(FEATURE_NAMES, feature_row)})
+        assignment_rows.append(row)
     pd.DataFrame(assignment_rows).to_csv(out_dir / "forcing_group_assignments.csv", index=False)
 
     combined = pd.DataFrame({"overall_mean": overall_mean})

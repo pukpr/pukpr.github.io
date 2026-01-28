@@ -64,9 +64,9 @@ Outputs:
 
 ## 📈 Common-mode forcing time-series analysis
 
-The fitted output CSVs include a latent forcing column that reflects the
-common-mode layer used across stations. To visualize the shared forcing and
-group stations by similar MLR parameters, run:
+The fitted output CSVs include a latent forcing column that reflects the shared
+forcing contribution (the modeled latent layer used across stations). To
+visualize the shared forcing and group stations by similar MLR parameters, run:
 
 ```
 python3 examples/mlr/common_mode_forcing_analysis.py \
@@ -137,6 +137,5 @@ python3 ..\..\..\..\python\plot_sinusoids_from_json_with_bars.py --out-ts ts-sin
 python3 ..\..\pysindy\cc.py --low 1940 --high 1970
 
 ```
-
 
 
