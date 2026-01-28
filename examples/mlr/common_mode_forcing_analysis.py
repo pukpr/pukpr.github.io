@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 
 
 NUMERIC_DIR = re.compile(r"^\d+$")
-FEATURE_NAMES = [
+BASE_FEATURE_NAMES = [
     "Imp_Stride",
     "Hold",
     "DeltaTime",
@@ -25,11 +25,14 @@ FEATURE_NAMES = [
     "Damp",
     "Imp_Amp",
     "Imp_Amp2",
+]
+DERIVED_FEATURE_NAMES = [
     "Periods_mean",
     "Periods_std",
     "PeriodsAmp_mean",
     "PeriodsAmp_std",
 ]
+FEATURE_NAMES = BASE_FEATURE_NAMES + DERIVED_FEATURE_NAMES
 
 
 def numeric_station_dirs(root: Path, include_nonnumeric: bool) -> List[Path]:
@@ -74,7 +77,7 @@ def load_params(path: Path) -> Dict[str, object]:
 def load_forcing_series(path: Path, low: Optional[float], high: Optional[float]) -> pd.Series:
     df = pd.read_csv(path)
     if "forcing" not in df.columns or "time" not in df.columns:
-        raise ValueError(f"Expected time and forcing columns in {path}")
+        raise ValueError(f"Expected time and forcing columns in {path}; found {list(df.columns)}")
     series = pd.Series(
         pd.to_numeric(df["forcing"], errors="coerce").to_numpy(),
         index=pd.to_numeric(df["time"], errors="coerce").to_numpy(),
@@ -95,7 +98,7 @@ def load_forcing_series(path: Path, low: Optional[float], high: Optional[float])
 
 def extract_features(params: Dict[str, object]) -> np.ndarray:
     features: List[float] = []
-    for key in FEATURE_NAMES[:7]:
+    for key in BASE_FEATURE_NAMES:
         val = safe_float(params.get(key))
         features.append(val if val is not None else float("nan"))
     periods = to_list(params.get("Periods"))
@@ -111,7 +114,7 @@ def extract_features(params: Dict[str, object]) -> np.ndarray:
     return np.array(features, dtype=float)
 
 
-def standardize_features(features: np.ndarray) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+def standardize_features(features: np.ndarray) -> np.ndarray:
     filled = features.copy()
     means = np.nanmean(filled, axis=0)
     nan_mask = np.isnan(filled)
@@ -121,7 +124,7 @@ def standardize_features(features: np.ndarray) -> Tuple[np.ndarray, np.ndarray, 
     stds = np.std(filled, axis=0)
     stds[stds == 0.0] = 1.0
     scaled = (filled - means) / stds
-    return scaled, means, stds
+    return scaled
 
 
 def kmeans_grouping(features: np.ndarray, groups: int, seed: int, max_iters: int) -> np.ndarray:
@@ -142,7 +145,10 @@ def kmeans_grouping(features: np.ndarray, groups: int, seed: int, max_iters: int
                 new_centers[idx] = members.mean(axis=0)
             else:
                 had_empty = True
-                new_centers[idx] = features[rng.integers(0, features.shape[0])]
+                if features.shape[0] == 1:
+                    new_centers[idx] = features[0]
+                else:
+                    new_centers[idx] = features[rng.integers(0, features.shape[0])]
         if np.array_equal(new_labels, labels) and not had_empty:
             break
         labels = new_labels
@@ -178,7 +184,7 @@ def main() -> int:
     parser.add_argument(
         "--out-dir",
         type=Path,
-        default=Path("results/common_mode_mlr"),
+        default=Path("results/common_mode_forcing"),
         help="Output directory for plots and CSV summaries.",
     )
     parser.add_argument("--groups", type=int, default=4, help="Number of parameter groups.")
@@ -200,12 +206,18 @@ def main() -> int:
     features: List[np.ndarray] = []
     station_ids: List[str] = []
     series_by_station: Dict[str, pd.Series] = {}
+    skipped: List[str] = []
     for station_dir in stations:
         params_path = station_dir / "ts.dat.p"
         fitted_path = station_dir / "fitted_out.csv"
         params = load_params(params_path)
-        series = load_forcing_series(fitted_path, args.low, args.high)
+        try:
+            series = load_forcing_series(fitted_path, args.low, args.high)
+        except ValueError as exc:
+            skipped.append(f"{station_dir.name}: {exc}")
+            continue
         if series.empty:
+            skipped.append(f"{station_dir.name}: forcing series empty after time filtering")
             continue
         station_ids.append(station_dir.name)
         features.append(extract_features(params))
@@ -213,9 +225,13 @@ def main() -> int:
 
     if not station_ids:
         raise SystemExit("No stations had usable forcing series.")
+    if skipped:
+        print("Skipped stations:")
+        for entry in skipped:
+            print(f"  {entry}")
 
     feature_matrix = np.vstack(features)
-    scaled_features, means, stds = standardize_features(feature_matrix)
+    scaled_features = standardize_features(feature_matrix)
     labels = kmeans_grouping(scaled_features, args.groups, args.seed, args.max_iters)
 
     group_means = compute_group_means(series_by_station, labels, station_ids)
@@ -239,7 +255,8 @@ def main() -> int:
     fig, ax = plt.subplots(figsize=(12, 6))
     ax.plot(overall_mean.index, overall_mean.values, color="black", linewidth=2.0, label="Overall mean")
     palette = plt.cm.tab10.colors
-    group_counts = pd.Series(labels).value_counts().to_dict()
+    unique_labels, counts = np.unique(labels, return_counts=True)
+    group_counts = dict(zip(unique_labels, counts))
     for idx, (label, series) in enumerate(sorted(group_means.items())):
         color = palette[idx % len(palette)]
         count = group_counts.get(label, 0)

@@ -71,16 +71,16 @@ visualize the shared forcing and group stations by similar MLR parameters, run:
 ```
 python3 examples/mlr/common_mode_forcing_analysis.py \
   --data-root examples/mlr \
-  --out-dir results/common_mode_mlr \
+  --out-dir results/common_mode_forcing \
   --groups 4 \
   --low 1940 \
   --high 1970
 ```
 
 Outputs:
-- `results/common_mode_mlr/common_mode_forcing.png` — grouped forcing time-series plot.
-- `results/common_mode_mlr/common_mode_forcing_timeseries.csv` — mean forcing per group.
-- `results/common_mode_mlr/forcing_group_assignments.csv` — station-to-group mapping.
+- `results/common_mode_forcing/common_mode_forcing.png` — grouped forcing time-series plot.
+- `results/common_mode_forcing/common_mode_forcing_timeseries.csv` — mean forcing per group.
+- `results/common_mode_forcing/forcing_group_assignments.csv` — station-to-group mapping.
 
 ---
 
@@ -137,5 +137,4 @@ python3 ..\..\..\..\python\plot_sinusoids_from_json_with_bars.py --out-ts ts-sin
 python3 ..\..\pysindy\cc.py --low 1940 --high 1970
 
 ```
-
 
