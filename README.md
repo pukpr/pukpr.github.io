@@ -1,10 +1,35 @@
 # pukpr.github.io
 
-https://pukpr.github.io
+**Live site:** https://pukpr.github.io
 
-Good idea to also look at the [GeoEnergyMath wiki](https://github.com/pukpr/GeoEnergyMath/wiki)
+## About
 
-<i><s>"Wind speeds have a great deal of uncertainty Great deal of uncertainty. A number of atmospheric scientists claim to understand claim to understand what is happening in the stratosphere with regards to wind speeds. Among the scientists are Murray Selby Judith Curry Paul Roundy Timothy Dunkerton Bill Gray. For the oceans considering that the lunar tides is agreed. Anytime there is a perturbation oceans idle gauge height it always comes back with the tides. There is little doubt cyclic disturbances synchronized with the annual period caused by annual mechanisms. The semi-annual oscillation in Upper stratospheric winds is matches due to noodle Crossing. Initially Richard lindsen considered that lunar Tides may have something to do with the cyclic wind oscillation. However cleansing could not quite put two and two together and find the right interaction. What many scientists think is that resonance conditions in the atmosphere lead to cyclic phenomenon as the resonance creates the cycle. But it becomes very obvious that this is not a resonance because if with higher altitude in the stratosphere the Cycles are simply due to the semi-annual interaction. Why isn't it semi why isn't it just annual is it semi-annual or that is due to the symmetry of the situation at the equator Cycles north of the equator in South the equator look the same due to the Coriolis effect therefore any cycle will be semi-annual. Anybody that's not it because there's also what's called the laplace's title equation modulation which can change the shape of the cyclic waveform."</s></i>
+This repository is the source for a static website that is **automatically built and published by [GitHub Pages](https://pages.github.com/)**.  Every time a commit is pushed to the default branch, GitHub's built-in Jekyll process regenerates the site from the files in this repository and deploys it to the URL above — no manual build or deployment step is required.
 
-No idea how the above got inserted or mal-translated from some other passage.
+The site is rendered using the [`jekyll-theme-leap-day`](https://github.com/pages-themes/leap-day) theme and is configured in [`_config.yml`](./_config.yml).
+
+## Contents
+
+The website is Paul Pukite's collection of climate and geosciences resources, including:
+
+- **Climate index and sea-level modelling** — interactive results for PSMSL tide-gauge stations and major climate indices, driven by the [GEM LTE](https://github.com/pukpr/GEM-LTE) Laplace Tidal Equation model.
+- **Worked examples** — introductory notebooks and demos (Warnemünde, PySINDy latent-layer oscillation, multiple linear regression).
+- **Research paper** — *The modelled climatic response to the 18.6-year lunar nodal cycle and its role in decadal temperature trends* (included as a PDF).
+- **External links** — the [GeoEnergyMath blog](https://GeoEnergyMath.com), the [Azimuth Project](https://azimuth-project.github.io) climate-modelling wiki, the [Mathematical Geoenergy](https://agupubs.onlinelibrary.wiley.com/doi/book/10.1002/9781119434351) AGU book, and the [Peak Oil Barrel](https://PeakOilBarrel.com) depletion-modelling blog.
+
+## Repository layout
+
+| Path | Description |
+|------|-------------|
+| `index.html` | Home page (Jekyll front matter + HTML) |
+| `_config.yml` | Jekyll site configuration (theme, title, description) |
+| `_data/` | Data files consumed by Jekyll templates |
+| `results/` | Generated HTML result pages |
+| `examples/` | Example notebooks and demos |
+| `*.pdf` | Archived research paper |
+
+## Further reading
+
+- [GeoEnergyMath wiki](https://github.com/pukpr/GeoEnergyMath/wiki) — extended documentation and background theory
+- [GEM LTE source repository](https://github.com/pukpr/GEM-LTE) — the underlying tidal model code
 
