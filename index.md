@@ -10,9 +10,9 @@ permalink: /
       <span class="eyebrow">Scientific workbench</span>
       <h1>G.E.M.</h1>
       <div class="hero-stats" aria-label="Portal overview">
-        <div class="stat"><strong>7</strong><span>Primary destinations</span></div>
+        <div class="stat"><strong>8</strong><span>Primary destinations</span></div>
         <div class="stat"><strong>10+</strong><span>Interactive modules</span></div>
-        <div class="stat"><strong>3</strong><span>Research artifacts</span></div>
+        <div class="stat"><strong>6</strong><span>Research artifacts</span></div>
       </div>
     </div>
     <aside class="hero-panel" aria-label="Portal principles">
@@ -72,8 +72,6 @@ permalink: /
             <a href="https://github.com/pukpr/context" target="_blank" rel="noopener noreferrer">Earth sciences context modeling & knowledgebase server</a>
             <div class="sub-links">
               <a href="https://geoenergymath.com/wp-content/uploads/2020/06/a4adf-d-knowledge_based_enviromental_modeling.compressed.pdf" target="_blank" rel="noopener noreferrer">White paper </a>
-              <a href="https://agu.confex.com/agu/fm17/meetingapp.cgi/Paper/276374" target="_blank" rel="noopener noreferrer">AGU cite </a>
-              <a href="https://i0.wp.com/imageshack.com/a/img923/7645/yKKjgL.png" target="_blank" rel="noopener noreferrer">AGU poster </a>
             </div>
         </div>
       </div>
@@ -98,6 +96,50 @@ permalink: /
         </div>
         <div class="link-item"><a href="https://scholar.google.com/citations?hl=en&user=J4XWUG8AAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a><span class="link-meta">Paper Publications</span></div>
         <div class="link-item"><a href="https://www.researchgate.net/publication/283579370_C2M2L_Final_Report" target="_blank" rel="noopener noreferrer">C2M2L environment modeling via ontological knowledgebases (2013)</a><span class="link-meta">Report</span></div>
+        <div class="link-item">
+          <div class="link-cluster">
+            <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:2osOgNQ5qMEC" target="_blank" rel="noopener noreferrer">Ephemeris calibration of Laplace's tidal equation model for ENSO (2019)</a>
+            <div class="sub-links">
+              <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:-f6ydRqryjwC" target="_blank" rel="noopener noreferrer">ESD Ideas: long-period tidal forcing in geophysics (2020)</a>
+              <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:ufrVoPGSRksC" target="_blank" rel="noopener noreferrer">Biennial-Aligned Lunisolar-Forcing of ENSO (2022)</a>
+            </div>
+            <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:W7OEmFMy1HYC" target="_blank" rel="noopener noreferrer">Sloshing Model for ENSO (2014)</a>
+          </div>
+          <span class="link-meta">Papers</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div>
+        <span class="card-kicker">Conference</span>
+        <h3>Presentations</h3>
+        <p>AGU, EGU, and ICLR presentation record</p>
+      </div>
+      <div class="link-list">
+        <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:9ZlFYXVOiuMC" target="_blank" rel="noopener noreferrer">Analytical formulation of equatorial standing wave phenomena: Application to QBO and ENSO</a><span class="link-meta">AGU 2016</span></div>
+        <div class="link-item">
+          <div class="link-cluster">
+            <a href="https://agu.confex.com/agu/fm17/meetingapp.cgi/Paper/276374" target="_blank" rel="noopener noreferrer">Knowledge-Based Environmental Context Modeling</a>
+            <div class="sub-links">
+              <a href="https://i0.wp.com/imageshack.com/a/img923/7645/yKKjgL.png" target="_blank" rel="noopener noreferrer">Poster</a>
+            </div>
+          </div>
+          <span class="link-meta">AGU 2017</span>
+        </div>
+        <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:IjCSPb-OGe4C" target="_blank" rel="noopener noreferrer">An interactive framework for understanding mathematical geoenergy</a><span class="link-meta">AGU 2018</span></div>
+        <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:JV2RwH3_ST0C" target="_blank" rel="noopener noreferrer">An interactive framework for understanding mathematical geoenergy</a><span class="link-meta">AGU 2018</span></div>
+        <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:Se3iqnhoufwC" target="_blank" rel="noopener noreferrer">Permian Basin Tight Oil Model to Predict Future Output</a><span class="link-meta">AGU 2018</span></div>
+        <div class="link-item">
+          <div class="link-cluster">
+            <a href="https://meetingorganizer.copernicus.org/EGU21/EGU21-10515.html" target="_blank" rel="noopener noreferrer">Nonlinear long-period tidal forcing with application to ENSO, QBO, and Chandler wobble</a>
+            <div class="sub-links">
+              <a href="https://geoenergymath.com/wp-content/uploads/2021/04/supplementarydocument-egu-2021.pdf" target="_blank" rel="noopener noreferrer">Supplementary document</a>
+            </div>
+          </div>
+          <span class="link-meta">EGU 2021</span>
+        </div>
+        <div class="link-item"><a href="https://openreview.net/forum?id=XqOseg0L9Q" target="_blank" rel="noopener noreferrer">Nonlinear Differential Equations with external forcing</a><span class="link-meta">ICLR 2020</span></div>
       </div>
     </article>
 
@@ -142,10 +184,12 @@ permalink: /
             <a href="https://github.com/pukpr/AdaPACE" target="_blank" rel="noopener noreferrer">Real-time distributed simulation and communication library</a>
             <div class="sub-links">
               <a href="https://github.com/pukpr/AdaPACE/tree/main/examples" target="_blank" rel="noopener noreferrer">Visualization examples</a>
+              <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:5nxA0vEk-isC" target="_blank" rel="noopener noreferrer">SUMIT virtual reality toolkit (2005)</a>
             </div>
             <a href="https://github.com/pukpr/degas" target="_blank" rel="noopener noreferrer">Multitasking simulation library</a>
             <div class="sub-links">
-              <a href="https://dl.acm.org/doi/abs/10.1145/1185875.1185649" target="_blank" rel="noopener noreferrer">ACM paper</a>
+              <a href="https://dl.acm.org/doi/abs/10.1145/1185875.1185649" target="_blank" rel="noopener noreferrer">Generic discrete event simulations using DEGAS (2007)</a>
+              <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:d1gkVwhDpl0C" target="_blank" rel="noopener noreferrer">DEGAS: discrete event Gnu advanced scheduler (2006)</a>
             </div>
             <a href="https://github.com/pukpr/CARMS" target="_blank" rel="noopener noreferrer">CARMS Markov model analysis</a>
             <div class="sub-links">
@@ -169,15 +213,15 @@ permalink: /
             <a href="https://github.com/pukpr/context" target="_blank" rel="noopener noreferrer">Earth sciences context modeling & knowledgebase server</a>
             <div class="sub-links">
               <a href="https://geoenergymath.com/wp-content/uploads/2020/06/a4adf-d-knowledge_based_enviromental_modeling.compressed.pdf" target="_blank" rel="noopener noreferrer">Knowledge-based environmental modeling white paper</a>
-              <a href="https://agu.confex.com/agu/fm17/meetingapp.cgi/Paper/276374" target="_blank" rel="noopener noreferrer">AGU cite</a>
-              <a href="https://i0.wp.com/imageshack.com/a/img923/7645/yKKjgL.png" target="_blank" rel="noopener noreferrer">AGU poster</a>
             </div>
             <a href="https://www.researchgate.net/publication/283579370_C2M2L_Final_Report" target="_blank" rel="noopener noreferrer">C2M2L environment modeling via ontological knowledgebases (2013)</a>
-            <a href="https://meetingorganizer.copernicus.org/EGU21/EGU21-10515.html" target="_blank" rel="noopener noreferrer">Nonlinear long-period tidal forcing with application to ENSO, QBO, and Chandler wobble</a>
             <div class="sub-links">
-              <a href="https://geoenergymath.com/wp-content/uploads/2021/04/supplementarydocument-egu-2021.pdf" target="_blank" rel="noopener noreferrer">Supplementary document</a>
-              <a href="https://GeoEnergyMath.com" target="_blank" rel="noopener noreferrer">GeoEnergyMath blog</a>
+              <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:UeHWp8X0CEIC" target="_blank" rel="noopener noreferrer">Knowledge-Based Environmental Context Modeling (2012)</a>
+              <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:_kc_bZDykSQC" target="_blank" rel="noopener noreferrer">Stochastic Analysis for Context Modeling (2012)</a>
+              <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:4TOpqqG69KYC" target="_blank" rel="noopener noreferrer">Unified characterization of surface topography for vehicle dynamics applications (2012)</a>
+              <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:ULOm3_A8WrAC" target="_blank" rel="noopener noreferrer">Characterizing diffusive growth by uncertainty quantification (2012)</a>
             </div>
+            <a href="https://GeoEnergyMath.com" target="_blank" rel="noopener noreferrer">GeoEnergyMath blog</a>
           </div>
           <span class="link-meta">Bridge work</span>
         </div>
@@ -224,6 +268,21 @@ permalink: /
       <div class="artifact-index">3</div>
       <a href="mathematical-geoenergy-findings/">Mathematical Geoenergy revisited: review of the major findings and their likely significance</a>
       <span>Review paper</span>
+      </div>
+    <div class="artifact-item">
+      <div class="artifact-index">4</div>
+      <a href="https://geoenergymath.com/2020/03/18/mathematical-geoenergy-2/" target="_blank" rel="noopener noreferrer">Mathematical Geoenergy findings list</a>
+      <span>Archive index</span>
+      </div>
+    <div class="artifact-item">
+      <div class="artifact-index">5</div>
+      <a href="https://mobjectivist.blogspot.com/2020/03/mathematical-geoenergy.html" target="_blank" rel="noopener noreferrer">Mathematical Geoenergy mirror archive</a>
+      <span>Archive mirror</span>
+      </div>
+    <div class="artifact-item">
+      <div class="artifact-index">6</div>
+      <a href="https://geoenergymath.com/2026/04/11/gem-lte-modeling/" target="_blank" rel="noopener noreferrer">February 2026 GEM-LTE mean sea level and climate index cross-validation archive</a>
+      <span>Results archive</span>
       </div>
     </div>
 </section>
