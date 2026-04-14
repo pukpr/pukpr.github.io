@@ -8,8 +8,7 @@ permalink: /
   <div class="hero-grid">
     <div class="hero-copy">
       <span class="eyebrow">Scientific workbench</span>
-      <h1>Climate, tides, energy, and orbital dynamics in one place.</h1>
-      <p>This front page turns a plain link list into a compact research portal. It highlights core models first, groups supporting resources cleanly, and gives your GitHub Pages presence a more credible editorial feel.</p>
+      <h1>Earth sciences</h1>
       <div class="hero-stats" aria-label="Portal overview">
         <div class="stat"><strong>7</strong><span>Primary destinations</span></div>
         <div class="stat"><strong>10+</strong><span>Interactive modules</span></div>
@@ -18,8 +17,8 @@ permalink: /
     </div>
     <aside class="hero-panel" aria-label="Portal principles">
       <span class="card-kicker">Why this layout works</span>
-      <h2>Less directory, more launchpad.</h2>
-      <p>The design uses a restrained palette, a serif display face for authority, and modular cards so visitors can scan by topic instead of parsing a single long bullet list.</p>
+      <h2>GeoEnergyMath</h2>
+      <p></p>
     </aside>
   </div>
 </section>
@@ -38,7 +37,7 @@ permalink: /
       <div>
         <span class="card-kicker">Featured research</span>
         <h3>Climate indices and sea-level modeling</h3>
-        <p>Your strongest cluster becomes the front-door feature, with direct entry to the main model and supporting example pages.</p>
+        <p>models and examples</p>
       </div>
       <div class="link-list">
         <div class="link-item">
@@ -60,7 +59,7 @@ permalink: /
       <div>
         <span class="card-kicker">Interactive</span>
         <h3>Hands-on models</h3>
-        <p>Give browser-based simulations their own lane so visitors immediately see that the site offers executable exploration, not just reading.</p>
+        <p>browser-based simulations to explore, not just reading.</p>
       </div>
       <div class="link-list">
         <div class="link-item"><a href="ChandlerWobble">Interactive Chandler wobble model</a><span class="link-meta">Simulation</span></div>
@@ -72,7 +71,7 @@ permalink: /
       <div>
         <span class="card-kicker">Writing</span>
         <h3>Blogs and publications</h3>
-        <p>Separate long-form writing from code and apps, which makes the homepage feel more intentional and easier to browse.</p>
+        <p>background material</p>
       </div>
       <div class="link-list">
         <div class="link-item"><a href="https://GeoEnergyMath.com" target="_blank" rel="noopener noreferrer">GeoEnergyMath blog</a><span class="link-meta">Essays</span></div>
@@ -85,7 +84,7 @@ permalink: /
       <div>
         <span class="card-kicker">Code</span>
         <h3>Repositories and technical notes</h3>
-        <p>Keep source code, docs, and gists together so technically oriented visitors can move straight into implementation details.</p>
+        <p>source code, docs, and gists</p>
       </div>
       <div class="link-list">
         <div class="link-item">
@@ -106,7 +105,7 @@ permalink: /
       <div>
         <span class="card-kicker">Related</span>
         <h3>External project links</h3>
-        <p>Leave room for adjacent sites, while making clear that they are companion destinations rather than the primary home content.</p>
+        <p>adjacent sites</p>
       </div>
       <div class="link-list">
         <div class="link-item"><a href="https://azimuth-project.github.io" target="_blank" rel="noopener noreferrer">Azimuth Project climate modeling</a><span class="link-meta">Partner site</span></div>
@@ -121,7 +120,7 @@ permalink: /
       <span class="eyebrow">Archive</span>
       <h2 id="artifacts-title">Artifacts</h2>
     </div>
-    <p>A lightweight archive block works better than a plain ordered list and makes document downloads feel like part of the same design system.</p>
+    <p>artifacts archive</p>
   </div>
   <div class="artifact-list">
     <div class="artifact-item">
@@ -136,3 +135,4 @@ permalink: /
     </div>
   </div>
 </section>
+
