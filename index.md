@@ -12,7 +12,7 @@ permalink: /
       <div class="hero-stats" aria-label="Portal overview">
         <div class="stat"><strong>7</strong><span>Primary destinations</span></div>
         <div class="stat"><strong>10+</strong><span>Interactive modules</span></div>
-        <div class="stat"><strong>2</strong><span>Research artifacts</span></div>
+        <div class="stat"><strong>3</strong><span>Research artifacts</span></div>
       </div>
     </div>
     <aside class="hero-panel" aria-label="Portal principles">
@@ -38,7 +38,7 @@ permalink: /
         <span class="card-kicker">Featured research</span>
         <h3>Climate indices and sea-level modeling</h3>
         <p>models and examples => <i> ENSO, QBO, MSL, NAO, etc </i><br/>
-        <a href=lte-whitepaper.md">White paper on Lunisolar Common-Mode forcing</a>
+        <a href="lte-whitepaper.md">White paper on Lunisolar Common-Mode forcing</a>
         </p>
       </div>
       <div class="link-list">
@@ -67,7 +67,7 @@ permalink: /
         <div class="link-item"><a href="ChandlerWobble">Interactive Chandler wobble model</a><span class="link-meta">Simulation</span></div>
         <div class="link-item"><a href="OilShockModel/oil-shock-model">Interactive Oil Shock Model</a><span class="link-meta">Scenario tool</span></div>
         <div class="link-item"><a href="GEM-LTE/pukite-qbo ">Interactive QBO Model</a><span class="link-meta">Simulation</span></div>
-        <div class="link-item"><a href="https://pukpr.github.io/AdaPACE/earth-science-visualization.html" target="_blank" rel="noopener noreferrer">AdaPACE Earth-science visualization examples</a><span class="link-meta">Docs</span></div>
+        <div class="link-item"><a href="AdaPACE/earth-science-visualization" target="_blank" rel="noopener noreferrer">AdaPACE Earth-science visualization examples</a><span class="link-meta">Docs</span></div>
         <div class="link-item">
             <a href="https://github.com/pukpr/context" target="_blank" rel="noopener noreferrer">Earth sciences context modeling & knowledgebase server</a>
             <div class="sub-links">
@@ -218,6 +218,11 @@ permalink: /
     <div class="artifact-item">
       <div class="artifact-index">2</div>
       <a href="The modelled climatic response to the 18.6-year lunar nodal cycle and its role in decadal temperature trends.pdf">The modelled climatic response to the 18.6-year lunar nodal cycle and its role in decadal temperature trends</a>
+      <span>Review paper</span>
+      </div>
+    <div class="artifact-item">
+      <div class="artifact-index">3</div>
+      <a href="mathematical-geoenergy-findings/">Mathematical Geoenergy revisited: review of the major findings and their likely significance</a>
       <span>Review paper</span>
       </div>
     </div>
