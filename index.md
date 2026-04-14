@@ -154,6 +154,33 @@ permalink: /
       </div>
     </article>
 
+    <article class="card">
+      <div>
+        <span class="card-kicker">Context</span>
+        <h3>AI, context modeling, and Earth sciences</h3>
+        <p>knowledge-based environmental modeling bridging systems research and geophysics</p>
+      </div>
+      <div class="link-list">
+        <div class="link-item">
+          <div class="link-cluster">
+            <a href="https://github.com/pukpr/context" target="_blank" rel="noopener noreferrer">Earth sciences context modeling & knowledgebase server</a>
+            <div class="sub-links">
+              <a href="https://geoenergymath.com/wp-content/uploads/2020/06/a4adf-d-knowledge_based_enviromental_modeling.compressed.pdf" target="_blank" rel="noopener noreferrer">Knowledge-based environmental modeling white paper</a>
+              <a href="https://agu.confex.com/agu/fm17/meetingapp.cgi/Paper/276374" target="_blank" rel="noopener noreferrer">AGU cite</a>
+              <a href="https://i0.wp.com/imageshack.com/a/img923/7645/yKKjgL.png" target="_blank" rel="noopener noreferrer">AGU poster</a>
+            </div>
+            <a href="https://www.researchgate.net/publication/283579370_C2M2L_Final_Report" target="_blank" rel="noopener noreferrer">C2M2L environment modeling via ontological knowledgebases (2013)</a>
+            <a href="https://meetingorganizer.copernicus.org/EGU21/EGU21-10515.html" target="_blank" rel="noopener noreferrer">Nonlinear long-period tidal forcing with application to ENSO, QBO, and Chandler wobble</a>
+            <div class="sub-links">
+              <a href="https://geoenergymath.com/wp-content/uploads/2021/04/supplementarydocument-egu-2021.pdf" target="_blank" rel="noopener noreferrer">Supplementary document</a>
+              <a href="https://GeoEnergyMath.com" target="_blank" rel="noopener noreferrer">GeoEnergyMath blog</a>
+            </div>
+          </div>
+          <span class="link-meta">Bridge work</span>
+        </div>
+      </div>
+    </article>
+
 
     <article class="card">
       <div>
@@ -192,12 +219,3 @@ permalink: /
       </div>
     </div>
 </section>
-
-
-
-https://meetingorganizer.copernicus.org/EGU21/EGU21-10515.html
-https://geoenergymath.com/wp-content/uploads/2021/04/supplementarydocument-egu-2021.pdf
-
-
-
-
