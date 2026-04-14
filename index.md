@@ -17,7 +17,7 @@ permalink: /
     </div>
     <aside class="hero-panel" aria-label="Portal principles">
       <span class="card-kicker">spanning</span>
-      <h2>GeoEnergyMath</h2>
+      <h3>GeoEnergyMath by Paul Pukite</h3>
       <p></p>
     </aside>
   </div>
@@ -37,7 +37,7 @@ permalink: /
       <div>
         <span class="card-kicker">Featured research</span>
         <h3>Climate indices and sea-level modeling</h3>
-        <p>models and examples</p>
+        <p>models and examples => <i> ENSO, QBO, MSL, NAO, etc </i></p>
       </div>
       <div class="link-list">
         <div class="link-item">
@@ -57,7 +57,7 @@ permalink: /
 
     <article class="card">
       <div>
-        <span class="card-kicker">Interactive</span>
+        <span class="card-kicker">Interactive</span>   
         <h3>Hands-on models</h3>
         <p>browser-based simulations to explore, not just reading.</p>
       </div>
@@ -65,7 +65,16 @@ permalink: /
         <div class="link-item"><a href="ChandlerWobble">Interactive Chandler wobble model</a><span class="link-meta">Simulation</span></div>
         <div class="link-item"><a href="OilShockModel/oil-shock-model">Interactive Oil Shock Model</a><span class="link-meta">Scenario tool</span></div>
         <div class="link-item"><a href="GEM-LTE/pukite-qbo ">Interactive QBO Model</a><span class="link-meta">Simulation</span></div>
+        <div class="link-item">
+            <a href="https://github.com/pukpr/context" target="_blank" rel="noopener noreferrer">Earth sciences context modeling & knowledgebase server</a>
+            <div class="sub-links">
+              <a href="https://geoenergymath.com/wp-content/uploads/2020/06/a4adf-d-knowledge_based_enviromental_modeling.compressed.pdf" target="_blank" rel="noopener noreferrer">White paper </a>
+              <a href="https://agu.confex.com/agu/fm17/meetingapp.cgi/Paper/276374" target="_blank" rel="noopener noreferrer">AGU cite </a>
+              <a href="https://i0.wp.com/imageshack.com/a/img923/7645/yKKjgL.png" target="_blank" rel="noopener noreferrer">AGU poster </a>
+            </div>
+        </div>
       </div>
+     
     </article>
 
     <article class="card">
@@ -84,14 +93,14 @@ permalink: /
               <a href="https://medium.com/@puk_54065" target="_blank" rel="noopener noreferrer">Medium</a>
             </div>
         </div>
-        
-        
+        <div class="link-item"><a href="https://scholar.google.com/citations?hl=en&user=J4XWUG8AAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a><span class="link-meta">Paper Publications</span></div>
+        <div class="link-item"><a href="https://www.researchgate.net/publication/283579370_C2M2L_Final_Report" target="_blank" rel="noopener noreferrer">C2M2L environment modeling via ontological knowledgebases (2013)</a><span class="link-meta">Report</span></div>
       </div>
     </article>
 
     <article class="card">
       <div>
-        <span class="card-kicker">Code</span>
+        <span class="card-kicker">Models</span>
         <h3>Repositories and technical notes</h3>
         <p>source code, docs, and gists</p>
       </div>
@@ -107,22 +116,43 @@ permalink: /
               <a href="https://agupubs.onlinelibrary.wiley.com/doi/epdf/10.1002/9781119434351.app2" target="_blank" rel="noopener noreferrer">Mathematical Geoenergy appendix</a>
             </div>
             <a href="https://github.com/pukpr/ChandlerWobble" target="_blank" rel="noopener noreferrer">Chandler wobble model source repository</a>
-            <a href="https://github.com/pukpr/context" target="_blank" rel="noopener noreferrer">Earth sciences context modeling server</a>
-            <div class="sub-links">
-              <a href="https://geoenergymath.com/wp-content/uploads/2020/06/a4adf-d-knowledge_based_enviromental_modeling.compressed.pdf" target="_blank" rel="noopener noreferrer">White paper </a>
-              <a href="https://agu.confex.com/agu/fm17/meetingapp.cgi/Paper/276374" target="_blank" rel="noopener noreferrer">AGU cite </a>
-              <a href="https://i0.wp.com/imageshack.com/a/img923/7645/yKKjgL.png" target="_blank" rel="noopener noreferrer">AGU poster </a>
-            </div>
             
-            <a href="https://github.com/pukpr/LTEsparse" target="_blank" rel="noopener noreferrer"LTE in Julia source repository</a>
+            <a href="https://github.com/pukpr/LTEsparse" target="_blank" rel="noopener noreferrer">LTE in Julia source repository</a>
           </div>
           <span class="link-meta">Source</span>
         </div>
         <div class="link-item"><a href="gem/models">Model derivations and source code from chapters</a>
-        
-        <span class="link-meta">Docs</span></div>
-      </div>
+          <span class="link-meta">Docs</span></div>
+        </div>
     </article>
+
+
+    <article class="card">
+      <div>
+        <span class="card-kicker">Software</span>
+        <h3>Libraries and applications</h3>
+        <p>Building and analysis of reliable distributed systems</p>
+      </div>
+      <div class="link-list">
+        <div class="link-item">
+          <div class="link-cluster">
+            <a href="https://github.com/pukpr/AdaPACE" target="_blank" rel="noopener noreferrer">Real-time distributed simulation and communication library</a>
+            <div class="sub-links">
+              <a href="https://github.com/pukpr/AdaPACE/tree/main/examples" target="_blank" rel="noopener noreferrer">Visualization examples</a>
+            </div>
+            <a href="https://github.com/pukpr/degas" target="_blank" rel="noopener noreferrer">Multitasking simulation libraryy</a>
+            <div class="sub-links">
+              <a href="https://dl.acm.org/doi/abs/10.1145/1185875.1185649" target="_blank" rel="noopener noreferrer">ACM paper</a>
+            </div>
+            <a href="https://github.com/pukpr/CARMS" target="_blank" rel="noopener noreferrer">CARMS Markov model analysis</a>
+            <div class="sub-links">
+              <a href="https://www.wiley.com/en-au/Modeling+for+Reliability+Analysis%3A+Markov+Modeling+for+Reliability%2C+Maintainability%2C+Safety%2C+and+Supportability+Analyses+of+Complex+Systems-p-9780780334823" target="_blank" rel="noopener noreferrer">Modelin for Reliability Analysis</a>
+            </div>
+          </div>
+          <span class="link-meta">Source</span>
+        </div>
+    </article>
+
 
     <article class="card">
       <div>
@@ -132,7 +162,7 @@ permalink: /
       </div>
       <div class="link-list">
         <div class="link-item"><a href="https://azimuth-project.github.io" target="_blank" rel="noopener noreferrer">Azimuth Project climate modeling</a><span class="link-meta">Collaboration site</span></div>
-        <div class="link-item"><a href="https://www.realclimate.org/" target="_blank" rel="noopener noreferrer">Azimuth Project climate modeling</a><span class="link-meta">Blog & Comments</span></div>
+        <div class="link-item"><a href="https://www.realclimate.org/" target="_blank" rel="noopener noreferrer">Real Climate </a><span class="link-meta">Blog & Comments</span></div>
         <div class="link-item"><a href="https://bsky.app/profile/did:plc:2ge3m52s47jdba642nmukk3q/feed/peakoil" target="_blank" rel="noopener noreferrer">Peak Oil posts</a><span class="link-meta">Bluesky Peak Oil feed</span></div>
         <div class="link-item"><a href="https://bsky.app/profile/did:plc:2ge3m52s47jdba642nmukk3q/feed/climate_cycles" target="_blank" rel="noopener noreferrer">Climate Cycle posts</a><span class="link-meta">Bluesky Peak Oil feed</span></div>
       </div>
@@ -151,16 +181,17 @@ permalink: /
   <div class="artifact-list">
     <div class="artifact-item">
       <div class="artifact-index">1</div>
-      <a href="https://www.researchgate.net/publication/283579370_C2M2L_Final_Report" target="_blank" rel="noopener noreferrer">C2M2L environment modeling via ontological knowledgebases (2013)</a>
-      <span>Report</span>
-    </div>
+        <a href="https://x-server.gmca.aps.anl.gov/TRDS_sl.html">Surface scattering</a>
+        <span>Analysis site</span>
+     </div>
     <div class="artifact-item">
       <div class="artifact-index">2</div>
       <a href="The modelled climatic response to the 18.6-year lunar nodal cycle and its role in decadal temperature trends.pdf">The modelled climatic response to the 18.6-year lunar nodal cycle and its role in decadal temperature trends</a>
       <span>Review paper</span>
+      </div>
     </div>
-  </div>
 </section>
+
 
 
 https://meetingorganizer.copernicus.org/EGU21/EGU21-10515.html
