@@ -27,7 +27,7 @@ permalink: /
   <div class="section-head">
     <div>
       <span class="eyebrow">Destinations</span>
-      <h2 id="destinations-title">Explore primary</h2>
+      <h2 id="destinations-title">primary</h2>
     </div>
     <p>climate, tides, energy</p>
   </div>
@@ -64,6 +64,7 @@ permalink: /
       <div class="link-list">
         <div class="link-item"><a href="ChandlerWobble">Interactive Chandler wobble model</a><span class="link-meta">Simulation</span></div>
         <div class="link-item"><a href="OilShockModel/oil-shock-model">Interactive Oil Shock Model</a><span class="link-meta">Scenario tool</span></div>
+        <div class="link-item"><a href="GEM-LTE/pukite-qbo ">Interactive QBO Model</a><span class="link-meta">Simulation</span></div>
       </div>
     </article>
 
@@ -74,9 +75,17 @@ permalink: /
         <p>background material</p>
       </div>
       <div class="link-list">
-        <div class="link-item"><a href="https://GeoEnergyMath.com" target="_blank" rel="noopener noreferrer">GeoEnergyMath blog</a><span class="link-meta">Essays</span></div>
-        <div class="link-item"><a href="https://PeakOilBarrel.com" target="_blank" rel="noopener noreferrer">Peak Oil Barrel depletion modeling blog</a><span class="link-meta">Blog</span></div>
+        <div class="link-item"><a href="https://GeoEnergyMath.com" target="_blank" rel="noopener noreferrer">GeoEnergyMath blog</a><span class="link-meta">Posts</span></div>
         <div class="link-item"><a href="https://agupubs.onlinelibrary.wiley.com/doi/book/10.1002/9781119434351" target="_blank" rel="noopener noreferrer">Mathematical Geoenergy book</a><span class="link-meta">Book</span></div>
+        <div class="link-item"><a href="https://PeakOilBarrel.com" target="_blank" rel="noopener noreferrer">Peak Oil Barrel depletion modeling blog</a><span class="link-meta">Posts</span></div>
+        <div class="link-item"><a href="https://github.com/orgs/azimuth-project/discussions" target="_blank" rel="noopener noreferrer">Azimuth Project forum</a><span class="link-meta">Discussion</span></div>
+        <div class="link-item"><a href="https://pukite.substack.com/" target="_blank" rel="noopener noreferrer">SubSurface substack</a><span class="link-meta">Blog</span>
+            <div class="sub-links">
+              <a href="https://medium.com/@puk_54065" target="_blank" rel="noopener noreferrer">Medium</a>
+            </div>
+        </div>
+        
+        
       </div>
     </article>
 
@@ -91,13 +100,27 @@ permalink: /
           <div class="link-cluster">
             <a href="https://github.com/pukpr/GEM-LTE" target="_blank" rel="noopener noreferrer">GEM LTE model source repository</a>
             <div class="sub-links">
-              <a href="GEM-LTE/pukite-qbo">Pukite QBO docs</a>
               <a href="https://gist.github.com/pukpr" target="_blank" rel="noopener noreferrer">GitHub gists</a>
             </div>
+            <a href="https://github.com/pukpr/OilShockModel" target="_blank" rel="noopener noreferrer">Oil Shock Model source repository</a>
+            <div class="sub-links">
+              <a href="https://agupubs.onlinelibrary.wiley.com/doi/epdf/10.1002/9781119434351.app2" target="_blank" rel="noopener noreferrer">Mathematical Geoenergy appendix</a>
+            </div>
+            <a href="https://github.com/pukpr/ChandlerWobble" target="_blank" rel="noopener noreferrer">Chandler wobble model source repository</a>
+            <a href="https://github.com/pukpr/context" target="_blank" rel="noopener noreferrer">Earth sciences context modeling server</a>
+            <div class="sub-links">
+              <a href="https://geoenergymath.com/wp-content/uploads/2020/06/a4adf-d-knowledge_based_enviromental_modeling.compressed.pdf" target="_blank" rel="noopener noreferrer">White paper </a>
+              <a href="https://agu.confex.com/agu/fm17/meetingapp.cgi/Paper/276374" target="_blank" rel="noopener noreferrer">AGU cite </a>
+              <a href="https://i0.wp.com/imageshack.com/a/img923/7645/yKKjgL.png" target="_blank" rel="noopener noreferrer">AGU poster </a>
+            </div>
+            
+            <a href="https://github.com/pukpr/LTEsparse" target="_blank" rel="noopener noreferrer"LTE in Julia source repository</a>
           </div>
           <span class="link-meta">Source</span>
         </div>
-        <div class="link-item"><a href="gem/models">Model derivations and source code from chapters</a><span class="link-meta">Docs</span></div>
+        <div class="link-item"><a href="gem/models">Model derivations and source code from chapters</a>
+        
+        <span class="link-meta">Docs</span></div>
       </div>
     </article>
 
@@ -108,7 +131,10 @@ permalink: /
         <p>adjacent sites</p>
       </div>
       <div class="link-list">
-        <div class="link-item"><a href="https://azimuth-project.github.io" target="_blank" rel="noopener noreferrer">Azimuth Project climate modeling</a><span class="link-meta">Partner site</span></div>
+        <div class="link-item"><a href="https://azimuth-project.github.io" target="_blank" rel="noopener noreferrer">Azimuth Project climate modeling</a><span class="link-meta">Collaboration site</span></div>
+        <div class="link-item"><a href="https://www.realclimate.org/" target="_blank" rel="noopener noreferrer">Azimuth Project climate modeling</a><span class="link-meta">Blog & Comments</span></div>
+        <div class="link-item"><a href="https://bsky.app/profile/did:plc:2ge3m52s47jdba642nmukk3q/feed/peakoil" target="_blank" rel="noopener noreferrer">Peak Oil posts</a><span class="link-meta">Bluesky Peak Oil feed</span></div>
+        <div class="link-item"><a href="https://bsky.app/profile/did:plc:2ge3m52s47jdba642nmukk3q/feed/climate_cycles" target="_blank" rel="noopener noreferrer">Climate Cycle posts</a><span class="link-meta">Bluesky Peak Oil feed</span></div>
       </div>
     </article>
   </div>
@@ -135,4 +161,12 @@ permalink: /
     </div>
   </div>
 </section>
+
+
+https://meetingorganizer.copernicus.org/EGU21/EGU21-10515.html
+https://geoenergymath.com/wp-content/uploads/2021/04/supplementarydocument-egu-2021.pdf
+
+
+
+
 
