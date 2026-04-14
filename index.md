@@ -37,7 +37,9 @@ permalink: /
       <div>
         <span class="card-kicker">Featured research</span>
         <h3>Climate indices and sea-level modeling</h3>
-        <p>models and examples => <i> ENSO, QBO, MSL, NAO, etc </i></p>
+        <p>models and examples => <i> ENSO, QBO, MSL, NAO, etc </i><br/>
+        <a href=lte-whitepaper.md">White paper on Lunisolar Common-Mode forcing</a>
+        </p>
       </div>
       <div class="link-list">
         <div class="link-item">
@@ -65,6 +67,7 @@ permalink: /
         <div class="link-item"><a href="ChandlerWobble">Interactive Chandler wobble model</a><span class="link-meta">Simulation</span></div>
         <div class="link-item"><a href="OilShockModel/oil-shock-model">Interactive Oil Shock Model</a><span class="link-meta">Scenario tool</span></div>
         <div class="link-item"><a href="GEM-LTE/pukite-qbo ">Interactive QBO Model</a><span class="link-meta">Simulation</span></div>
+        <div class="link-item"><a href="https://pukpr.github.io/AdaPACE/earth-science-visualization.html" target="_blank" rel="noopener noreferrer">AdaPACE Earth-science visualization examples</a><span class="link-meta">Docs</span></div>
         <div class="link-item">
             <a href="https://github.com/pukpr/context" target="_blank" rel="noopener noreferrer">Earth sciences context modeling & knowledgebase server</a>
             <div class="sub-links">
@@ -140,7 +143,7 @@ permalink: /
             <div class="sub-links">
               <a href="https://github.com/pukpr/AdaPACE/tree/main/examples" target="_blank" rel="noopener noreferrer">Visualization examples</a>
             </div>
-            <a href="https://github.com/pukpr/degas" target="_blank" rel="noopener noreferrer">Multitasking simulation libraryy</a>
+            <a href="https://github.com/pukpr/degas" target="_blank" rel="noopener noreferrer">Multitasking simulation library</a>
             <div class="sub-links">
               <a href="https://dl.acm.org/doi/abs/10.1145/1185875.1185649" target="_blank" rel="noopener noreferrer">ACM paper</a>
             </div>
