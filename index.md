@@ -151,6 +151,7 @@ permalink: /
           </div>
           <span class="link-meta">Source</span>
         </div>
+      </div>
     </article>
 
 
@@ -196,7 +197,6 @@ permalink: /
 
 https://meetingorganizer.copernicus.org/EGU21/EGU21-10515.html
 https://geoenergymath.com/wp-content/uploads/2021/04/supplementarydocument-egu-2021.pdf
-
 
 
 
