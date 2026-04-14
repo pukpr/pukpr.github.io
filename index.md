@@ -8,7 +8,7 @@ permalink: /
   <div class="hero-grid">
     <div class="hero-copy">
       <span class="eyebrow">Scientific workbench</span>
-      <h1>Earth sciences</h1>
+      <h1>G.E.M.</h1>
       <div class="hero-stats" aria-label="Portal overview">
         <div class="stat"><strong>7</strong><span>Primary destinations</span></div>
         <div class="stat"><strong>10+</strong><span>Interactive modules</span></div>
@@ -16,7 +16,7 @@ permalink: /
       </div>
     </div>
     <aside class="hero-panel" aria-label="Portal principles">
-      <span class="card-kicker">Why this layout works</span>
+      <span class="card-kicker">spanning</span>
       <h2>GeoEnergyMath</h2>
       <p></p>
     </aside>
@@ -27,9 +27,9 @@ permalink: /
   <div class="section-head">
     <div>
       <span class="eyebrow">Destinations</span>
-      <h2 id="destinations-title">Explore the portal</h2>
+      <h2 id="destinations-title">Explore primary</h2>
     </div>
-    <p>Lead with the main climate and tide-gauge work, then branch into interactives, publications, repositories, and related blogs.</p>
+    <p>climate, tides, energy</p>
   </div>
 
   <div class="portal-grid">
