@@ -110,38 +110,6 @@ permalink: /
       </div>
     </article>
 
-    <article class="card">
-      <div>
-        <span class="card-kicker">Conference</span>
-        <h3>Presentations</h3>
-        <p>AGU, EGU, and ICLR presentation record</p>
-      </div>
-      <div class="link-list">
-        <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:9ZlFYXVOiuMC" target="_blank" rel="noopener noreferrer">Analytical formulation of equatorial standing wave phenomena: Application to QBO and ENSO</a><span class="link-meta">AGU 2016</span></div>
-        <div class="link-item">
-          <div class="link-cluster">
-            <a href="https://agu.confex.com/agu/fm17/meetingapp.cgi/Paper/276374" target="_blank" rel="noopener noreferrer">Knowledge-Based Environmental Context Modeling</a>
-            <div class="sub-links">
-              <a href="https://i0.wp.com/imageshack.com/a/img923/7645/yKKjgL.png" target="_blank" rel="noopener noreferrer">Poster</a>
-            </div>
-          </div>
-          <span class="link-meta">AGU 2017</span>
-        </div>
-        <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:IjCSPb-OGe4C" target="_blank" rel="noopener noreferrer">An interactive framework for understanding mathematical geoenergy</a><span class="link-meta">AGU 2018</span></div>
-        <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:JV2RwH3_ST0C" target="_blank" rel="noopener noreferrer">An interactive framework for understanding mathematical geoenergy</a><span class="link-meta">AGU 2018</span></div>
-        <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:Se3iqnhoufwC" target="_blank" rel="noopener noreferrer">Permian Basin Tight Oil Model to Predict Future Output</a><span class="link-meta">AGU 2018</span></div>
-        <div class="link-item">
-          <div class="link-cluster">
-            <a href="https://meetingorganizer.copernicus.org/EGU21/EGU21-10515.html" target="_blank" rel="noopener noreferrer">Nonlinear long-period tidal forcing with application to ENSO, QBO, and Chandler wobble</a>
-            <div class="sub-links">
-              <a href="https://geoenergymath.com/wp-content/uploads/2021/04/supplementarydocument-egu-2021.pdf" target="_blank" rel="noopener noreferrer">Supplementary document</a>
-            </div>
-          </div>
-          <span class="link-meta">EGU 2021</span>
-        </div>
-        <div class="link-item"><a href="https://openreview.net/forum?id=XqOseg0L9Q" target="_blank" rel="noopener noreferrer">Nonlinear Differential Equations with external forcing</a><span class="link-meta">ICLR 2020</span></div>
-      </div>
-    </article>
 
     <article class="card">
       <div>
@@ -193,7 +161,7 @@ permalink: /
             </div>
             <a href="https://github.com/pukpr/CARMS" target="_blank" rel="noopener noreferrer">CARMS Markov model analysis</a>
             <div class="sub-links">
-              <a href="https://www.wiley.com/en-au/Modeling+for+Reliability+Analysis%3A+Markov+Modeling+for+Reliability%2C+Maintainability%2C+Safety%2C+and+Supportability+Analyses+of+Complex+Systems-p-9780780334823" target="_blank" rel="noopener noreferrer">Modelin for Reliability Analysis</a>
+              <a href="https://www.wiley.com/en-au/Modeling+for+Reliability+Analysis%3A+Markov+Modeling+for+Reliability%2C+Maintainability%2C+Safety%2C+and+Supportability+Analyses+of+Complex+Systems-p-9780780334823" target="_blank" rel="noopener noreferrer">Modeling for Reliability Analysis</a>
             </div>
           </div>
           <span class="link-meta">Source</span>
@@ -225,6 +193,39 @@ permalink: /
           </div>
           <span class="link-meta">Bridge work</span>
         </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div>
+        <span class="card-kicker">Conference</span>
+        <h3>Presentations</h3>
+        <p>AGU, EGU, and ICLR presentation record</p>
+      </div>
+      <div class="link-list">
+        <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:9ZlFYXVOiuMC" target="_blank" rel="noopener noreferrer">Analytical formulation of equatorial standing wave phenomena: Application to QBO and ENSO</a><span class="link-meta">AGU 2016</span></div>
+        <div class="link-item">
+          <div class="link-cluster">
+            <a href="https://agu.confex.com/agu/fm17/meetingapp.cgi/Paper/276374" target="_blank" rel="noopener noreferrer">Knowledge-Based Environmental Context Modeling</a>
+            <div class="sub-links">
+              <a href="https://i0.wp.com/imageshack.com/a/img923/7645/yKKjgL.png" target="_blank" rel="noopener noreferrer">Poster</a>
+            </div>
+          </div>
+          <span class="link-meta">AGU 2017</span>
+        </div>
+        <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:IjCSPb-OGe4C" target="_blank" rel="noopener noreferrer">An interactive framework for understanding mathematical geoenergy</a><span class="link-meta">AGU 2018</span></div>
+        <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:JV2RwH3_ST0C" target="_blank" rel="noopener noreferrer">An interactive framework for understanding mathematical geoenergy</a><span class="link-meta">AGU 2018</span></div>
+        <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:Se3iqnhoufwC" target="_blank" rel="noopener noreferrer">Permian Basin Tight Oil Model to Predict Future Output</a><span class="link-meta">AGU 2018</span></div>
+        <div class="link-item">
+          <div class="link-cluster">
+            <a href="https://meetingorganizer.copernicus.org/EGU21/EGU21-10515.html" target="_blank" rel="noopener noreferrer">Nonlinear long-period tidal forcing with application to ENSO, QBO, and Chandler wobble</a>
+            <div class="sub-links">
+              <a href="https://geoenergymath.com/wp-content/uploads/2021/04/supplementarydocument-egu-2021.pdf" target="_blank" rel="noopener noreferrer">Supplementary document</a>
+            </div>
+          </div>
+          <span class="link-meta">EGU 2021</span>
+        </div>
+        <div class="link-item"><a href="https://openreview.net/forum?id=XqOseg0L9Q" target="_blank" rel="noopener noreferrer">Nonlinear Differential Equations with external forcing</a><span class="link-meta">ICLR 2020</span></div>
       </div>
     </article>
 
