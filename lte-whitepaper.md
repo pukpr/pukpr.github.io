@@ -73,7 +73,7 @@ $$
 
 
 
-where \(\mathbf{F}(t)\) contains periodic astronomical forcing.
+where **F**(t) contains periodic astronomical forcing.
 
 ### 1.2 Coriolis cancellation along the equator
 
@@ -87,7 +87,7 @@ $$
 
 
 
-This yields a scalar equation in longitude \(\lambda\) and time \(t\):
+This yields a scalar equation in longitude λ and time *t*:
 
 
 
@@ -99,7 +99,7 @@ $$
 
 ### 1.3 Reduction to a scalar PDE
 
-Assuming separability in \(\lambda\):
+Assuming separability in λ:
 
 
 
@@ -121,7 +121,7 @@ $$
 
 ### 1.4 Sturm–Liouville reduction
 
-Periodic forcing \(F(t)\) admits a Fourier expansion:
+Periodic forcing *F*(t) admits a Fourier expansion:
 
 
 
@@ -280,7 +280,7 @@ Both derivations reduce to:
 | Equatorial Coriolis cancellation | Equatorial Hermite mode |
 | Scalar PDE | Single-mode amplitude equation |
 | Temporal Sturm–Liouville | Meridional Sturm–Liouville |
-| Latent phase \(\Phi(t)\) | Latent phase \(\Phi(t)\) |
+| Latent phase Φ(t) | Latent phase Φ(t) |
 
 ### 3.3 Latent-variable mapping
 
@@ -330,7 +330,7 @@ is not a guess — it is the *general solution* of a forced linear ODE with peri
 ### 4.2 Why it was overlooked
 
 - Traditional GFD emphasizes spatial modes, not temporal latent coordinates.
-- The nonlinear observable \(\sin\Phi(t)\) hides the underlying linear structure.
+- The nonlinear observable sin Φ(t) hides the underlying linear structure.
 - Climate indices were historically treated as stochastic, not deterministic.
 
 ### 4.3 Why it fits modern applied mathematics
@@ -346,12 +346,12 @@ is not a guess — it is the *general solution* of a forced linear ODE with peri
 
 SINDy identifies:
 
-- A **latent coordinate** \(\Phi(t)\)
-- A **nonlinear observable** \(\zeta(t)=\sin\Phi(t)\)
+- A **latent coordinate** Φ(t)
+- A **nonlinear observable** ζ(t) = sin Φ(t)
 
 ### 5.2 Koopman theory
 
-\(\Phi(t)\) is a **Koopman eigenfunction** coordinate.
+Φ(t) is a **Koopman eigenfunction** coordinate.
 
 ### 5.3 Topological phase dynamics
 
@@ -360,7 +360,7 @@ The equatorial waveguide acts like a **topological edge state**:
 - Bulk rotating fluid = bulk bands  
 - Equatorial modes = edge states  
 - Slow cyclic forcing = geometric phase  
-- \(\Phi(t)\) = topological phase  
+- Φ(t) = topological phase  
 
 ### 5.4 Figure: Topological-phase interpretation
 
@@ -432,7 +432,7 @@ The proposed synthesis is that draconic-forced ENSO and MSL behavior can modulat
 
 ## Energy-rate plausibility
 
-Back-of-the-envelope energy-rate scaling supports why this bridge is physically plausible.[^36][^41] A Kelvin-wave-like disturbance with order-10 m/s wind amplitude and a period of roughly 10 days cycles kinetic energy at a rate on the order of \(10^{-5}\) W/kg, while a slow QBO mean-flow change of order 20–40 m/s over 14–24 months corresponds to rates on the order of \(10^{-6}\) to \(10^{-5}\) W/kg.[^36][^72]
+Back-of-the-envelope energy-rate scaling supports why this bridge is physically plausible.[^36][^41] A Kelvin-wave-like disturbance with order-10 m/s wind amplitude and a period of roughly 10 days cycles kinetic energy at a rate on the order of 10⁻⁵ W/kg, while a slow QBO mean-flow change of order 20–40 m/s over 14–24 months corresponds to rates on the order of 10⁻⁶ to 10⁻⁵ W/kg.[^36][^72]
 
 These estimates do not prove causation, but they show that the fast equatorial wave field operates on a power scale that is not trivially small compared with the slow mean-flow evolution.[^36][^41] That makes it physically credible that externally phased modulation of Kelvin-wave activity could influence when a QBO shear regime reaches reversal threshold, even if the broad descent of the QBO remains a slow process.[^9][^36]
 
