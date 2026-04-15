@@ -40,10 +40,10 @@ Both routes converge to the same reduced-order form:
 
 
 
-\[
+$$
 \Phi(t) = \sum_i k_i \sin(\omega_i t), \qquad 
 \zeta(t) = \sin\Phi(t),
-\]
+$$
 
 
 
@@ -66,10 +66,10 @@ We begin with the LTE formulation for a rotating fluid parcel on a sphere:
 
 
 
-\[
+$$
 \frac{d\mathbf{u}}{dt} + 2\boldsymbol{\Omega}\times\mathbf{u}
 = -\nabla\Phi + \mathbf{F}(t),
-\]
+$$
 
 
 
@@ -81,9 +81,9 @@ At the equator, the meridional component of the Coriolis term vanishes:
 
 
 
-\[
+$$
 f = 2\Omega\sin\varphi = 0 \quad \text{at } \varphi=0.
-\]
+$$
 
 
 
@@ -91,9 +91,9 @@ This yields a scalar equation in longitude \(\lambda\) and time \(t\):
 
 
 
-\[
+$$
 \frac{\partial u}{\partial t} = -\frac{\partial \Phi}{\partial \lambda} + F(t).
-\]
+$$
 
 
 
@@ -103,9 +103,9 @@ Assuming separability in \(\lambda\):
 
 
 
-\[
+$$
 u(\lambda,t) = X(\lambda) T(t),
-\]
+$$
 
 
 
@@ -113,9 +113,9 @@ we obtain a temporal equation of the form:
 
 
 
-\[
+$$
 \frac{dT}{dt} + \alpha T = F(t).
-\]
+$$
 
 
 
@@ -125,9 +125,9 @@ Periodic forcing \(F(t)\) admits a Fourier expansion:
 
 
 
-\[
+$$
 F(t) = \sum_i k_i \sin(\omega_i t).
-\]
+$$
 
 
 
@@ -135,9 +135,9 @@ Solving the linear ODE yields:
 
 
 
-\[
+$$
 T(t) = \sum_i k_i \sin(\omega_i t + \phi_i).
-\]
+$$
 
 
 
@@ -147,9 +147,9 @@ Define the **latent phase**:
 
 
 
-\[
+$$
 \Phi(t) = \sum_i k_i \sin(\omega_i t).
-\]
+$$
 
 
 
@@ -159,9 +159,9 @@ A nonlinear observable (e.g., displacement, height anomaly, angular momentum) is
 
 
 
-\[
+$$
 \zeta(t) = \sin\Phi(t).
-\]
+$$
 
 
 
@@ -178,13 +178,13 @@ The linearized shallow-water system:
 
 
 
-\[
+$$
 \begin{aligned}
 u_t - \beta y v &= -g\eta_x, \\
 v_t + \beta y u &= -g\eta_y, \\
 \eta_t + H(u_x + v_y) &= 0.
 \end{aligned}
-\]
+$$
 
 
 
@@ -194,9 +194,9 @@ Assume modal structure:
 
 
 
-\[
+$$
 (u,v,\eta)(x,y,t) = \Re\{A(t)\phi(y)e^{ikx}\}.
-\]
+$$
 
 
 
@@ -204,9 +204,9 @@ This yields the meridional eigenproblem:
 
 
 
-\[
+$$
 \mathcal{L}\phi = \lambda \phi,
-\]
+$$
 
 
 
@@ -218,9 +218,9 @@ Projecting onto a single equatorial mode gives:
 
 
 
-\[
+$$
 \frac{dA}{dt} + \gamma A = F(t),
-\]
+$$
 
 
 
@@ -232,9 +232,9 @@ Let:
 
 
 
-\[
+$$
 A(t) = R(t)e^{i\Phi(t)}.
-\]
+$$
 
 
 
@@ -242,9 +242,9 @@ Under weak forcing:
 
 
 
-\[
+$$
 \frac{d\Phi}{dt} = \sum_i k_i \sin(\omega_i t).
-\]
+$$
 
 
 
@@ -252,9 +252,9 @@ Under weak forcing:
 
 
 
-\[
+$$
 \eta(t) \sim \sin\Phi(t).
-\]
+$$
 
 
 
@@ -288,9 +288,9 @@ Both yield:
 
 
 
-\[
+$$
 \Phi(t) = \sum_i k_i \sin(\omega_i t).
-\]
+$$
 
 
 
@@ -300,9 +300,9 @@ Both yield:
 
 
 
-\[
+$$
 \zeta(t) = \sin\Phi(t).
-\]
+$$
 
 
 
@@ -319,9 +319,9 @@ The ansatz:
 
 
 
-\[
+$$
 \Phi(t) = \sum_i k_i \sin(\omega_i t)
-\]
+$$
 
 
 
