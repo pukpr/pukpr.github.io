@@ -48,10 +48,10 @@ $$
 
 
 where  
-- \(\Phi(t)\) is a **latent phase coordinate**,  
-- \(\zeta(t)\) is a **nonlinear observable**,  
-- \(\omega_i\) are physical forcing frequencies (lunisolar, annual, etc.),  
-- \(k_i\) are coupling coefficients determined by the reduction.
+- $\Phi(t)$ is a **latent phase coordinate**,  
+- $\zeta(t)$ is a **nonlinear observable**,  
+- $\omega_i$ are physical forcing frequencies (lunisolar, annual, etc.),  
+- $k_i$ are coupling coefficients determined by the reduction.
 
 This equivalence is not assumed — it is *derived twice* from independent starting points.
 
