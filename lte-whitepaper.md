@@ -330,7 +330,7 @@ is not a guess — it is the *general solution* of a forced linear ODE with peri
 ### 4.2 Why it was overlooked
 
 - Traditional GFD emphasizes spatial modes, not temporal latent coordinates.
-- The nonlinear observable sin Φ(t) hides the underlying linear structure.
+- The nonlinear observable sin(Φ(t)) hides the underlying linear structure.
 - Climate indices were historically treated as stochastic, not deterministic.
 
 ### 4.3 Why it fits modern applied mathematics
@@ -347,7 +347,7 @@ is not a guess — it is the *general solution* of a forced linear ODE with peri
 SINDy identifies:
 
 - A **latent coordinate** Φ(t)
-- A **nonlinear observable** ζ(t) = sin Φ(t)
+- A **nonlinear observable** ζ(t) = sin(Φ(t))
 
 ### 5.2 Koopman theory
 
