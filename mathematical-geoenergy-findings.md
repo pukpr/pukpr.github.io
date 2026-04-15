@@ -21,11 +21,12 @@ Judged on those terms, the most consequential claims are not the full list of
 applications taken one by one, but a smaller core:
 
 1. the analytic treatment of Laplace's tidal equation along the equator
-2. the ENSO, QBO, and Chandler wobble modeling program built on that result
+2. the ENSO, QBO, Chandler wobble, and recent mean-sea-level (MSL) modeling
+   program built on that result
 3. the dispersive-discovery / depletion framework for oil and reserve-growth
    behavior
 4. the more general maximum-entropy / entropic-dispersion framework that is
-   reused across climate, transport, porous media, and materials problems[^1][^2]
+   reused across climate, transport, porous media, and materials problems[^1][^2][^4]
 
 The most important qualification is that **significance is not the same thing as
 consensus acceptance**. Several of the geophysical findings are potentially very
@@ -73,22 +74,44 @@ being physically appropriate for the problems where it is applied. That is why
 its significance is best described as **foundational within the program** rather
 than automatically field-transforming.
 
-### 2. ENSO, QBO, and Chandler wobble as a linked geophysical set
+### 2. ENSO, QBO, Chandler wobble, and MSL as a linked geophysical set
 
-Taken together, these three claims form the most ambitious scientific cluster in
-the archive.[^1][^2][^3] Their significance is not only that each is a model of
-an unresolved oscillation, but that they are presented as consequences of a
-shared forcing architecture. That raises the stakes considerably:
+Taken together, these claims form the most ambitious scientific cluster in the
+archive.[^1][^2][^3][^4] Their significance is not only that each is a model of
+an unresolved oscillation or basin-scale response, but that they are presented
+as consequences of a shared forcing architecture. That raises the stakes
+considerably:
 
-- if the forcing logic is wrong, all three should fail in related ways
+- if the forcing logic is wrong, the oscillators and the sea-level records
+  should fail in related ways
 - if it is right, the program gains a level of coherence that is rare in
   cross-domain geophysics
 
 Among the three, **QBO** and **Chandler wobble** may be the sharper tests
 because their dominant periods are more spectrally compact. **ENSO** is broader
 and more complex, but also more consequential if the model remains predictive.
-This cluster therefore deserves a **foundational to major-domain** ranking even
-without claiming that the broader community has accepted it.
+The newer **MSL** results matter because they move the argument from a small
+number of named oscillations to a many-site validation problem. The February
+2026 GEM-LTE cross-validation archive reports a common latent tidal manifold
+applied across dozens of tide-gauge and climate-index series, with the model
+trained outside a shared 1940-1970 holdout interval and then scored on the
+withheld data.[^4][^5] That is important because it tests whether the same
+forcing logic survives when geography, basin geometry, and record quality vary
+substantially from site to site.
+
+On significance grounds, MSL does not replace ENSO, QBO, or Chandler wobble;
+it broadens them. The sharper oscillators still provide the cleanest frequency
+tests, while MSL provides a stronger demonstration of geographic breadth and
+out-of-sample skill. This cluster therefore deserves a **foundational to
+major-domain** ranking even without claiming that the broader community has
+accepted it.
+
+The 2019 ESSOAr paper on ephemeris calibration is an important hinge in this
+story because it sits between the book-era framework and the later, larger
+cross-validation archive.[^6] In practical terms, it marks the point where the
+ENSO/LTE line of work is presented less as a chapter-based derivation and more
+as a calibration-and-validation program that can be extended to broader MSL and
+climate-index datasets.
 
 ### 3. Dispersive discovery and oil depletion modeling
 
@@ -137,6 +160,10 @@ Several findings look genuinely strong but narrower in scope:
   and **IceBox Earth**: significant because they touch high-value climate
   questions, but each depends more heavily on model framing and comparison class
   than the strongest core results
+- **Mean sea-level (MSL) cross-validation across tide-gauge sites**: highly
+  relevant because it expands the geophysical program beyond single-index fits,
+  though its long-term significance still depends on replication and continued
+  robustness across regions[^4][^5]
 - **Battery charging/discharging**, **PV dispersive transport**, and
   **breakthrough curves in porous media**: scientifically serious, but best seen
   as targeted applications of the dispersion framework
@@ -165,6 +192,7 @@ lead with when summarizing the program.
 | Model of ENSO | Foundational | High-value target phenomenon with strong unifying ambition |
 | Model of QBO | Foundational | Sharp periodic test case for the forcing framework |
 | Origin of the Chandler wobble | Foundational | Another sharp periodic test with rotational significance |
+| Mean sea-level cross-validated tidal manifold results | Foundational | Extends the forcing claim across many tide-gauge records and holdout intervals |
 | Maximum Entropy Principle and entropic dispersion framework | Foundational | Cross-domain framework reused throughout the corpus |
 
 ### Major domain models
@@ -224,8 +252,9 @@ at least three coherent research programs:
 
 1. **equatorial and rotational geophysics via Laplace-tidal / alias-based
    forcing**
-2. **resource discovery, depletion, and shock behavior**
-3. **entropy-and-dispersion modeling across natural and engineered systems**
+2. **mean-sea-level and climate-index validation of the same forcing family**
+3. **resource discovery, depletion, and shock behavior**
+4. **entropy-and-dispersion modeling across natural and engineered systems**
 
 That makes the archive significant as a **research program**, even where
 individual findings still await broader uptake. The most responsible summary is
@@ -238,3 +267,6 @@ show how far the same mathematical style can travel.
 [^1]: Pukite, P. (2020). [*Mathematical Geoenergy* (GeoEnergyMath findings list)](https://geoenergymath.com/2020/03/18/mathematical-geoenergy-2/).
 [^2]: Pukite, P. (2020). [*Mathematical Geoenergy* (MObjectivist mirror)](https://mobjectivist.blogspot.com/2020/03/mathematical-geoenergy.html).
 [^3]: Pukite, P., Coyne, D., & Challou, D. (2019). [*Mathematical Geoenergy: Discovery, Depletion, and Renewal*](https://agupubs.onlinelibrary.wiley.com/doi/book/10.1002/9781119434351).
+[^4]: Pukite, P. (2026). [*February 2026 Cross-Validation Experiments: GEM-LTE Mean Sea Level and Climate Index Modelling*](https://geoenergymath.com/2026/04/11/gem-lte-modeling/).
+[^5]: Pukite, P. (2026). [*Lunisolar Common-Mode Forcing of QBO, ENSO, and Chandler Wobble: A Synthesis of Reported Results*](https://github.com/pukpr/pukpr.github.io/blob/master/lte-whitepaper.md).
+[^6]: Pukite, P., Coyne, D., & Challou, D. (2019). [*Ephemeris calibration of Laplace's tidal equation model for ENSO*](https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:2osOgNQ5qMEC).
