@@ -346,6 +346,26 @@ is not a guess — it is the *general solution* of a forced linear ODE with peri
 - Nonlinear observables are natural in Koopman theory.
 - SINDy identifies exactly this structure when applied to ENSO/QBO/LOD.
 
+### 4.4 Additional Ansatz: Adjoint Substitution and Sturm–Liouville Structure
+
+A further refinement considers the impact of latitudinal “wiggles” (small deviations from the equator) via an adjoint substitution:
+
+$$
+\frac{\partial\zeta}{\partial\varphi} = \frac{\partial\zeta}{\partial t}\frac{\partial t}{\partial\varphi}
+$$
+
+Here, “adjoint” is used in the operational sense of a coordinate substitution (via chain rule), not as a functional-analytic adjoint operator. This expresses latitude as a periodic, time-varying function (\(\varphi=f(t)\)), mapping latitude variations into time-dependent phase modulations—physically similar to observed north–south cyclic displacements (e.g., in tropical instability waves).
+
+Applying the chain rule, the dynamics are recast as a time-domain Sturm–Liouville equation:
+
+$$
+A\zeta(t) + \frac{1}{\frac{\partial\varphi}{\partial t}} \; \frac{d}{dt}\left[\frac{\zeta'(t)}{\frac{\partial\varphi}{\partial t}}\right] = 0
+$$
+
+where \(A\) is a constant coefficient that absorbs the standing-wave component from the reduced spatial part. Defining \(w(t)=\frac{\partial\varphi}{\partial t}\), the weighting function \((1/w(t))\) encodes how time-domain solutions are modulated by the latitudinal structure.
+
+This leads to a second-order ODE with a nontrivial weighting function—hallmark of the Sturm–Liouville class—which is typically solved using eigenfunction expansions or variational methods rather than simple integration. The richness of possible solutions enables fitting a variety of observed standing waves, tying the mathematical structure back to physical data.
+
 ---
 
 ## 5. Connections to Modern Frameworks  
