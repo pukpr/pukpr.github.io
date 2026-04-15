@@ -267,11 +267,13 @@ $$
 ## 3. Equivalence of the Two Derivations  
 ### 3.1 Operator-level mapping
 
-Both derivations reduce to:
+At reduced order, both derivations can be written with:
 
 - A **linear operator** acting on a state variable.
-- A **periodic forcing** term.
+- A **periodic forcing** term in the LTE route.
 - A **single-mode** or **single-coordinate** temporal equation.
+
+The key physical distinction is that the LTE-based route is a **forced response**: wave-like analogs arise as particular solutions driven by applied forcing and are not intrinsic free modes of the unforced LTE system. By contrast, the β-plane route contains the latitudinally varying Coriolis term \(f=f_0+\beta y\) inside the governing operator, so Rossby-wave behavior appears as a **natural eigenmode response** of the homogeneous system.
 
 ### 3.2 Assumption-level mapping
 
@@ -281,10 +283,11 @@ Both derivations reduce to:
 | Scalar PDE | Single-mode amplitude equation |
 | Temporal Sturm–Liouville | Meridional Sturm–Liouville |
 | Latent phase Φ(t) | Latent phase Φ(t) |
+| Forced analog wave response | Intrinsic Rossby-wave eigenmodes from β-term |
 
 ### 3.3 Latent-variable mapping
 
-Both yield:
+Both routes can yield:
 
 
 
@@ -292,17 +295,21 @@ $$
 \Phi(t) = \sum_i k_i \sin(\omega_i t).
 $$
 
+However, this shared form should not be over-interpreted as a shared mechanism: in LTE it represents a forcing-driven phase response, whereas in the β-plane derivation it is the modal phase evolution of a system with intrinsic wave-supporting structure.
+
 
 
 ### 3.4 Observable mapping
 
-Both yield:
+Both can therefore yield:
 
 
 
 $$
 \zeta(t) = \sin\Phi(t).
 $$
+
+Thus, mathematical similarity at the reduced-equation level does not imply physical equivalence. Conflating the LTE forced-response interpretation with β-plane natural-mode dynamics can misidentify the source of variability and lead to incorrect dynamical attribution.
 
 
 
