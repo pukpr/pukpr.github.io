@@ -38,7 +38,7 @@ permalink: /
         <span class="card-kicker">Featured research</span>
         <h3>Climate indices and sea-level modeling</h3>
         <p>models and examples => <i> ENSO, QBO, MSL, NAO, etc </i><br/>
-        <a href="lte-whitepaper.md">White paper on Lunisolar Common-Mode forcing</a>
+        <a href="lte-whitepaper.html">White paper on Lunisolar Common-Mode forcing</a>
         </p>
       </div>
       <div class="link-list">
