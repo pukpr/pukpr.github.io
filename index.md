@@ -66,7 +66,10 @@ permalink: /
       <div class="link-list">
         <div class="link-item"><a href="ChandlerWobble">Interactive Chandler wobble model</a><span class="link-meta">Simulation</span></div>
         <div class="link-item"><a href="OilShockModel/oil-shock-model">Interactive Oil Shock Model</a><span class="link-meta">Scenario tool</span></div>
-        <div class="link-item"><a href="GEM-LTE/pukite-qbo ">Interactive QBO Model</a><span class="link-meta">Simulation</span></div>
+        <div class="link-item"><a href="GEM-LTE/pukite-qbo">Interactive QBO Model</a><span class="link-meta">Simulation</span></div>
+        <div class="link-item"><a href="GEM-LTE/gem-lte-results">Interactive LTE comparison</a><br/>
+                               <a href="GEM-LTE/pukite-slr">Interactive LTE modeler</a><br/><span class="link-meta">Simulation</span></div>
+        <div class="link-item"><a href="GEM-LTE/pukite-lod">Interactive LOD Model</a><span class="link-meta">Simulation</span></div>
         <div class="link-item"><a href="AdaPACE/earth-science-visualization" target="_blank" rel="noopener noreferrer">AdaPACE Earth-science visualization examples</a><span class="link-meta">Docs</span></div>
         <div class="link-item">
             <a href="https://github.com/pukpr/context" target="_blank" rel="noopener noreferrer">Earth sciences context modeling & knowledgebase server</a>
