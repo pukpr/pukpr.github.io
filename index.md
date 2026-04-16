@@ -203,9 +203,9 @@ permalink: /
       </div>
       <div class="link-list">
         <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:9ZlFYXVOiuMC" target="_blank" rel="noopener noreferrer">Analytical formulation of equatorial standing wave phenomena: Application to QBO and ENSO</a><span class="link-meta">AGU 2016</span></div>
-        <div class="link-item"><a href="https://www.authorea.com/doi/full/10.1002/essoar.b1c62a3df907a1fa.b18572c23dc245c9" target="_blank" rel="noopener noreferrer">Biennial-Aligned Lunisolar-Forcing of ENSO</a><span class="link-meta">AGU 2017</span></div>
         <div class="link-item">
           <div class="link-cluster">
+            <a href="https://www.authorea.com/doi/full/10.1002/essoar.b1c62a3df907a1fa.b18572c23dc245c9" target="_blank" rel="noopener noreferrer">Biennial-Aligned Lunisolar-Forcing of ENSO</a>
             <a href="https://agu.confex.com/agu/fm17/meetingapp.cgi/Paper/276374" target="_blank" rel="noopener noreferrer">Knowledge-Based Environmental Context Modeling</a>
             <div class="sub-links">
               <a href="https://i0.wp.com/imageshack.com/a/img923/7645/yKKjgL.png" target="_blank" rel="noopener noreferrer">Poster</a>
@@ -213,9 +213,14 @@ permalink: /
           </div>
           <span class="link-meta">AGU 2017</span>
         </div>
-        <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:2osOgNQ5qMEC" target="_blank" rel="noopener noreferrer">Ephemeris calibration of Laplace's tidal equation model for ENSO</a><span class="link-meta">AGU 2018</span></div>
-        <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:JV2RwH3_ST0C" target="_blank" rel="noopener noreferrer">An interactive framework for understanding mathematical geoenergy</a><span class="link-meta">AGU 2018</span></div>
-        <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:Se3iqnhoufwC" target="_blank" rel="noopener noreferrer">Permian Basin Tight Oil Model to Predict Future Output</a><span class="link-meta">AGU 2018</span></div>
+        <div class="link-item">
+          <div class="link-cluster">
+             <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:2osOgNQ5qMEC" target="_blank" rel="noopener noreferrer">Ephemeris calibration of Laplace's tidal equation model for ENSO</a>
+             <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:JV2RwH3_ST0C" target="_blank" rel="noopener noreferrer">An interactive framework for understanding mathematical geoenergy</a>
+             <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:Se3iqnhoufwC" target="_blank" rel="noopener noreferrer">Permian Basin Tight Oil Model to Predict Future Output</a>
+          </div>
+          <span class="link-meta">AGU 2018</span>
+        </div>
         <div class="link-item">
           <div class="link-cluster">
             <a href="https://meetingorganizer.copernicus.org/EGU21/EGU21-10515.html" target="_blank" rel="noopener noreferrer">Nonlinear long-period tidal forcing with application to ENSO, QBO, and Chandler wobble</a>
