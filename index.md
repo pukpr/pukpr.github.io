@@ -101,14 +101,10 @@ permalink: /
         <div class="link-item"><a href="https://www.researchgate.net/publication/283579370_C2M2L_Final_Report" target="_blank" rel="noopener noreferrer">C2M2L environment modeling via ontological knowledgebases (2013)</a><span class="link-meta">Report</span></div>
         <div class="link-item">
           <div class="link-cluster">
-            <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:2osOgNQ5qMEC" target="_blank" rel="noopener noreferrer">Ephemeris calibration of Laplace's tidal equation model for ENSO (2019)</a>
-            <div class="sub-links">
-              <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:-f6ydRqryjwC" target="_blank" rel="noopener noreferrer">ESD Ideas: long-period tidal forcing in geophysics (2020)</a>
-              <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:ufrVoPGSRksC" target="_blank" rel="noopener noreferrer">Biennial-Aligned Lunisolar-Forcing of ENSO (2022)</a>
-            </div>
+            <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:-f6ydRqryjwC" target="_blank" rel="noopener noreferrer">ESD Ideas: long-period tidal forcing in geophysics (2020)</a>
             <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:W7OEmFMy1HYC" target="_blank" rel="noopener noreferrer">Sloshing Model for ENSO (2014)</a>
           </div>
-          <span class="link-meta">Papers</span>
+          <span class="link-meta">Preprints</span>
         </div>
       </div>
     </article>
@@ -207,6 +203,7 @@ permalink: /
       </div>
       <div class="link-list">
         <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:9ZlFYXVOiuMC" target="_blank" rel="noopener noreferrer">Analytical formulation of equatorial standing wave phenomena: Application to QBO and ENSO</a><span class="link-meta">AGU 2016</span></div>
+        <div class="link-item"><a href="https://www.authorea.com/doi/full/10.1002/essoar.b1c62a3df907a1fa.b18572c23dc245c9" target="_blank" rel="noopener noreferrer">Biennial-Aligned Lunisolar-Forcing of ENSO</a><span class="link-meta">AGU 2017</span></div>
         <div class="link-item">
           <div class="link-cluster">
             <a href="https://agu.confex.com/agu/fm17/meetingapp.cgi/Paper/276374" target="_blank" rel="noopener noreferrer">Knowledge-Based Environmental Context Modeling</a>
@@ -216,7 +213,7 @@ permalink: /
           </div>
           <span class="link-meta">AGU 2017</span>
         </div>
-        <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:IjCSPb-OGe4C" target="_blank" rel="noopener noreferrer">An interactive framework for understanding mathematical geoenergy</a><span class="link-meta">AGU 2018</span></div>
+        <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:2osOgNQ5qMEC" target="_blank" rel="noopener noreferrer">Ephemeris calibration of Laplace's tidal equation model for ENSO</a><span class="link-meta">AGU 2018</span></div>
         <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:JV2RwH3_ST0C" target="_blank" rel="noopener noreferrer">An interactive framework for understanding mathematical geoenergy</a><span class="link-meta">AGU 2018</span></div>
         <div class="link-item"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:Se3iqnhoufwC" target="_blank" rel="noopener noreferrer">Permian Basin Tight Oil Model to Predict Future Output</a><span class="link-meta">AGU 2018</span></div>
         <div class="link-item">
