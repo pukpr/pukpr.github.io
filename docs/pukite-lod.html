@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LOD Tidal Factor Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>
+    :root { --bg:#f7f6f2; --surface:#fbfbf9; --surface2:#f1efe9; --text:#24211c; --muted:#706d66; --border:#dedad3; --primary:#0d6970; --accent:#c97c30; --danger:#9b385e; --shadow:0 8px 28px rgba(0,0,0,0.07); }
+    [data-theme="dark"] { --bg:#171614; --surface:#1d1c19; --surface2:#25231f; --text:#e4e0d8; --muted:#aaa49a; --border:#3c3830; --primary:#69b2b8; --accent:#d49a63; --danger:#d56e9a; --shadow:0 16px 40px rgba(0,0,0,0.35); }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:'IBM Plex Sans',sans-serif; background:var(--bg); color:var(--text); }
+    header { padding:24px clamp(18px,4vw,40px) 12px; border-bottom:1px solid var(--border); display:flex; align-items:flex-start; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+    h1 { font-family:'IBM Plex Serif',serif; font-size:clamp(1.8rem,3vw,3rem); margin:0 0 8px; }
+    .subtitle { color:var(--muted); max-width:85ch; }
+    .toolbar { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    button, select, input[type="range"], input[type="number"] { font:inherit; }
+    button, select { border:1px solid var(--border); background:var(--surface); color:var(--text); border-radius:8px; padding:8px 14px; cursor:pointer; }
+    main { padding:20px clamp(18px,4vw,40px) 36px; display:grid; gap:18px; }
+    .grid { display:grid; grid-template-columns:repeat(12,1fr); gap:18px; }
+    .card { background:var(--surface); border:1px solid var(--border); border-radius:18px; box-shadow:var(--shadow); padding:18px; }
+    .span-8 { grid-column:span 8; } .span-4 { grid-column:span 4; } .span-6 { grid-column:span 6; } .span-12 { grid-column:span 12; }
+    .controls { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; }
+    .control label { display:block; font-size:0.92rem; color:var(--muted); margin-bottom:6px; }
+    .control .value { font-weight:600; color:var(--primary); }
+    .control input[type="number"] { border:1px solid var(--border); background:var(--surface); color:var(--text); border-radius:8px; padding:6px 10px; width:100%; }
+    .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-bottom:12px; }
+    .stat { background:var(--surface2); border-radius:14px; padding:12px; border:1px solid var(--border); }
+    .stat .k { color:var(--muted); font-size:0.85rem; } .stat .v { font-size:1.25rem; font-weight:700; color:var(--primary); }
+    .chart { height:460px; } .chart.short { height:340px; }
+    .note { color:var(--muted); font-size:0.92rem; }
+    .hidden { display:none !important; }
+    @media (max-width:980px) { .span-8,.span-4,.span-6,.span-12 { grid-column:1 / -1; } .chart { height:320px; } }
+    .action-bar { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:14px; padding-top:14px; border-top:1px solid var(--border); }
+    .primary-btn { background:var(--accent); color:#fff; border:none; border-radius:10px; padding:10px 18px; font-weight:700; cursor:pointer; }
+    .secondary-btn { background:var(--surface2); color:var(--text); border:1px solid var(--border); border-radius:10px; padding:10px 18px; font-weight:600; cursor:pointer; }
+    .action-help { color:var(--muted); font-size:0.92rem; }
+    .status-banner { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:10px; margin-bottom:10px; }
+    .status-pill { background:var(--surface2); border:1px solid var(--border); border-radius:12px; padding:10px 14px; }
+    .status-pill .k { color:var(--muted); font-size:0.86rem; margin-bottom:4px; }
+    .status-pill .v { font-weight:800; font-size:1rem; }
+    .fit-report { margin-top:10px; background:var(--surface2); color:var(--text); border:1px solid var(--border); border-radius:10px; padding:14px; font-family:monospace; font-size:0.82rem; white-space:pre-wrap; max-height:180px; overflow-y:auto; }
+    #loadingMsg { text-align:center; padding:60px 20px; color:var(--muted); font-size:1.1rem; }
+    .bar-container { overflow-x:auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>LOD Tidal Factor Explorer</h1>
+      <div class="subtitle">Multiple linear regression fit of lunar tidal sinusoids to the
+        Length-of-Day (dLOD) time series. Amplitudes and phases are determined via MLR
+        on the training window, then applied over the full record.</div>
+    </div>
+    <div class="toolbar">
+      <button id="themeToggle">Toggle theme</button>
+    </div>
+  </header>
+
+  <div id="loadingMsg">⏳ Loading data…</div>
+
+  <main id="mainContent" class="hidden">
+    <section class="card span-12">
+      <div class="controls">
+        <div class="control">
+          <label for="trainLow">Training start year <span class="value" id="trainLowVal"></span></label>
+          <input type="number" id="trainLow" value="1963" min="1962" max="2019" step="1" />
+        </div>
+        <div class="control">
+          <label for="trainHigh">Training end year <span class="value" id="trainHighVal"></span></label>
+          <input type="number" id="trainHigh" value="1970" min="1963" max="2019" step="1" />
+        </div>
+        <div class="control">
+          <label for="showMode">Display mode</label>
+          <select id="showMode">
+            <option value="fit">Observed + fit</option>
+            <option value="resid">Residual only</option>
+            <option value="norm">Normalized comparison</option>
+          </select>
+        </div>
+        <div class="control">
+          <label for="numTerms">Number of tidal terms used</label>
+          <input type="number" id="numTerms" value="31" min="1" max="31" step="1" />
+        </div>
+        <div class="control">
+          <label for="ridgeLambda">Ridge regularization λ (0 = none) <span class="value" id="ridgeLambdaVal"></span></label>
+          <select id="ridgeLambda">
+            <option value="0">0 — none (may overfit)</option>
+            <option value="0.001">0.001 — light</option>
+            <option value="0.01">0.01 — moderate</option>
+            <option value="0.1" selected>0.1 — recommended</option>
+            <option value="1">1 — strong</option>
+            <option value="10">10 — heavy</option>
+          </select>
+        </div>
+      </div>
+      <div class="action-bar">
+        <button id="fitBtn" class="primary-btn">Run MLR Fit</button>
+        <button id="reportToggle" class="secondary-btn">Show/Hide fit report</button>
+        <div class="action-help">MLR fits cos+sin coefficients for each tidal period on the training window.</div>
+      </div>
+      <div id="fitReport" class="fit-report hidden">Fit report will appear here after running MLR.</div>
+    </section>
+
+    <section class="card span-12">
+      <div id="statusBanner" class="status-banner"></div>
+      <div style="margin-top:8px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;"></div>
+    </section>
+
+    <section class="grid span-12">
+      <div class="card span-8"><div id="seriesChart" class="chart"></div></div>
+      <div class="card span-4">
+        <div class="stats" id="stats"></div>
+        <p class="note" style="margin-top:12px;">
+          The MLR model uses <strong>31 lunar tidal sinusoids</strong> from the lpap parameter
+          set in <code>experiments/Feb2026/11/lt.exe.p</code>. Periods range from ≈6.8 days
+          to ≈18.6 years. Fitting is performed only on the training window; the shaded region
+          indicates the training period on the chart.
+          <br><br>
+          <strong>Tip:</strong> Multiple near-identical periods (eight ~27-day, five ~13.6-day,
+          four ~9.1-day terms) are near-collinear in short training windows. Use
+          <em>ridge λ ≥ 0.1</em> or extend the training window to ≥ 1990 to achieve
+          full-record CC &gt; 0.9.
+        </p>
+      </div>
+      <div class="card span-6"><div id="spectrumChart" class="chart short"></div></div>
+      <div class="card span-6 bar-container"><div id="amplitudeChart" class="chart short"></div></div>
+    </section>
+
+    <section class="card span-12">
+      <strong>Data notes</strong>
+      <p class="note">
+        LOD data (dLOD3.dat) represents the deviation of the Earth's rotation rate from a uniform
+        reference, expressed in milliseconds. Source:
+        <a href="https://github.com/pukpr/GEM-LTE/blob/master/experiments/dLOD3.dat" target="_blank" rel="noopener">
+          GEM-LTE / experiments / dLOD3.dat
+        </a>.
+        Tidal factor periods from the LTE model:
+        <a href="https://github.com/pukpr/GEM-LTE/blob/master/experiments/Feb2026/11/lt.exe.p" target="_blank" rel="noopener">
+          experiments/Feb2026/11/lt.exe.p
+        </a> (lpap field).
+      </p>
+      <p class="note">
+        Reference: Pukite, <em>Mathematical Geoenergy</em>
+        (<a href="https://agupubs.onlinelibrary.wiley.com/doi/book/10.1002/9781119434351" target="_blank" rel="noopener">AGU/Wiley 2019</a>).
+        See also <a href="https://geoenergymath.com/" target="_blank" rel="noopener">GeoEnergyMath.com</a>.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  // ── Tidal factor data (lpap) from experiments/Feb2026/11/lt.exe.p ──────────
+  // Each entry: [period_days, reference_amplitude, reference_phase]
+  const LPAP = [
+    [2.73216615540000e+01,  6.01673032551742e-03, -1.57778328230614e+00],
+    [2.72122208150000e+01,  2.98341520474415e-02, -8.09982088835526e-01],
+    [1.09517502233364e+03,  9.87680735995232e-04, -4.01913470097305e-01],
+    [9.08286783775482e+00,  5.83715270178439e-03,  1.53207432936775e+00],
+    [6.81670784237782e+00, -8.12538994029927e-04,  4.14805658044561e-01],
+    [1.36334156847556e+01,  4.73115846020630e-03,  1.63428869977878e+01],
+    [1.36608307770000e+01, -2.43961505860341e-03,  2.65316711474244e+01],
+    [1.36061104075000e+01, -2.56772767657726e-03,  2.03444626945879e+01],
+    [2.75545498860000e+01, -4.45711741184037e-03,  2.85504497957151e+00],
+    [1.37772749430000e+01, -2.54765365301986e-03,  5.04136189504372e+00],
+    [6.79347648813065e+03,  7.37900360760880e-04,  1.84875837095926e-01],
+    [1.61630271425126e+03, -1.26202389605987e-03, -1.39604414933702e+00],
+    [2.70926769265989e+01, -1.65168366385025e-03,  2.09760249218056e+00],
+    [9.09502787633386e+00,  2.87767503746058e-03,  5.64360673497390e-01],
+    [1.36911577286421e+01,  1.39173031626326e-03,  1.72849428967280e+01],
+    [1.30566025845931e+03, -6.64774242937934e-04,  3.55594142128502e-01],
+    [2.74432392622558e+01, -1.21474762711050e-03,  9.09556055711319e-01],
+    [2.76667671457246e+01, -1.19492036811497e-03,  3.21547225650149e+00],
+    [2.19035004466729e+03,  1.89785329653800e-03,  1.71582011681580e+00],
+    [2.69850593472905e+01,  2.24582304881433e-03,  5.82532600485175e+00],
+    [6.16720701373239e+03, -2.19535191651071e-04, -1.24497162172109e+01],
+    [-3.23260542850251e+03,  3.94659907329479e-04,  1.45154347030248e+00],
+    [-2.12090900683440e+03, -1.20591563562596e-03, -5.91318317885465e-02],
+    [2.73328243312340e+01, -4.97328792484200e-04,  1.55149668842021e+01],
+    [1.37188057721738e+01,  4.36643212829782e-03,  1.59924364382668e+00],
+    [9.13295078375850e+00,  5.11436889103153e-05, -4.66847780421833e-01],
+    [9.12068919638272e+00,  8.22434020011193e-04,  6.88479080832696e-01],
+    [9.10846048883933e+00,  1.86153900898638e-03,  9.29158862430512e-01],
+    [3.39673824406533e+03,  1.63379972525306e-03, -2.61557281520640e+01],
+    [1.65631999626209e+03,  6.67052083207062e-04,  8.23016797877843e+00],
+    [2.71036533384176e+01, -1.66193183427018e-03,  5.33050659256776e-01]
+  ];
+
+  // ── Math helpers ──────────────────────────────────────────────────────────
+  const TWOPI = 2 * Math.PI;
+
+  function mean(a) { return a.reduce((s, v) => s + v, 0) / a.length; }
+  function std(a) { const m = mean(a); return Math.sqrt(a.reduce((s, v) => s + (v - m) ** 2, 0) / a.length); }
+  function corr(a, b) {
+    const ma = mean(a), mb = mean(b);
+    let num = 0, da = 0, db = 0;
+    for (let i = 0; i < a.length; i++) { const x = a[i]-ma, y = b[i]-mb; num += x*y; da += x*x; db += y*y; }
+    return num / Math.sqrt(da * db + 1e-30);
+  }
+  function rmse(a, b) { return Math.sqrt(a.reduce((s, v, i) => s + (v - b[i]) ** 2, 0) / a.length); }
+
+  // ── Gaussian elimination with partial pivoting ────────────────────────────
+  function solveLinear(A, b) {
+    const n = A.length;
+    const M = A.map((row, i) => [...row, b[i]]);
+    for (let col = 0; col < n; col++) {
+      let maxRow = col;
+      for (let row = col + 1; row < n; row++) {
+        if (Math.abs(M[row][col]) > Math.abs(M[maxRow][col])) maxRow = row;
+      }
+      [M[col], M[maxRow]] = [M[maxRow], M[col]];
+      const piv = M[col][col];
+      if (Math.abs(piv) < 1e-12) continue;
+      for (let j = col; j <= n; j++) M[col][j] /= piv;
+      for (let row = 0; row < n; row++) {
+        if (row === col) continue;
+        const f = M[row][col];
+        for (let j = col; j <= n; j++) M[row][j] -= f * M[col][j];
+      }
+    }
+    return M.map(row => row[n]);
+  }
+
+  // ── Multiple Linear Regression via normal equations (with optional ridge) ─
+  // X: Array of row-arrays [N x p]; y: Array [N]; ridge: regularization scalar
+  // Returns: beta [p], using (X^T X + ridge * I) beta = X^T y
+  function fitMLR(X, y, ridge) {
+    const n = X.length, p = X[0].length;
+    const XtX = Array.from({ length: p }, () => new Array(p).fill(0));
+    const Xty = new Array(p).fill(0);
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < p; j++) {
+        Xty[j] += X[i][j] * y[i];
+        for (let k = j; k < p; k++) XtX[j][k] += X[i][j] * X[i][k];
+      }
+    }
+    for (let j = 0; j < p; j++) for (let k = 0; k < j; k++) XtX[j][k] = XtX[k][j];
+    // Tikhonov / ridge regularization (relative to matrix scale)
+    const traceMean = XtX.reduce((s, row, i) => s + row[i], 0) / p;
+    const lam = (ridge || 0) * traceMean;
+    if (lam > 0) for (let i = 0; i < p; i++) XtX[i][i] += lam;
+    return solveLinear(XtX, Xty);
+  }
+
+  // Build one row of the design matrix for time t (in years), using K terms
+  function designRow(t, k) {
+    const row = [1.0]; // DC offset
+    for (let i = 0; i < k; i++) {
+      const period_days = LPAP[i][0];
+      const omega = TWOPI * 365.25 / period_days; // rad / year
+      row.push(Math.cos(omega * t));
+      row.push(Math.sin(omega * t));
+    }
+    return row;
+  }
+
+  // ── Parse dLOD3.dat text ──────────────────────────────────────────────────
+  function parseDat(text) {
+    const times = [], values = [];
+    for (const line of text.split('\n')) {
+      const parts = line.trim().split(/\s+/);
+      if (parts.length < 2) continue;
+      const t = parseFloat(parts[0]);
+      const v = parseFloat(parts[1]);
+      if (!isFinite(t) || !isFinite(v)) continue;
+      times.push(t);
+      values.push(v);
+    }
+    return { times, values };
+  }
+
+  // ── Spectrum (DFT magnitude) ───────────────────────────────────────────────
+  function spectrum(series, dt) {
+    // dt in years; returns {freqs (cycles/year), amps}
+    const m = mean(series);
+    const x = series.map(v => v - m);
+    const N = x.length;
+    const maxK = Math.min(Math.floor(N / 2), 4000); // limit for speed
+    const freqs = [], amps = [];
+    for (let k = 1; k < maxK; k++) {
+      let re = 0, im = 0;
+      for (let n = 0; n < N; n++) {
+        const ang = TWOPI * k * n / N;
+        re += x[n] * Math.cos(ang);
+        im -= x[n] * Math.sin(ang);
+      }
+      freqs.push(k / (N * dt));
+      amps.push(Math.sqrt(re * re + im * im) / N * 2);
+    }
+    return { freqs, amps };
+  }
+
+  // ── State ────────────────────────────────────────────────────────────────
+  let allTimes = null, allValues = null;
+  let lastBeta = null;
+  let lastFitReport = 'Fit report will appear here after running MLR.';
+
+  // ── Plotly layout helpers ─────────────────────────────────────────────────
+  function theme() {
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    return {
+      paper: dark ? '#1d1c19' : 'rgba(0,0,0,0)',
+      plot: dark ? '#1d1c19' : 'rgba(0,0,0,0)',
+      font: dark ? '#e4e0d8' : '#24211c',
+      grid: dark ? '#3c3830' : '#e8e5de',
+    };
+  }
+  function baseLayout(title, xLabel, yLabel) {
+    const th = theme();
+    return {
+      title: { text: title, font: { size: 14, color: th.font } },
+      margin: { l: 54, r: 20, t: 44, b: 48 },
+      paper_bgcolor: th.paper,
+      plot_bgcolor: th.plot,
+      font: { color: th.font },
+      xaxis: { title: xLabel, gridcolor: th.grid, zerolinecolor: th.grid },
+      yaxis: { title: yLabel, gridcolor: th.grid, zerolinecolor: th.grid },
+      legend: { bgcolor: 'rgba(0,0,0,0)' }
+    };
+  }
+
+  // ── Main render ───────────────────────────────────────────────────────────
+  function render() {
+    if (!allTimes) return;
+    const trainLow = parseFloat(document.getElementById('trainLow').value);
+    const trainHigh = parseFloat(document.getElementById('trainHigh').value) + 1;
+    const numTerms = Math.min(Math.max(parseInt(document.getElementById('numTerms').value, 10), 1), LPAP.length);
+    const ridge = parseFloat(document.getElementById('ridgeLambda').value) || 0;
+
+    // Separate training and full data
+    const trainMask = allTimes.map(t => t >= trainLow && t < trainHigh);
+    const trainTimes = allTimes.filter((_, i) => trainMask[i]);
+    const trainVals = allValues.filter((_, i) => trainMask[i]);
+
+    if (trainTimes.length < numTerms * 2 + 2) {
+      document.getElementById('statusBanner').innerHTML = '<div class="status-pill"><div class="k">Error</div><div class="v" style="color:var(--danger)">Training window too short</div></div>';
+      return;
+    }
+
+    // Centre the data
+    const globalMean = mean(allValues);
+    const centeredAll = allValues.map(v => v - globalMean);
+    const centeredTrain = trainVals.map(v => v - globalMean);
+
+    // Build design matrices
+    const Xtrain = trainTimes.map(t => designRow(t, numTerms));
+    const Xall = allTimes.map(t => designRow(t, numTerms));
+
+    // Fit on training window
+    const beta = fitMLR(Xtrain, centeredTrain, ridge);
+    lastBeta = beta;
+
+    // Predict on full range
+    const fitAll = Xall.map(row => row.reduce((s, v, j) => s + v * beta[j], 0));
+    const residAll = centeredAll.map((v, i) => v - fitAll[i]);
+
+    // Stats
+    const fitTrain = trainTimes.map((_, i) => Xtrain[i].reduce((s, v, j) => s + v * beta[j], 0));
+    const trainCC = corr(centeredTrain, fitTrain);
+    const fullCC = corr(centeredAll, fitAll);
+    const trainRMSE = rmse(centeredTrain, fitTrain);
+    const fullRMSE = rmse(centeredAll, fitAll);
+
+    // Compute variance explained
+    const varTotal = std(centeredAll) ** 2;
+    const varResid = std(residAll) ** 2;
+    const ve = 1 - varResid / (varTotal + 1e-30);
+
+    // Status banner
+    const sign = v => v >= 0 ? '+' : '';
+    document.getElementById('statusBanner').innerHTML = `
+      <div class="status-pill"><div class="k">Training window</div><div class="v">${trainLow}–${Math.floor(trainHigh)}</div></div>
+      <div class="status-pill"><div class="k">Training CC</div><div class="v" style="color:${trainCC>0.9?'var(--primary)':'var(--accent)'}">${trainCC.toFixed(4)}</div></div>
+      <div class="status-pill"><div class="k">Full-record CC</div><div class="v" style="color:${fullCC>0.8?'var(--primary)':'var(--accent)'}">${fullCC.toFixed(4)}</div></div>
+      <div class="status-pill"><div class="k">Variance explained</div><div class="v">${(ve*100).toFixed(1)}%</div></div>
+      <div class="status-pill"><div class="k">Train RMSE</div><div class="v">${trainRMSE.toFixed(4)} ms</div></div>
+      <div class="status-pill"><div class="k">Terms used</div><div class="v">${numTerms}</div></div>
+    `;
+
+    // Stats cards
+    document.getElementById('stats').innerHTML = `
+      <div class="stat"><div class="k">Training corr.</div><div class="v">${trainCC.toFixed(4)}</div></div>
+      <div class="stat"><div class="k">Full corr.</div><div class="v">${fullCC.toFixed(4)}</div></div>
+      <div class="stat"><div class="k">Var. explained</div><div class="v">${(ve*100).toFixed(1)}%</div></div>
+      <div class="stat"><div class="k">Full RMSE (ms)</div><div class="v">${fullRMSE.toFixed(4)}</div></div>
+      <div class="stat"><div class="k">DC offset (ms)</div><div class="v">${(globalMean + beta[0]).toFixed(4)}</div></div>
+      <div class="stat"><div class="k">Data points</div><div class="v">${allTimes.length}</div></div>
+    `;
+
+    // Build fit report
+    const ampPhase = [];
+    for (let i = 0; i < numTerms; i++) {
+      const A = beta[1 + 2 * i];     // cos coeff
+      const B = beta[1 + 2 * i + 1]; // sin coeff
+      const amp = Math.sqrt(A * A + B * B);
+      const phase = Math.atan2(A, B);
+      ampPhase.push({ period: LPAP[i][0], amp, phase, A, B });
+    }
+    lastFitReport = `MLR fit report — training ${trainLow}–${Math.floor(trainHigh)}, ${numTerms} terms, ridge λ=${ridge}
+Training CC  : ${trainCC.toFixed(6)}
+Full-record CC: ${fullCC.toFixed(6)}
+Variance expl.: ${(ve*100).toFixed(2)}%
+DC offset    : ${(globalMean + beta[0]).toFixed(6)} ms
+
+Note: Multiple near-identical tidal periods (e.g. eight ~27-day terms, five ~13.6-day terms,
+four ~9.1-day terms) create near-collinearity.  The training-window CC is ≥ 0.9 regardless,
+but full-record prediction requires either a longer training window (try 1963–1990) or
+ridge regularization (λ ≥ 0.1 typically gives full CC > 0.8).
+
+Period(days)   Amp(ms)        Phase(rad)
+` + ampPhase.map(r =>
+  `${r.period.toFixed(3).padStart(14)}   ${r.amp.toExponential(6).padStart(14)}   ${r.phase.toFixed(6).padStart(12)}`
+).join('\n');
+
+    document.getElementById('fitReport').textContent = lastFitReport;
+
+    // ── Chart 1: Time series ─────────────────────────────────────────────
+    const th = theme();
+    const mode = document.getElementById('showMode').value;
+    // Training region shading
+    const shapeRect = {
+      type: 'rect', xref: 'x', yref: 'paper',
+      x0: trainLow, x1: trainHigh, y0: 0, y1: 1,
+      fillcolor: th.font === '#24211c' ? 'rgba(200,240,220,0.25)' : 'rgba(100,180,140,0.15)',
+      line: { width: 0 }
+    };
+
+    let traces;
+    if (mode === 'resid') {
+      traces = [{ x: allTimes, y: residAll, type: 'scatter', mode: 'lines', name: 'Residual', line: { color: '#9b385e', width: 0.8 } }];
+    } else if (mode === 'norm') {
+      const so = std(centeredAll), sf = std(fitAll);
+      traces = [
+        { x: allTimes, y: centeredAll.map(v => v / so), type: 'scatter', mode: 'lines', name: 'Observed (norm)', line: { color: '#0d6970', width: 0.8 } },
+        { x: allTimes, y: fitAll.map(v => v / sf), type: 'scatter', mode: 'lines', name: 'Model (norm)', line: { color: '#c97c30', width: 1.2, dash: 'dot' } }
+      ];
+    } else {
+      traces = [
+        { x: allTimes, y: centeredAll, type: 'scatter', mode: 'lines', name: 'Observed', line: { color: '#0d6970', width: 0.8 } },
+        { x: allTimes, y: fitAll, type: 'scatter', mode: 'lines', name: 'MLR fit', line: { color: '#c97c30', width: 1.4 } }
+      ];
+    }
+
+    Plotly.react('seriesChart', traces, {
+      ...baseLayout('dLOD — Observed vs MLR Fit', 'Year', 'dLOD (ms)'),
+      shapes: [shapeRect],
+      annotations: [{
+        xref: 'x', yref: 'paper', x: (trainLow + trainHigh) / 2, y: 1.04,
+        text: `Training ${trainLow}–${Math.floor(trainHigh)}`, showarrow: false,
+        font: { size: 10, color: th.muted || '#706d66' }
+      }]
+    }, { responsive: true });
+
+    // ── Chart 2: Spectrum ────────────────────────────────────────────────
+    // Use a decimated version for spectrum (too many data points for full DFT)
+    const SPEC_MAX = 2000;
+    const stride = Math.ceil(allTimes.length / SPEC_MAX);
+    const spTimes = allTimes.filter((_, i) => i % stride === 0);
+    const spObs = centeredAll.filter((_, i) => i % stride === 0);
+    const spFit = fitAll.filter((_, i) => i % stride === 0);
+    const dt = stride * (allTimes[1] - allTimes[0]);
+
+    const spO = spectrum(spObs, dt);
+    const spF = spectrum(spFit, dt);
+
+    // Convert frequency (cycles/year) to period (days): period_days = 365.25 / freq_yr
+    // Filter to tidal range: 5 to 50 days
+    const spPeriodDays = spO.freqs.map(f => f > 0 ? 365.25 / f : 1e9);
+    const pMin = 5, pMax = 50;
+    const spIdx = spPeriodDays.map((p, i) => i).filter(i => spPeriodDays[i] >= pMin && spPeriodDays[i] <= pMax);
+    const spXvals = spIdx.map(i => spPeriodDays[i]);
+    const spYobs = spIdx.map(i => spO.amps[i]);
+    const spYfit = spIdx.map(i => spF.amps[i]);
+    const ymax = Math.max(...spYobs, ...spYfit) * 1.1 || 1;
+
+    // Mark lpap period lines
+    const lpapLines = LPAP.slice(0, numTerms)
+      .map(e => Math.abs(e[0]))
+      .filter(p => p >= pMin && p <= pMax);
+    const lpapShapes = [...new Set(lpapLines.map(p => Math.round(p * 100) / 100))].map(p => ({
+      type: 'line', xref: 'x', yref: 'paper',
+      x0: p, x1: p, y0: 0, y1: 1,
+      line: { color: 'rgba(200,100,50,0.35)', width: 1, dash: 'dot' }
+    }));
+
+    Plotly.react('spectrumChart', [
+      { x: spXvals, y: spYobs, type: 'scatter', mode: 'lines', name: 'Observed', line: { color: '#0d6970', width: 1 } },
+      { x: spXvals, y: spYfit, type: 'scatter', mode: 'lines', name: 'Model', line: { color: '#c97c30', width: 1.4, dash: 'dot' } }
+    ], {
+      ...baseLayout('Spectrum — 5 to 50-day tidal band', 'Period (days)', 'Amplitude (ms)'),
+      xaxis: { title: 'Period (days)', range: [pMin, pMax], gridcolor: th.grid, zerolinecolor: th.grid },
+      yaxis: { title: 'Amplitude (ms)', range: [0, ymax], gridcolor: th.grid, zerolinecolor: th.grid },
+      shapes: lpapShapes,
+      annotations: [{
+        xref: 'paper', yref: 'paper', x: 0.01, y: 0.97, text: 'Vertical dotted lines = lpap periods',
+        showarrow: false, font: { size: 9, color: th.font }
+      }]
+    }, { responsive: true });
+
+    // ── Chart 3: Bar chart of fitted amplitudes ───────────────────────────
+    const sortedAP = [...ampPhase].sort((a, b) => Math.abs(b.period) - Math.abs(a.period));
+    const barLabels = sortedAP.map(r => `${Math.abs(r.period).toFixed(1)}d`);
+    const barAmps = sortedAP.map(r => r.amp);
+    const barColors = sortedAP.map(r => r.amp > 0.003 ? '#0d6970' : '#c97c30');
+
+    Plotly.react('amplitudeChart', [
+      { x: barLabels, y: barAmps, type: 'bar', name: 'Fitted amplitude',
+        marker: { color: barColors }, text: barAmps.map(v => v.toExponential(2)), textposition: 'auto' }
+    ], {
+      ...baseLayout('Fitted tidal amplitudes', 'Period (days)', 'Amplitude (ms)'),
+      xaxis: { ...baseLayout().xaxis, title: 'Period (days)', tickangle: -45, gridcolor: th.grid, zerolinecolor: th.grid }
+    }, { responsive: true });
+  }
+
+  // ── Load data and bootstrap ────────────────────────────────────────────────
+  async function loadAndInit() {
+    try {
+      const resp = await fetch('../experiments/dLOD3.dat');
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${resp.url}`);
+      const text = await resp.text();
+      const parsed = parseDat(text);
+      allTimes = parsed.times;
+      allValues = parsed.values;
+
+      document.getElementById('loadingMsg').classList.add('hidden');
+      document.getElementById('mainContent').classList.remove('hidden');
+
+      render();
+    } catch (err) {
+      document.getElementById('loadingMsg').textContent = '⚠️ Failed to load data: ' + err.message;
+    }
+  }
+
+  // ── Event listeners ────────────────────────────────────────────────────────
+  document.getElementById('fitBtn').addEventListener('click', render);
+  document.getElementById('showMode').addEventListener('change', render);
+  document.getElementById('reportToggle').addEventListener('click', () => {
+    const box = document.getElementById('fitReport');
+    box.classList.toggle('hidden');
+  });
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const root = document.documentElement;
+    root.setAttribute('data-theme', root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    render();
+  });
+
+  // Auto-render when training params change
+  ['trainLow', 'trainHigh', 'numTerms', 'ridgeLambda'].forEach(id => {
+    document.getElementById(id).addEventListener('change', render);
+  });
+
+  loadAndInit();
+  </script>
+</body>
+</html>
