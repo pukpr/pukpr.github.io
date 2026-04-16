@@ -245,7 +245,7 @@ permalink: /
         <div class="link-item"><a href="https://azimuth-project.github.io" target="_blank" rel="noopener noreferrer">Azimuth Project climate modeling</a><span class="link-meta">Collaboration site</span></div>
         <div class="link-item"><a href="https://www.realclimate.org/" target="_blank" rel="noopener noreferrer">Real Climate </a><span class="link-meta">Blog & Comments</span></div>
         <div class="link-item"><a href="https://twitter.com/whut" target="_blank" rel="noopener noreferrer">@WHUT</a><span class="link-meta">Twitter</span></div>
-        <div class="link-item"><a href="https://bsky.app/profile/pukite.com" target="_blank" rel="noopener noreferrer">@Wukite.com</a><span class="link-meta">BlueSky</span>
+        <div class="link-item"><a href="https://bsky.app/profile/pukite.com" target="_blank" rel="noopener noreferrer">@pukite.com</a><span class="link-meta">BlueSky</span>
           <div class="sub-links">
              <a href="https://bsky.app/profile/did:plc:2ge3m52s47jdba642nmukk3q/feed/peakoil" target="_blank" rel="noopener noreferrer">Peak Oil feed</a>
              <a href="https://bsky.app/profile/did:plc:2ge3m52s47jdba642nmukk3q/feed/climate_cycles" target="_blank" rel="noopener noreferrer">Climate Cycle feed</a>
