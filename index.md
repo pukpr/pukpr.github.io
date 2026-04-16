@@ -244,8 +244,14 @@ permalink: /
       <div class="link-list">
         <div class="link-item"><a href="https://azimuth-project.github.io" target="_blank" rel="noopener noreferrer">Azimuth Project climate modeling</a><span class="link-meta">Collaboration site</span></div>
         <div class="link-item"><a href="https://www.realclimate.org/" target="_blank" rel="noopener noreferrer">Real Climate </a><span class="link-meta">Blog & Comments</span></div>
-        <div class="link-item"><a href="https://bsky.app/profile/did:plc:2ge3m52s47jdba642nmukk3q/feed/peakoil" target="_blank" rel="noopener noreferrer">Peak Oil posts</a><span class="link-meta">Bluesky Peak Oil feed</span></div>
-        <div class="link-item"><a href="https://bsky.app/profile/did:plc:2ge3m52s47jdba642nmukk3q/feed/climate_cycles" target="_blank" rel="noopener noreferrer">Climate Cycle posts</a><span class="link-meta">Bluesky Peak Oil feed</span></div>
+        <div class="link-item">
+          <div class="link-cluster">
+             <a href="https://bsky.app/profile/did:plc:2ge3m52s47jdba642nmukk3q/feed/peakoil" target="_blank" rel="noopener noreferrer">Peak Oil posts</a>
+             <a href="https://bsky.app/profile/did:plc:2ge3m52s47jdba642nmukk3q/feed/climate_cycles" target="_blank" rel="noopener noreferrer">Climate Cycle posts</a>
+             <a href="https://bsky.app/profile/did:plc:2ge3m52s47jdba642nmukk3q/feed/copernicus" target="_blank" rel="noopener noreferrer">Symbolic Regression posts</a>
+          </div>
+          <span class="link-meta">Bluesky Peak Oil feed</span>
+        </div>
       </div>
     </article>
   </div>
@@ -282,11 +288,6 @@ permalink: /
       </div>
     <div class="artifact-item">
       <div class="artifact-index">5</div>
-      <a href="https://mobjectivist.blogspot.com/2020/03/mathematical-geoenergy.html" target="_blank" rel="noopener noreferrer">Mathematical Geoenergy mirror archive</a>
-      <span>Archive mirror</span>
-      </div>
-    <div class="artifact-item">
-      <div class="artifact-index">6</div>
       <a href="https://geoenergymath.com/2026/04/11/gem-lte-modeling/" target="_blank" rel="noopener noreferrer">February 2026 GEM-LTE mean sea level and climate index cross-validation archive</a>
       <span>Results archive</span>
       </div>
