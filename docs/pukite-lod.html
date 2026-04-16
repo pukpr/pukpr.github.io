@@ -86,7 +86,7 @@
           <input type="number" id="numTerms" value="31" min="1" max="31" step="1" />
         </div>
         <div class="control">
-          <label for="ridgeLambda">Ridge regularisation λ (0 = none) <span class="value" id="ridgeLambdaVal"></span></label>
+          <label for="ridgeLambda">Ridge regularization λ (0 = none) <span class="value" id="ridgeLambdaVal"></span></label>
           <select id="ridgeLambda">
             <option value="0">0 — none (may overfit)</option>
             <option value="0.001">0.001 — light</option>
@@ -224,7 +224,7 @@
   }
 
   // ── Multiple Linear Regression via normal equations (with optional ridge) ─
-  // X: Array of row-arrays [N x p]; y: Array [N]; ridge: regularisation scalar
+  // X: Array of row-arrays [N x p]; y: Array [N]; ridge: regularization scalar
   // Returns: beta [p], using (X^T X + ridge * I) beta = X^T y
   function fitMLR(X, y, ridge) {
     const n = X.length, p = X[0].length;
@@ -237,7 +237,7 @@
       }
     }
     for (let j = 0; j < p; j++) for (let k = 0; k < j; k++) XtX[j][k] = XtX[k][j];
-    // Tikhonov / ridge regularisation (relative to matrix scale)
+    // Tikhonov / ridge regularization (relative to matrix scale)
     const traceMean = XtX.reduce((s, row, i) => s + row[i], 0) / p;
     const lam = (ridge || 0) * traceMean;
     if (lam > 0) for (let i = 0; i < p; i++) XtX[i][i] += lam;
@@ -407,7 +407,7 @@ DC offset    : ${(globalMean + beta[0]).toFixed(6)} ms
 Note: Multiple near-identical tidal periods (e.g. eight ~27-day terms, five ~13.6-day terms,
 four ~9.1-day terms) create near-collinearity.  The training-window CC is ≥ 0.9 regardless,
 but full-record prediction requires either a longer training window (try 1963–1990) or
-ridge regularisation (λ ≥ 0.1 typically gives full CC > 0.8).
+ridge regularization (λ ≥ 0.1 typically gives full CC > 0.8).
 
 Period(days)   Amp(ms)        Phase(rad)
 ` + ampPhase.map(r =>
