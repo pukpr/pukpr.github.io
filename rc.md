@@ -1,144 +1,177 @@
-# RealClimate `@whut` comment archive: argument categories supporting Pukite-style models
+# RealClimate `@whut` archive: argument categories in Pukite's model proposals
 
-This note is based on `output/realclimate_whut_comments.json` (2,499 comments, dated 2004-2005). The archive does **not** contain a fully articulated later-period Pukite model such as the repo's more explicit lunar/ENSO/QBO/LTE work. What it *does* contain is a recurring set of arguments that look like the conceptual groundwork for those later models: externally forced variability, lagged ocean response, oscillatory climate modes, and skepticism toward coarse forcing/accounting in mainstream GCM discussions.
+This note is based on the **exact-author** corpus in `output/realclimate_whut_comments.json` and `output/realclimate_whut_comments.md`, not the earlier over-collected archive. The current corpus contains **931 comments** from 2016-2026, almost all under `Paul Pukite (@whut)`, with a few `Paul Pukite` / `Paul Pukite (@WHUT)` variants.
 
-The categories below are **overlapping heuristic buckets**, not mutually exclusive classes.
+All comment references below point into the local archive: `output/realclimate_whut_comments.md`.
 
-Comment numbers below link into `output/realclimate_whut_comments.md`, using the original RealClimate comment ID as the anchor.
+## Short version
 
-## 1. Solar-cloud amplification / natural variability
+The recurring model package is:
 
-**Approximate footprint:** 352 comments
+1. **ENSO, QBO, and related indices are not primarily chaotic autonomous oscillators.**
+2. **They are better treated as forced, non-autonomous responses to lunisolar/tidal inputs.**
+3. **The observable patterns are standing-wave or sloshing behaviors constrained by equatorial geometry and boundary conditions.**
+4. **The right way to test these models is historical cross-validation, not just waiting years for forward predictions.**
+5. **The same forcing logic may extend to mean sea level, AMO, delta-LOD, Chandler wobble, and other geophysical indices.**
 
-This is the clearest recurring argument family. The idea is that solar influence is likely understated if models treat it mainly as top-of-atmosphere irradiance changes while neglecting amplification pathways through the stratosphere, jet-stream shifts, cloud cover, and ocean-atmosphere circulation.
+## 1. Forced-response view of ENSO and QBO
 
-### Core claims
-
-- Solar variability should not be reduced to direct TSI change alone.
-- UV changes in the stratosphere may alter circulation, which then alters low-cloud cover.
-- Cloud-cover changes can amplify the climatic effect of solar variability beyond the raw irradiance perturbation.
-- If past climate variability was larger than standard reconstructions suggest, then some of that variability may belong to solar-driven natural variability rather than greenhouse forcing.
-
-### Representative comments
-
-- **[Comment 60](output/realclimate_whut_comments.md#comment-60)** argues for a solar-UV -> jet-stream -> low-cloud pathway and cites a solar/cloud paper directly.
-- **[Comment 620](output/realclimate_whut_comments.md#comment-620)** quantifies the possibility that cloud changes could magnify solar forcing by a factor of roughly 4-5 relative to insolation alone.
-- **[Comment 633](output/realclimate_whut_comments.md#comment-633)** sharpens the mechanism: solar acts more through the tropical/stratospheric route, whereas greenhouse gases act differently in latitude and vertical structure.
-- **[Comment 1374](output/realclimate_whut_comments.md#comment-1374)** extends the same line of thought into paleoclimate attribution, arguing that stronger natural variability weakens the case for high greenhouse sensitivity.
-
-### Why this matters for later Pukite-style modeling
-
-This is an argument for **structured external forcing** and for **amplified climatic response through intermediate dynamics**, rather than a simple one-for-one forcing-response picture. It fits the later habit of looking for phase-sensitive, frequency-sensitive, or indirectly amplified responses.
-
-## 2. Orbital-ocean-carbon lag / paleoclimate feedback sequencing
-
-**Approximate footprint:** 176 comments
-
-These comments treat paleoclimate changes as a sequence: orbital forcing initiates change, the ocean responds with a lag, biology and stratification alter carbon uptake, and atmospheric CO2 then behaves as a delayed amplifier rather than the sole initiator.
+This is the most persistent claim in the archive. Pukite repeatedly argues that ENSO and QBO should not be modeled as self-excited internal oscillators that spontaneously emerge from a chaotic background. Instead, they should be treated more like tides: externally forced, phase-sensitive responses.
 
 ### Core claims
 
-- Milankovitch/orbital forcing can start glacial termination without CO2 being the first mover.
-- Ocean stratification and reduced vertical mixing can cut phytoplankton productivity and reduce carbon drawdown.
-- CO2 can therefore rise as a delayed feedback after an externally forced ocean-state change.
-- Long lags in Vostok-style records are used to argue against CO2 as the primary trigger of glacial onsets and terminations.
+- ENSO and QBO are **non-autonomous** systems.
+- Their apparent irregularity reflects complicated forcing and response, not irreducible chaos.
+- Mainstream GCM treatments too often assume autonomous oscillation where explicit forcing should be included.
 
 ### Representative comments
 
-- **[Comment 56](output/realclimate_whut_comments.md#comment-56)** lays out a proto-mechanistic lag model: orbital forcing -> weaker zonal winds -> less mixing/upwelling -> less phytoplankton carbon fixation -> atmospheric CO2 increase.
-- **[Comment 69](output/realclimate_whut_comments.md#comment-69)** uses Vostok-style lag structure to argue that CO2 is not the dominant initiator of glacial/interglacial transitions.
-- **[Comment 78](output/realclimate_whut_comments.md#comment-78)** frames warmer oceans as a delayed source of additional water-vapor feedback.
+- [Comment 652930](output/realclimate_whut_comments.md#comment-652930) says QBO is likely forced by seasonally aliased monthly tidal cycles and argues that both QBO and ENSO need explicit forcing inputs.
+- [Comment 660487](output/realclimate_whut_comments.md#comment-660487) argues that ENSO has deterministic properties and cites signal-processing work against the "completely unpredictable" framing.
+- [Comment 682647](output/realclimate_whut_comments.md#comment-682647) explicitly compares ENSO to ocean tides and says boundary conditions and forcing matter more than butterfly-effect sensitivity.
+- [Comment 686879](output/realclimate_whut_comments.md#comment-686879) says ENSO should be tested as a deterministic process by feeding in lunisolar forcing directly.
 
-### Why this matters for later Pukite-style modeling
+### Interpretation
 
-This is the archive's strongest evidence for a **lagged, nonlinear, multi-stage response model**: external periodic forcing first, delayed ocean/biogeochemical adjustment second, atmospheric amplification third.
+The central modeling move is to replace **internal variability first** with **forced response first**. That is the conceptual bridge connecting the RealClimate comments to the later LTE / reduced-order modeling work elsewhere in this repo.
 
-## 3. Coupled ocean-atmosphere oscillations / threshold and phase modulation
+## 2. Lunisolar and tidal forcing as the candidate driver
 
-**Approximate footprint:** 207 comments
-
-Another recurring theme is that climate variability is best understood through oscillatory modes and circulation regimes rather than through smooth trend lines alone.
+Pukite's preferred forcing is not vague "natural variability." It is much more specific: **lunisolar gravitational/tidal forcing**, often acting through thermocline motion, subsurface waves, or seasonally aliased harmonics.
 
 ### Core claims
 
-- Seasonal/interannual forecast skill often depends heavily on oscillatory modes such as ENSO.
-- Changes in climate may appear not just as level shifts but as changes in **frequency, amplitude, duration, or phase** of known oscillations.
-- Thermohaline circulation shifts and atmosphere-ocean-cryosphere coupling can generate threshold-like reorganizations.
-- Observational records may be too short to recognize slow regime changes or emerging oscillatory modes.
+- QBO can be explained by seasonally aliased lunar tidal forcing.
+- ENSO switching is linked to subsurface waves and tidal forcing.
+- Lunar/solar cycles are measurable in other geophysical observables such as delta-LOD.
+- The thermocline is the especially sensitive part of the ocean-atmosphere system.
 
 ### Representative comments
 
-- **[Comments 579](output/realclimate_whut_comments.md#comment-579)** and **[582](output/realclimate_whut_comments.md#comment-582)** quote NOAA CPC material stating that long-lead forecast skill depends heavily on ENSO.
-- **[Comment 1305](output/realclimate_whut_comments.md#comment-1305)** is especially important: it argues that climate shifts may show up as changes in the **frequency and amplitude** of AO/NAO/ENSO-like behavior, not only as threshold crossings.
+- [Comment 660635](output/realclimate_whut_comments.md#comment-660635) lays out the QBO case most explicitly: wind acceleration, latitudinal displacement tied to tidal elevation, and seasonal aliasing of lunar tractive forces to match the observed QBO period.
+- [Comment 680663](output/realclimate_whut_comments.md#comment-680663) says lunisolar gravitational forcing is emerging as a mechanism for ENSO and other flow patterns.
+- [Comment 721359](output/realclimate_whut_comments.md#comment-721359) cites JPL work on lunar tidal forcing in ocean winds, rainfall, OLR, wave height, and tropical instability waves.
+- [Comment 760628](output/realclimate_whut_comments.md#comment-760628) argues that delta-LOD shows a faithful lunar-cycle response, including the 18.6-year nodal envelope.
+- [Comment 788212](output/realclimate_whut_comments.md#comment-788212) ties AMO/rotation-rate variations to the 14.765-day Msf tidal factor and quotes a Perigaud/JPL line of argument.
 
-### Why this matters for later Pukite-style modeling
+### Interpretation
 
-This is very close in spirit to later reduced-order models that focus on **oscillation**, **phase**, **frequency modulation**, and basin-scale coupling. Even though the later lunar/tidal formalism is not yet explicit here, the conceptual focus already is.
+This is not a generic "the Moon matters somehow" position. The comments repeatedly narrow the mechanism to **specific harmonic tidal factors**, **aliasing**, **subsurface thermocline response**, and **angular-momentum exchange**.
 
-## 4. Model critique / forcing-accounting / validation
+## 3. ENSO and QBO as standing-wave / sloshing / waveguide phenomena
 
-**Approximate footprint:** 489 comments
-
-This is less a physical mechanism than a repeated meta-argument: standard climate-model discussions may be mis-specified because they collapse structure that matters.
+Another strong theme is that these climate behaviors should be understood geometrically. Pukite often frames ENSO as a Pacific standing wave or sloshing thermocline dipole, and QBO as a highly symmetric equatorial behavior with fewer degrees of freedom than people assume.
 
 ### Core claims
 
-- Annual-mean forcing inputs may hide seasonal, orbital, or hemispheric structure.
-- "Forcing" charts are useful bookkeeping devices but can be mistaken for a complete cause-and-effect decomposition.
-- The split between forcing and feedback may obscure natural amplification pathways.
-- Model validation should be tied to observable skill, not only to internal consistency.
+- ENSO is a **standing-wave** or **sloshing dipole** tied to Pacific boundary conditions.
+- QBO is simpler than ENSO because it has stronger symmetry and fewer incommensurate forcings.
+- Equatorial structure can insulate these modes from turbulence.
+- Hemispheric asymmetry and nodal crossings matter for how forcing appears.
 
 ### Representative comments
 
-- **[Comment 1183](output/realclimate_whut_comments.md#comment-1183)** questions whether annual-mean treatment of solar and greenhouse forcing suppresses seasonality, orbital structure, and hemispheric gradients.
-- **[Comment 2013](output/realclimate_whut_comments.md#comment-2013)** asks whether CO2 forcing estimates cleanly separate anthropogenic increments from natural greenhouse response under solar forcing.
+- [Comment 652930](output/realclimate_whut_comments.md#comment-652930) calls ENSO a single standing-wave behavior over the equatorial Pacific.
+- [Comment 686879](output/realclimate_whut_comments.md#comment-686879) describes ENSO as a sloshing dipole in the equatorial Pacific thermocline.
+- [Comment 704565](output/realclimate_whut_comments.md#comment-704565) argues that ENSO and QBO are standing waves protected by equatorial/topological structure rather than dominated by turbulence.
+- [Comment 820565](output/realclimate_whut_comments.md#comment-820565) says an idealized QBO can be captured by a mathematical construction with the right topology, then mapped to empirical observations.
 
-### Why this matters for later Pukite-style modeling
+### Interpretation
 
-These comments create room for alternative models by arguing that mainstream framing may be **too averaged**, **too aggregated**, or **too weakly tied to identifiable oscillatory structure**.
+This is where the comments most clearly anticipate the repo's later emphasis on equatorial reduction, standing-wave structure, and low-order forced dynamics.
 
-## What the archive does **not** show clearly
+## 4. Model testing: machine learning, curve fitting, and cross-validation
 
-The archive is useful, but it is not a straight-line proof of the later repository models.
+Pukite is not arguing for a black-box model. The methodological preference is closer to: use machine learning or signal processing to discover candidate forcings, then validate reduced physical models by cross-validation on long time series.
 
-- It does **not** clearly present the later lunar nodal / tidal / LTE formalism.
-- Explicit **lunar** or **tidal** references are sparse and mostly incidental in this archive.
-- The archive is best read as **pre-formal scaffolding**: solar amplification, lagged ocean response, oscillatory climate structure, and objections to coarse forcing accounting.
+### Core claims
+
+- Machine learning is useful for discovering forcing terms or dead ends, not as a substitute for mechanism.
+- Curve fitting is acceptable when it extracts physical parameters rather than merely interpolating.
+- Historical **out-of-band cross-validation** is the right standard in Earth science where controlled experiments are impossible.
+- Overfitting is a risk, but the answer is stronger cross-validation, not abandoning reduced models.
+
+### Representative comments
+
+- [Comment 652930](output/realclimate_whut_comments.md#comment-652930) presents machine learning and data mining as tools for discovering QBO/ENSO forcings.
+- [Comment 743109](output/realclimate_whut_comments.md#comment-743109) describes cross-validation of a fluid-dynamics-based model of cyclic climate indices.
+- [Comment 788923](output/realclimate_whut_comments.md#comment-788923) says there is already enough data for detailed cross-validation and that the bottleneck is methodological adoption.
+- [Comment 792784](output/realclimate_whut_comments.md#comment-792784) describes train-on-one-interval, test-on-out-of-band intervals as the practical antidote to overfitting.
+- [Comment 793206](output/realclimate_whut_comments.md#comment-793206) argues that for slow oscillations like ENSO, validation by future prediction alone is too slow and must be supplemented by intensive cross-validation.
+
+### Interpretation
+
+This is important because the archive does **not** just say "fit cycles." It says: use structure-aware fits, discover forcing harmonics, and validate rigorously on held-out intervals.
+
+## 5. Extension to other observables: mean sea level, AMO, delta-LOD, Chandler wobble
+
+By the later comments, the same framework is being extended far beyond ENSO and QBO.
+
+### Core claims
+
+- Mean sea level residuals may encode tidal/common-mode forcing plus links to ENSO and NAO.
+- AMO may contain a tidal component.
+- Earth rotation and Chandler wobble provide cleaner geophysical evidence for torque/forcing.
+- A unified forcing picture may connect multiple geophysical indices.
+
+### Representative comments
+
+- [Comment 783391](output/realclimate_whut_comments.md#comment-783391) says Chandler wobble should be viewed as a forced response to lunar and solar nodal cycles.
+- [Comment 822693](output/realclimate_whut_comments.md#comment-822693) discusses mean sea level as a 19-year averaging problem because of tidal phase and amplitude cycles.
+- [Comment 837451](output/realclimate_whut_comments.md#comment-837451) describes cross-validating residual mean-sea-level oscillations at dozens of long-record ports.
+- [Comment 839465](output/realclimate_whut_comments.md#comment-839465) argues that multi-year sea-level oscillations and ocean indices can be unified by a common tidal-forcing mechanism.
+- [Comment 840971](output/realclimate_whut_comments.md#comment-840971) links internal waves, ENSO, sea-level variation, and NAO-correlated Baltic sea-level cycles in one forcing chain.
+
+### Interpretation
+
+The later comments broaden the proposal from "tidal forcing might matter for ENSO/QBO" to "a common forcing vocabulary may explain multiple coupled geophysical observables."
+
+## What the archive consistently opposes
+
+Across the corpus, Pukite is usually arguing against four opposing ideas:
+
+1. **ENSO/QBO are inherently chaotic and not worth deterministic modeling.**
+2. **Wind anomalies are the primary initiator rather than a downstream response.**
+3. **Tidal/lunar inputs are too weak or too slow to matter at interannual scales.**
+4. **Validation should rely mainly on future prediction rather than historical cross-validation.**
 
 ## Bottom line
 
-If you want the shortest synthesis, it is this:
+The corrected RealClimate corpus supports a much sharper summary than the earlier mistaken archive:
 
-1. **External periodic forcing matters.**
-2. **The ocean introduces lag, memory, and amplification.**
-3. **Climate change can appear as modulation of oscillations, not just as a trend.**
-4. **Mainstream forcing/accounting may hide structured mechanisms that reduced-order models can target directly.**
-
-That combination is the strongest through-line connecting these RealClimate comments to the kinds of models Pukite later develops elsewhere in this repo.
+1. **Pukite's core proposal is a forced-response model of interannual climate variability.**
+2. **The preferred forcing source is lunisolar/tidal, often acting through subsurface ocean dynamics.**
+3. **ENSO and QBO are treated as deterministic standing-wave or sloshing responses, not primarily chaotic autonomous oscillators.**
+4. **Cross-validation on long historical time series is his preferred validation standard.**
+5. **The same framework is repeatedly extended to sea level, AMO, delta-LOD, and Chandler wobble.**
 
 ## Bibliography of important links
 
-These are the links that matter most for reconstructing the argument structure in the archive. Some are old and may now be dead, but they are still the best indicators of what the commenter was using as support at the time.
+These are the external links that most clearly define the mature version of the model package described in the comments.
 
-| Link | Role in the argument |
+| Link | Why it matters |
 | --- | --- |
-| http://folk.uio.no/jegill/papers/2002GL015646.pdf | Most-cited support for the **solar irradiance -> low-cloud** correlation/amplification argument. Central to comments 60, 633, and 1374. |
-| http://cc.oulu.fi/~usoskin/personal/Sola2-PRL_published.pdf | Used to argue that recent solar activity was unusually high over long time scales, supporting the **enhanced natural variability** case. |
-| http://www.cpc.ncep.noaa.gov/products/predictions/long_range/tools.html | NOAA CPC long-lead tools page cited in comments 579/582 to show that seasonal forecast skill depends strongly on **ENSO**. |
-| http://www.giss.nasa.gov/data/simodel/efficacy/Fig.28.pdf | GISS forcings bar chart used in the archive's repeated **forcing-vs-feedback bookkeeping** critique. |
-| http://www.giss.nasa.gov/data/simodel/F_line.gif | GISS forcing time-series graphic used when questioning how solar and anthropogenic contributions are partitioned over time. |
-| http://home.scarlet.be/~ping5859/correlation.html | Used to argue for a near-linear historical CO2-temperature relation in the Vostok record. |
-| http://home.scarlet.be/~ping5859/co2_temp_ice.html | Used to argue that **CO2 lags temperature** and therefore is not the primary initiator of glacial transitions. |
-| http://www.gsfc.nasa.gov/topstory/20010712cloudcover.html | Regional/cloud-cover support link used to bolster the solar-cloud argument beyond the global paper above. |
-| http://www.erh.noaa.gov/box/effects.htm | Local/regional cloud-response example used in the same solar-cloud line of reasoning. |
-| http://www.grida.no/climate/ipcc_tar/wg2/196.htm | IPCC TAR vegetation chapter cited in a broader systems/feedback context when discussing biological response and carbon-cycle complexity. |
+| https://www.nature.com/articles/s41598-019-49678-w | The most-cited third-party support link in the archive: subsurface ocean waves and likely lunar tidal forcing for ENSO switching. |
+| https://agupubs.onlinelibrary.wiley.com/doi/10.1002/9781119434351.ch11 | Pukite's QBO chapter in *Mathematical Geoenergy*; cited as the long-form model for QBO. |
+| https://agupubs.onlinelibrary.wiley.com/doi/10.1002/9781119434351.ch12 | Pukite's ENSO chapter in *Mathematical Geoenergy*; cited as the long-form model for ENSO. |
+| https://esd.copernicus.org/preprints/esd-2020-74/ | "Unforced Variations should be a Forced Response"; used in comments on thermocline sensitivity and Chandler wobble forcing. |
+| https://geoenergymath.com/2024/03/25/proof-for-allowed-modes-of-an-ideal-qbo/ | Mature statement of the topological / allowed-modes argument for an idealized QBO. |
+| https://geoenergymath.com/2022/01/14/sea-level-height-as-a-proxy-for-enso/ | Repeatedly cited for using sea-level height as an ENSO proxy and for tying sea-level variability back to climate indices. |
+| https://pukite.substack.com/p/mean-sea-level-models | Used for the expanded mean-sea-level modeling program and the claim that tidal forcing synchronizes multiple observables. |
+| https://geoenergymath.com/2024/09/23/amo-and-the-mt-tide/ | Representative later link extending the same framework to AMO. |
+| https://geoenergymath.com/2024/11/10/lunar-torque-controls-all/ | Representative late-stage synthesis link for the broad torque/forcing view. |
+| https://github.com/pukpr/GEM-LTE | Code/data repository linked in later comments for the broader LTE-style modeling framework. |
 
-## Representative RealClimate thread anchors
+## Representative comment anchors
 
-These are the most useful comment URLs if you want to re-read the archive from the angle of model construction:
+If you want to re-read the archive in a high-signal order, start here:
 
-- https://www.realclimate.org/index.php/archives/2004/12/co2-in-ice-cores/#comment-56
-- https://www.realclimate.org/index.php/archives/2004/12/recent-warming-but-no-trend-in-galactic-cosmic-rays/#comment-60
-- https://www.realclimate.org/index.php/archives/2004/12/recent-warming-but-no-trend-in-galactic-cosmic-rays/#comment-633
-- https://www.realclimate.org/index.php/archives/2005/02/moberg-et-al-highly-variable-northern-hemisphere-temperatures/#comment-1305
-- https://www.realclimate.org/index.php/archives/2005/04/water-vapour-feedback-or-forcing/comment-page-2/#comment-2013
+- [Comment 652930](output/realclimate_whut_comments.md#comment-652930) — QBO tidal forcing, ENSO biennial forcing, non-autonomous systems, ML
+- [Comment 660635](output/realclimate_whut_comments.md#comment-660635) — compact QBO derivation and seasonal aliasing of lunar tractive forces
+- [Comment 682647](output/realclimate_whut_comments.md#comment-682647) — Hawkmoth vs Butterfly framing; ENSO as boundary-forced like tides
+- [Comment 686879](output/realclimate_whut_comments.md#comment-686879) — ENSO as deterministic sloshing thermocline dipole
+- [Comment 743109](output/realclimate_whut_comments.md#comment-743109) — cross-validation of cyclic climate-index models
+- [Comment 760628](output/realclimate_whut_comments.md#comment-760628) — delta-LOD and the 18.6-year nodal envelope
+- [Comment 783391](output/realclimate_whut_comments.md#comment-783391) — Chandler wobble as a forced response
+- [Comment 820565](output/realclimate_whut_comments.md#comment-820565) — allowed modes / topology argument for ideal QBO
+- [Comment 839465](output/realclimate_whut_comments.md#comment-839465) — mean sea level, tidal factors, and common-mode forcing
