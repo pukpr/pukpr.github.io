@@ -243,7 +243,11 @@ permalink: /
       </div>
       <div class="link-list">
         <div class="link-item"><a href="https://azimuth-project.github.io" target="_blank" rel="noopener noreferrer">Azimuth Project climate modeling</a><span class="link-meta">Collaboration site</span></div>
-        <div class="link-item"><a href="https://www.realclimate.org/" target="_blank" rel="noopener noreferrer">Real Climate </a><span class="link-meta">Blog & Comments</span></div>
+        <div class="link-item"><a href="https://www.realclimate.org/" target="_blank" rel="noopener noreferrer">Real Climate </a><span class="link-meta">Blog & Comments</span>
+          <div class="sub-links">
+             <a href="rc.md" target="_blank" rel="noopener noreferrer">meta analysis for @whut</a>
+          </div>
+        </div>
         <div class="link-item"><a href="https://twitter.com/whut" target="_blank" rel="noopener noreferrer">@WHUT</a><span class="link-meta">Twitter</span></div>
         <div class="link-item"><a href="https://bsky.app/profile/pukite.com" target="_blank" rel="noopener noreferrer">@pukite.com</a><span class="link-meta">BlueSky</span>
           <div class="sub-links">
