@@ -189,15 +189,22 @@ def save_markdown(comments: list[dict], path: Path) -> None:
         "",
         f"*{len(comments)} comment(s) found.*",
         "",
+        "*Sections are keyed by the original RealClimate comment ID so other docs can link to them reliably.*",
+        "",
         "---",
         "",
     ]
     for i, c in enumerate(comments, start=1):
+        comment_id = c.get("id", 0)
         date = c.get("date", "unknown date")
         url = c.get("post_url", BASE_URL)
         body = plain_text(c.get("content", {}).get("rendered", ""))
         lines += [
-            f"## Comment {i}",
+            f'<a id="comment-{comment_id}"></a>',
+            "",
+            f"## Comment {comment_id}",
+            "",
+            f"**Archive index:** {i}  ",
             "",
             f"**Date:** {date}  ",
             f"**URL:** <{url}>",
