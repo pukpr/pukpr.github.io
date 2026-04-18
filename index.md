@@ -4,7 +4,7 @@ title: Geoenergy Portal
 permalink: /
 ---
 
-<section class="hero" id="top" style="background-image:url('/assets/media/bg-villars.jpg'); background-size:cover; background-position:center; background-repeat:no-repeat;">
+<section class="hero" id="top" style="background-image:url('/assets/media/bg_villars.jpg'); background-size:cover; background-position:center; background-repeat:no-repeat;">
   <div class="hero-grid">
     <div class="hero-copy">
       <span class="eyebrow">Scientific workbench</span>
@@ -267,6 +267,8 @@ permalink: /
       </div>
       <div class="link-list">
         <div class="link-item"><a href="https://youtu.be/KHX6xBEcUcU" target="_blank" rel="noopener noreferrer">QBO</a><span class="link-meta">YouTube</span></div>
+        <div class="link-item"><a href="https://youtu.be/shorts/KSy8VkXizhs" target="_blank" rel="noopener noreferrer">Chandler wobble</a><span class="link-meta">YouTube</span></div>
+        <div class="link-item"><a href="https://youtu.be/MjhVm-Yz9XI" target="_blank" rel="noopener noreferrer">Laplace's tidal modulation</a><span class="link-meta">YouTube</span></div>
       </div>
     </article>
   
