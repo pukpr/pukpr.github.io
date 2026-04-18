@@ -4,7 +4,7 @@ title: Geoenergy Portal
 permalink: /
 ---
 
-<section class="hero" id="top" style="background-image:url('/assets/media/bg-villars.jpg');background-size:cover;background-repeat:no-repeat;">
+<section class="hero" id="top" style="background-image:url('/assets/media/bg-villars.jpg'); background-size:cover; background-position:center; background-repeat:no-repeat;">
   <div class="hero-grid">
     <div class="hero-copy">
       <span class="eyebrow">Scientific workbench</span>
@@ -262,10 +262,10 @@ permalink: /
     <article class="card">
       <div>
         <span class="card-kicker">Media</span>
-        <h3>Explanatory videos, etc</h3>
-        <p>adjacent sites</p>
+        <h3>Explanatory videos</h3>
+        <p>recorded simulations</p>
       </div>
-      <div class="link-list"
+      <div class="link-list">
         <div class="link-item"><a href="https://youtu.be/KHX6xBEcUcU" target="_blank" rel="noopener noreferrer">QBO</a><span class="link-meta">YouTube</span></div>
       </div>
     </article>
