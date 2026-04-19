@@ -267,7 +267,7 @@ permalink: /
       </div>
       <div class="link-list">
         <div class="link-item"><a href="https://youtu.be/KHX6xBEcUcU" target="_blank" rel="noopener noreferrer">QBO</a><span class="link-meta">YouTube</span></div>
-        <div class="link-item"><a href="https://youtu.be/shorts/KSy8VkXizhs" target="_blank" rel="noopener noreferrer">Chandler wobble</a><span class="link-meta">YouTube</span></div>
+        <div class="link-item"><a href="https://www.youtube.com/shorts/KSy8VkXizhs" target="_blank" rel="noopener noreferrer">Chandler wobble</a><span class="link-meta">YouTube</span></div>
         <div class="link-item"><a href="https://youtu.be/MjhVm-Yz9XI" target="_blank" rel="noopener noreferrer">Laplace's tidal modulation</a><span class="link-meta">YouTube</span></div>
       </div>
     </article>
