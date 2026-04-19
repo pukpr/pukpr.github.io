@@ -16,7 +16,7 @@ permalink: /
 
 <!-- Intricate wispy cirrus-cloud overlay: 40+ individual bezier strands in 4 Gaussian-blur layers,
      organised into 7 spatial clusters, all slanted ~45° (lower-left to upper-right). -->
-<svg xmlns="http://www.w3.org/2000/svg"
+<svg id="cirrus-bg" xmlns="http://www.w3.org/2000/svg"
      style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1"
      viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
   <defs>
@@ -96,6 +96,161 @@ permalink: /
     <path d="M1050,350 C1150,330 1280,310 1400,300"                    stroke-width="0.7" opacity="0.09"/>
     <path d="M-300,620 C-120,600 30,575 200,568"                       stroke-width="0.6" opacity="0.08"/>
   </g>
+</svg>
+
+<!-- Light-theme cartography map: Boundary Waters / Quetico style topo map background -->
+<svg id="map-bg" xmlns="http://www.w3.org/2000/svg"
+     style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1"
+     viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <!-- Fine grid pattern mimicking topo-map UTM grid -->
+    <pattern id="topo-grid" width="70" height="70" patternUnits="userSpaceOnUse">
+      <path d="M 70 0 L 0 0 0 70" fill="none" stroke="rgba(80,80,80,0.13)" stroke-width="0.5"/>
+    </pattern>
+    <!-- Forest hatch texture -->
+    <pattern id="forest-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="rgba(80,110,60,0.18)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- === Land base (parchment-green, like printed topo paper) === -->
+  <rect width="1400" height="900" fill="#eaede5"/>
+
+  <!-- === Forest / upland patches (slightly deeper green) === -->
+  <path d="M0,0 C120,20 280,10 420,40 C560,70 650,30 780,0 L1400,0 L1400,320
+           C1280,300 1150,330 1050,310 C920,285 820,340 700,320
+           C580,300 460,350 340,330 C220,310 100,360 0,340 Z"
+        fill="#d8e2ce" opacity="0.7"/>
+  <path d="M0,900 L0,600 C80,620 180,590 280,610 C380,630 480,600 580,615
+           C680,630 760,600 860,590 C960,580 1060,610 1160,595
+           C1260,580 1340,600 1400,590 L1400,900 Z"
+        fill="#d8e2ce" opacity="0.6"/>
+  <path d="M700,200 C750,180 840,190 900,220 C960,250 980,300 1040,310
+           C1100,320 1180,290 1220,260 C1260,230 1300,240 1340,270
+           L1400,280 L1400,450 C1340,440 1260,460 1180,450
+           C1100,440 1020,470 940,460 C860,450 780,480 700,460
+           C620,440 560,420 520,380 C480,340 500,280 540,250 C580,220 650,220 700,200 Z"
+        fill="#d4deca" opacity="0.65"/>
+
+  <!-- === Water bodies (light steel-blue, organic lake shapes) === -->
+
+  <!-- Quetico Lake – large, lower-left, elongated E-W -->
+  <path d="M0,660 C30,640 70,635 110,648 C150,661 175,650 210,642
+           C245,634 275,640 310,655 C345,670 370,660 400,648
+           C430,636 455,645 480,658 C505,671 520,680 510,700
+           C500,720 475,735 445,742 C415,749 385,740 355,750
+           C325,760 295,775 265,770 C235,765 205,780 175,775
+           C145,770 115,785 85,778 C55,771 25,760 0,750 Z"
+        fill="#bdd4e6" opacity="0.88"/>
+  <path d="M0,750 C40,755 80,768 120,772 C160,776 195,762 230,770
+           C265,778 300,790 335,785 C370,780 405,765 430,775
+           C455,785 470,800 460,820 C450,840 420,850 380,858
+           C340,866 290,860 250,870 C210,880 170,895 130,900
+           L0,900 Z"
+        fill="#bdd4e6" opacity="0.80"/>
+
+  <!-- Jean Lake – lower-centre -->
+  <path d="M520,720 C555,705 600,700 640,712 C680,724 710,718 745,705
+           C780,692 815,698 845,715 C875,732 890,755 875,772
+           C860,789 830,795 800,790 C770,785 745,795 715,800
+           C685,805 655,798 625,790 C595,782 565,790 540,778
+           C515,766 505,745 520,720 Z"
+        fill="#bdd4e6" opacity="0.85"/>
+
+  <!-- Kawnipi / upper-right lake complex -->
+  <path d="M920,280 C955,265 1000,260 1045,272 C1090,284 1120,278 1155,262
+           C1190,246 1230,252 1260,270 C1290,288 1310,310 1295,332
+           C1280,354 1250,360 1215,355 C1180,350 1155,365 1125,375
+           C1095,385 1060,378 1030,362 C1000,346 975,355 950,345
+           C925,335 905,315 920,280 Z"
+        fill="#bdd4e6" opacity="0.88"/>
+  <path d="M1100,360 C1130,350 1165,348 1200,360 C1235,372 1265,368 1295,355
+           L1340,348 C1370,342 1400,348 1400,348 L1400,430
+           C1370,435 1340,425 1310,430 C1280,435 1255,450 1220,445
+           C1185,440 1160,455 1130,448 C1100,441 1075,425 1070,405
+           C1065,385 1070,370 1100,360 Z"
+        fill="#bdd4e6" opacity="0.82"/>
+
+  <!-- Cirque Lake – left-centre -->
+  <path d="M65,430 C95,418 130,415 165,428 C200,441 225,435 255,420
+           C285,405 320,410 345,428 C370,446 375,470 358,488
+           C341,506 310,510 280,504 C250,498 225,512 195,518
+           C165,524 135,515 110,500 C85,485 60,470 65,430 Z"
+        fill="#bdd4e6" opacity="0.85"/>
+
+  <!-- Batchewaung / upper-left lake -->
+  <path d="M0,180 C35,165 75,160 110,175 C145,190 170,182 200,168
+           C230,154 262,160 285,178 C308,196 312,222 295,238
+           C278,254 250,257 220,250 C190,243 165,255 135,262
+           C105,269 70,260 40,248 C10,236 -5,215 0,180 Z"
+        fill="#bdd4e6" opacity="0.80"/>
+
+  <!-- Numerous small lakes / ponds (scattered) -->
+  <ellipse cx="460" cy="160" rx="48" ry="22" fill="#bdd4e6" opacity="0.75"/>
+  <ellipse cx="580" cy="240" rx="35" ry="18" fill="#bdd4e6" opacity="0.72"/>
+  <ellipse cx="670" cy="130" rx="55" ry="20" fill="#bdd4e6" opacity="0.75"/>
+  <ellipse cx="790" cy="195" rx="42" ry="25" fill="#bdd4e6" opacity="0.72"/>
+  <ellipse cx="860" cy="110" rx="38" ry="16" fill="#bdd4e6" opacity="0.70"/>
+  <ellipse cx="1000" cy="160" rx="50" ry="22" fill="#bdd4e6" opacity="0.75"/>
+  <ellipse cx="1110" cy="210" rx="30" ry="15" fill="#bdd4e6" opacity="0.70"/>
+  <ellipse cx="350" cy="520" rx="40" ry="19" fill="#bdd4e6" opacity="0.75"/>
+  <ellipse cx="460" cy="555" rx="28" ry="14" fill="#bdd4e6" opacity="0.70"/>
+  <ellipse cx="620" cy="490" rx="45" ry="20" fill="#bdd4e6" opacity="0.72"/>
+  <ellipse cx="730" cy="560" rx="36" ry="17" fill="#bdd4e6" opacity="0.72"/>
+  <ellipse cx="840" cy="490" rx="52" ry="22" fill="#bdd4e6" opacity="0.75"/>
+  <ellipse cx="960" cy="540" rx="38" ry="18" fill="#bdd4e6" opacity="0.72"/>
+  <ellipse cx="1060" cy="480" rx="44" ry="20" fill="#bdd4e6" opacity="0.74"/>
+  <ellipse cx="1180" cy="510" rx="32" ry="16" fill="#bdd4e6" opacity="0.70"/>
+  <ellipse cx="1290" cy="470" rx="48" ry="21" fill="#bdd4e6" opacity="0.73"/>
+  <ellipse cx="200" cy="310" rx="35" ry="16" fill="#bdd4e6" opacity="0.70"/>
+  <ellipse cx="310" cy="260" rx="28" ry="13" fill="#bdd4e6" opacity="0.68"/>
+  <ellipse cx="420" cy="340" rx="40" ry="18" fill="#bdd4e6" opacity="0.72"/>
+  <ellipse cx="580" cy="370" rx="30" ry="14" fill="#bdd4e6" opacity="0.70"/>
+  <ellipse cx="700" cy="390" rx="44" ry="18" fill="#bdd4e6" opacity="0.73"/>
+  <ellipse cx="1320" cy="620" rx="50" ry="22" fill="#bdd4e6" opacity="0.75"/>
+  <ellipse cx="1200" cy="660" rx="36" ry="16" fill="#bdd4e6" opacity="0.70"/>
+  <ellipse cx="1080" cy="620" rx="42" ry="18" fill="#bdd4e6" opacity="0.72"/>
+  <ellipse cx="950" cy="650" rx="30" ry="14" fill="#bdd4e6" opacity="0.68"/>
+
+  <!-- === Topographic contour lines (subtle brown-grey curves) === -->
+  <g fill="none" stroke="rgba(100,80,55,0.22)" stroke-width="0.8" stroke-linecap="round">
+    <path d="M0,80 C200,60 400,90 600,70 C800,50 1000,80 1200,65 C1300,58 1360,72 1400,68"/>
+    <path d="M0,120 C180,100 360,128 560,108 C760,88 960,118 1160,102 C1280,93 1360,108 1400,104"/>
+    <path d="M0,480 C160,460 340,490 520,472 C700,454 880,482 1060,465 C1200,452 1320,468 1400,462"/>
+    <path d="M0,560 C140,542 320,568 500,552 C680,536 860,562 1040,547 C1180,535 1300,549 1400,545"/>
+    <path d="M200,320 C320,305 460,328 600,312 C740,296 880,320 1020,306 C1140,294 1260,310 1380,304"/>
+    <path d="M100,380 C240,363 400,388 560,372 C720,356 900,380 1060,365 C1200,352 1320,367 1400,363"/>
+    <path d="M0,820 C180,804 380,828 580,812 C780,796 980,820 1180,806 C1300,797 1360,808 1400,806"/>
+    <path d="M0,860 C200,846 420,866 640,852 C860,838 1080,858 1300,846 L1400,844"/>
+  </g>
+
+  <!-- === Border dashes (US/Canada boundary) === -->
+  <path d="M0,95 C200,80 450,100 700,88 C950,76 1200,95 1400,85"
+        fill="none" stroke="rgba(180,30,30,0.55)" stroke-width="1.2"
+        stroke-dasharray="6,4"/>
+
+  <!-- === UTM grid overlay === -->
+  <rect width="1400" height="900" fill="url(#topo-grid)"/>
+
+  <!-- === Map label (very faint, mimics printed topo sheet text) === -->
+  <text x="340" y="640" font-family="serif" font-size="22" font-weight="bold"
+        fill="rgba(60,60,60,0.14)" letter-spacing="6" text-anchor="middle"
+        transform="rotate(-2,340,640)">Q U E T I C O</text>
+  <text x="700" y="665" font-family="serif" font-size="18"
+        fill="rgba(60,60,60,0.12)" letter-spacing="4" text-anchor="middle"
+        transform="rotate(-2,700,665)">P R O V I N C I A L</text>
+  <text x="1050" y="640" font-family="serif" font-size="22" font-weight="bold"
+        fill="rgba(60,60,60,0.14)" letter-spacing="6" text-anchor="middle"
+        transform="rotate(-2,1050,640)">P A R K</text>
+  <text x="160" y="745" font-family="serif" font-size="15"
+        fill="rgba(40,60,100,0.22)" letter-spacing="3" text-anchor="middle"
+        transform="rotate(-4,160,745)">QUETICO LAKE</text>
+  <text x="670" y="778" font-family="serif" font-size="13"
+        fill="rgba(40,60,100,0.20)" letter-spacing="2" text-anchor="middle"
+        transform="rotate(-2,670,778)">JEAN LAKE</text>
+  <text x="1095" y="330" font-family="serif" font-size="13"
+        fill="rgba(40,60,100,0.20)" letter-spacing="2" text-anchor="middle"
+        transform="rotate(-3,1095,330)">KAWNIPI LAKE</text>
 </svg>
 
 <section class="hero" id="top" style="background-image:url('/assets/media/bg_villars.jpg'); background-size:cover; background-position:center; background-repeat:no-repeat;">
