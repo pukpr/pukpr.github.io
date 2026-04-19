@@ -515,9 +515,11 @@ h3 {
   }
 }
 
-/* Theme-specific page backgrounds */
-#cirrus-bg { display: block; }
-#map-bg    { display: none; }
+/* Theme-specific page backgrounds.
+   Default (dark mode): show cirrus, hide map.
+   Light mode: hide cirrus, show map. */
+#cirrus-bg { display: block; }   /* dark-mode default */
+#map-bg    { display: none; }    /* dark-mode default */
 
 [data-theme="light"] #cirrus-bg { display: none; }
 [data-theme="light"] #map-bg    { display: block; }
