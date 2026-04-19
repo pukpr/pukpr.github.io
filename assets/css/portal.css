@@ -215,6 +215,16 @@ h1 {
   max-width: 10ch;
 }
 
+.hero-copy h1 {
+  color: var(--color-text);
+  text-shadow:
+    1px 1px 0 color-mix(in srgb, var(--color-text) 55%, transparent),
+    2px 2px 0 color-mix(in srgb, var(--color-text) 38%, transparent),
+    3px 3px 0 color-mix(in srgb, var(--color-text) 22%, transparent),
+    4px 4px 0 color-mix(in srgb, var(--color-text) 12%, transparent),
+    5px 5px 10px rgba(0, 0, 0, 0.18);
+}
+
 h3 {
   margin: 0;
   font-size: var(--text-lg);
