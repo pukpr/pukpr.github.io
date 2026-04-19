@@ -514,3 +514,10 @@ h3 {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* Theme-specific page backgrounds */
+#cirrus-bg { display: block; }
+#map-bg    { display: none; }
+
+[data-theme="light"] #cirrus-bg { display: none; }
+[data-theme="light"] #map-bg    { display: block; }
