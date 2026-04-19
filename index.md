@@ -4,6 +4,100 @@ title: Geoenergy Portal
 permalink: /
 ---
 
+<!-- Previous cirrus attempt: single feTurbulence filter rotated 45° via CSS transform — produced a single wide gray band
+<svg xmlns='http://www.w3.org/2000/svg' width='1000' height='1000'>
+  <filter id='c' color-interpolation-filters='sRGB'>
+    <feTurbulence type='fractalNoise' baseFrequency='0.005 0.08' numOctaves='6' seed='23'/>
+    <feColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  10 0 0 0 -6'/>
+  </filter>
+  <rect width='100%' height='100%' filter='url(#c)'/>
+</svg>
+-->
+
+<!-- Intricate wispy cirrus-cloud overlay: 40+ individual bezier strands in 4 Gaussian-blur layers,
+     organised into 7 spatial clusters, all slanted ~45° (lower-left to upper-right). -->
+<svg xmlns="http://www.w3.org/2000/svg"
+     style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1"
+     viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <!-- background hazy layer -->
+    <filter id="cf-bg"><feGaussianBlur stdDeviation="4 1.2"/></filter>
+    <!-- mid-distance layer -->
+    <filter id="cf-mid"><feGaussianBlur stdDeviation="2.2 0.6"/></filter>
+    <!-- foreground crisp layer -->
+    <filter id="cf-fg"><feGaussianBlur stdDeviation="1.2 0.3"/></filter>
+    <!-- hair-fine thread layer -->
+    <filter id="cf-fine"><feGaussianBlur stdDeviation="0.7 0.2"/></filter>
+  </defs>
+
+  <!-- === Layer 1: Background hazy wisps === -->
+  <g stroke="white" fill="none" stroke-linecap="round" filter="url(#cf-bg)">
+    <!-- Cluster A: upper-left -->
+    <path d="M-180,140 C0,120 150,95 320,88 S540,72 720,55"    stroke-width="3"   opacity="0.09"/>
+    <path d="M-160,165 C20,145 170,118 340,110 S560,94 740,78"  stroke-width="2"   opacity="0.07"/>
+    <path d="M-120,185 C60,165 210,138 380,132 S600,115 780,99" stroke-width="1.8" opacity="0.08"/>
+    <path d="M-200,120 C-30,100 120,75 290,68 S510,52 690,35"   stroke-width="2.5" opacity="0.06"/>
+    <path d="M-140,200 C40,180 190,155 360,148"                  stroke-width="1.5" opacity="0.07"/>
+    <!-- Cluster B: centre-top -->
+    <path d="M150,280 C330,260 480,235 650,228 S870,212 1050,195" stroke-width="2.8" opacity="0.09"/>
+    <path d="M120,300 C300,280 450,255 620,248 S840,232 1020,215" stroke-width="2"   opacity="0.07"/>
+    <path d="M180,260 C360,240 510,215 680,208"                    stroke-width="1.5" opacity="0.08"/>
+  </g>
+
+  <!-- === Layer 2: Mid-distance wisps === -->
+  <g stroke="white" fill="none" stroke-linecap="round" filter="url(#cf-mid)">
+    <!-- Cluster C: upper-right -->
+    <path d="M350,50  C530,30  680,5   850,-2 S1070,-18 1250,-35" stroke-width="2.5" opacity="0.12"/>
+    <path d="M320,70  C500,50  650,25  820,18 S1040,-2  1220,-19" stroke-width="1.8" opacity="0.10"/>
+    <path d="M380,30  C560,10  710,-15 880,-22"                    stroke-width="1.5" opacity="0.11"/>
+    <path d="M400,90  C580,70  730,45  900,38 S1120,22 1300,5"    stroke-width="2"   opacity="0.09"/>
+    <path d="M430,110 C610,90  760,65  930,58"                     stroke-width="1.2" opacity="0.08"/>
+    <!-- Cluster D: left-centre -->
+    <path d="M-200,350 C-20,330 130,305 300,298 S520,282 700,265" stroke-width="2.2" opacity="0.11"/>
+    <path d="M-180,370 C0,350   150,325 320,318 S540,302 720,285" stroke-width="1.8" opacity="0.09"/>
+    <path d="M-160,390 C20,370  170,345 340,338 S560,322 740,305" stroke-width="1.4" opacity="0.10"/>
+    <path d="M-220,330 C-40,310 110,285 280,278"                   stroke-width="1"   opacity="0.08"/>
+  </g>
+
+  <!-- === Layer 3: Foreground crisp wisps === -->
+  <g stroke="white" fill="none" stroke-linecap="round" filter="url(#cf-fg)">
+    <!-- Cluster E: lower-left -->
+    <path d="M-250,520 C-70,500 80,475  250,468 S470,452 650,435" stroke-width="1.8" opacity="0.12"/>
+    <path d="M-220,540 C-40,520 110,495 280,488 S500,472 680,455" stroke-width="1.4" opacity="0.10"/>
+    <path d="M-230,555 C-50,535 100,510 270,503"                   stroke-width="1"   opacity="0.09"/>
+    <path d="M-270,500 C-90,480 60,455  230,448 S450,432 630,415" stroke-width="2"   opacity="0.08"/>
+    <!-- Cluster F: centre -->
+    <path d="M300,430 C480,410 630,385 800,378 S1020,362 1200,345" stroke-width="1.8" opacity="0.11"/>
+    <path d="M280,450 C460,430 610,405 780,398 S1000,382 1180,365" stroke-width="1.3" opacity="0.09"/>
+    <path d="M320,410 C500,390 650,365 820,358"                     stroke-width="1"   opacity="0.10"/>
+    <path d="M250,470 C430,450 580,425 750,418"                     stroke-width="0.8" opacity="0.08"/>
+    <!-- Cluster G: upper-right extension -->
+    <path d="M600,180  C780,160  930,135  1100,128 S1320,112 1400,95"  stroke-width="1.8" opacity="0.12"/>
+    <path d="M580,200  C760,180  910,155  1080,148 S1300,132 1420,115" stroke-width="1.4" opacity="0.10"/>
+    <path d="M620,160  C800,140  950,115  1120,108"                     stroke-width="1.2" opacity="0.11"/>
+    <path d="M640,220  C820,200  970,175  1140,168 S1360,152 1440,135" stroke-width="1"   opacity="0.09"/>
+  </g>
+
+  <!-- === Layer 4: Hair-fine thread accents scattered across viewport === -->
+  <g stroke="white" fill="none" stroke-linecap="round" filter="url(#cf-fine)">
+    <path d="M-150,240 C30,220  180,195 350,188 S570,172 750,155"     stroke-width="0.8" opacity="0.10"/>
+    <path d="M-100,255 C80,235  230,210 400,203"                       stroke-width="0.6" opacity="0.08"/>
+    <path d="M50,320   C230,300 380,275 550,268 S770,252 950,235"      stroke-width="0.8" opacity="0.09"/>
+    <path d="M500,580  C680,560 830,535 1000,528 S1220,512 1400,495"  stroke-width="0.7" opacity="0.10"/>
+    <path d="M480,600  C660,580 810,555 980,548"                       stroke-width="0.5" opacity="0.08"/>
+    <path d="M700,640  C880,620 1030,595 1200,588 S1380,572 1440,560" stroke-width="0.8" opacity="0.09"/>
+    <path d="M100,480  C280,460 430,435 600,428 S820,412 1000,395"    stroke-width="0.6" opacity="0.08"/>
+    <path d="M-50,460  C130,440 280,415 450,408"                       stroke-width="0.7" opacity="0.09"/>
+    <path d="M900,280  C1080,260 1230,235 1400,228"                    stroke-width="0.8" opacity="0.10"/>
+    <path d="M850,300  C1030,280 1180,255 1350,248"                    stroke-width="0.6" opacity="0.08"/>
+    <path d="M200,680  C380,660 530,635 700,628 S920,612 1100,595"    stroke-width="0.7" opacity="0.09"/>
+    <path d="M-100,720 C80,700  230,675 400,668"                       stroke-width="0.8" opacity="0.08"/>
+    <path d="M750,760  C930,740 1080,715 1250,708"                     stroke-width="0.5" opacity="0.07"/>
+    <path d="M1050,350 C1150,330 1280,310 1400,300"                    stroke-width="0.7" opacity="0.09"/>
+    <path d="M-300,620 C-120,600 30,575 200,568"                       stroke-width="0.6" opacity="0.08"/>
+  </g>
+</svg>
+
 <section class="hero" id="top" style="background-image:url('/assets/media/bg_villars.jpg'); background-size:cover; background-position:center; background-repeat:no-repeat;">
   <div class="hero-grid">
     <div class="hero-copy">
