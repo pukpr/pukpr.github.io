@@ -485,7 +485,7 @@ The archived response addressed both points directly, emphasizing that aliasing 
 
 Taken together, the archived results support a coherent interpretation.[^59][^60][^64] QBO period structure, Chandler wobble timing, ENSO variability, and MSL behavior can all be described using a common family of draconic and related lunisolar forcings filtered through system-specific dynamics.[^60][^63]
 
-The following page shows how the LTE modulation varies systematically across different indices: [lte-signature-map.html](lte-signature-map.html).
+The following page shows how the LTE modulation varies systematically across different indices: [lte-signature-map.html](GEM-LTE/lte-signature-map.html).
 
 Within that interpretation, the QBO and Chandler wobble are the sharpest spectral demonstrations, while ENSO and MSL provide the broader dynamical validation.[^59][^60][^86] The Kelvin-wave amplification idea then supplies the missing physical bridge linking externally phased ocean variability to the stratospheric momentum-deposition environment in which QBO reversals actually occur.[^36][^41][^43]
 
