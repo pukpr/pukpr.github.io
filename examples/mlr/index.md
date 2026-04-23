@@ -99,6 +99,12 @@ python3 examples/mlr/common_mode_forcing_fit.py \
   --dtw-weight 0.0
 ```
 
+**Choosing `--dtw-weight` (Pearson-assisted DTW)**  
+The fit uses `score = pearson_r - (dtw_weight × dtw_distance)` to pick the phase shift.  
+Because `observed` is RMS-normalized, typical DTW distances land around ~1, so a **good starting range is
+`0.1–0.5`** (start at **`0.2`**). Increase the weight if you want tighter shape alignment, or lower it to
+prioritize higher correlation.
+
 Outputs:
 - `results/common_mode_forcing_fit/*_common_forcing_fit.csv` — per-station time, observed, model, forcing, residual.
 - `results/common_mode_forcing_fit/*_common_forcing_fit.json` — fitted coefficients and metrics.
