@@ -401,7 +401,7 @@ permalink: /
             <a href="https://github.com/pukpr/AdaPACE" target="_blank" rel="noopener noreferrer">Real-time distributed simulation and communication library</a>
             <div class="sub-links">
               <a href="https://github.com/pukpr/AdaPACE/tree/main/examples" target="_blank" rel="noopener noreferrer">Visualization examples</a>
-              <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:5nxA0vEk-isC" target="_blank" rel="noopener noreferrer">SUMIT virtual reality toolkit (2005)</a>
+          <!--    <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:5nxA0vEk-isC" target="_blank" rel="noopener noreferrer">SUMIT virtual reality toolkit (2005)</a> -->
             </div>
             <a href="https://github.com/pukpr/degas" target="_blank" rel="noopener noreferrer">Multitasking simulation library</a>
             <div class="sub-links">
