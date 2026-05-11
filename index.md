@@ -412,6 +412,7 @@ permalink: /
             <div class="sub-links">
               <a href="https://www.wiley.com/en-au/Modeling+for+Reliability+Analysis%3A+Markov+Modeling+for+Reliability%2C+Maintainability%2C+Safety%2C+and+Supportability+Analyses+of+Complex+Systems-p-9780780334823" target="_blank" rel="noopener noreferrer">Modeling for Reliability Analysis</a>
             </div>
+            <a href="https://gist.github.com/pukpr/06901b7dde1e84a60cf8d712a6af7a5d" target="_blank" rel="noopener noreferrer">An Early Precursor to Accelerator-Based Scientific Computing</a>
           </div>
           <span class="link-meta">Source</span>
         </div>
