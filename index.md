@@ -434,6 +434,7 @@ permalink: /
             </div>
             <a href="https://www.researchgate.net/publication/283579370_C2M2L_Final_Report" target="_blank" rel="noopener noreferrer">C2M2L environment modeling via ontological knowledgebases (2013)</a>
             <div class="sub-links">
+              <a href="https://gist.github.com/pukpr/a1378a1c6680c79fb312d7d1ebf4f85f">Summary</a>
               <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:UeHWp8X0CEIC" target="_blank" rel="noopener noreferrer">Knowledge-Based Environmental Context Modeling (2012)</a>
               <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:_kc_bZDykSQC" target="_blank" rel="noopener noreferrer">Stochastic Analysis for Context Modeling (2012)</a>
               <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=J4XWUG8AAAAJ&citation_for_view=J4XWUG8AAAAJ:4TOpqqG69KYC" target="_blank" rel="noopener noreferrer">Unified characterization of surface topography for vehicle dynamics applications (2012)</a>
