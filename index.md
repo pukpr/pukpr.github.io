@@ -299,6 +299,7 @@ permalink: /
               <a href="GEM-LTE/gem-lte-results.html">Cross-validation results</a>
               <a href="examples/pysindy/">PySINDy latent layer example</a>
               <a href="examples/mlr/">Multiple linear regression example</a>
+              <a href="gem-lte-core/">Core model</a>
             </div>
           </div>
           <span class="link-meta">Model hub</span>
