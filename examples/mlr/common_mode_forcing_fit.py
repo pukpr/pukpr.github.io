@@ -338,7 +338,7 @@ def main() -> int:
         "--dtw-weight",
         type=float,
         default=0.0,
-        help="Weight for DTW distance when selecting phase shift.",
+        help="Weight for DTW distance when selecting phase shift (start around 0.2; typical 0.1-0.5 for RMS-normalized data).",
     )
     parser.add_argument(
         "--dtw-window",
