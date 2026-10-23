@@ -370,6 +370,7 @@ permalink: /
       <div class="link-list">
         <div class="link-item">
           <div class="link-cluster">
+            <a href="gem-lte-core" target="_blank" rel="noopener noreferrer">GEM LTE model <-> MHD analog </a>
             <a href="https://github.com/pukpr/GEM-LTE" target="_blank" rel="noopener noreferrer">GEM LTE model source repository</a>
             <div class="sub-links">
               <a href="https://gist.github.com/pukpr" target="_blank" rel="noopener noreferrer">GitHub gists</a>
