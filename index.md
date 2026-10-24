@@ -315,6 +315,9 @@ permalink: /
       </div>
       <div class="link-list">
         <div class="link-item"><a href="ChandlerWobble">Interactive Chandler wobble model</a><span class="link-meta">Simulation</span></div>
+            <div class="sub-links">
+              <a href="ChandlerWobble/docs">E-M analog</a>
+            </div>
         <div class="link-item"><a href="OilShockModel/oil-shock-model">Interactive Oil Shock Model</a><span class="link-meta">Scenario tool</span></div>
         <div class="link-item"><a href="GEM-LTE/pukite-qbo">Interactive QBO Model</a><span class="link-meta">Simulation</span></div>
         <div class="link-item"><a href="GEM-LTE/gem-lte-results">Interactive LTE comparison</a><br/>
